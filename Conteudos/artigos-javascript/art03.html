@@ -118,36 +118,73 @@ nav {
     </header>
 
     <main>
-        <section class="introdução">
-            <h2>A diferencia entre javascript e EcmaScript</h2>
-            
-            <p>Para entender a diferença de forma bem simples, pense na relação entre o Português (a língua) e o Dicionário da Academia de Letras (as regras).</p>
+        <section class="Tipos-de-dados">
+            <h2>Tipos de Dados: O que vai dentro das variaveis</h2>
 
-            <p><strong>ECMAScript</strong> é a regra (o padrão): É um documento oficial que dita como a linguagem deve funcionar. Ele diz quais palavras-chave existem, como os <strong>loops</strong> devem se comportar e quais são os <strong>tipos de dados</strong>. Ele existe apenas no papel.</p>
+            <p><strong>number (Número):</strong> é Qualquer valor    numérico, seja positivo, negativo, inteiro ou decimal.
+            Diferente de outras linguagens que separam números inteiros de números com vírgula, o JavaScript coloca tudo na mesma caixa chamada number. Exemplo:</p>
+            <code> <p><strong>JavaScript</strong></p>
+            <p>const idade = 26;       // Inteiro</p>
+            <p>const preco = 99.90;    // Decimal (sempre use ponto, não vírgula)</p>
+            <p>const temperatura = -5; // Negativo</p>
+            </code>
 
-            <p><strong>JavaScript </strong>é a língua (a implementação): É a linguagem real que você escreve no seu editor de código e que o navegador roda. O JavaScript segue as regras que o ECMAScript determinou.</p>
+            <p><strong>Infinity (Infinito)</strong>: Ele aparece quando você faz uma operação matemática cujo resultado é maior do que o maior número que o JavaScript consegue processar, ou em divisões por zero. Este é um valor numérico especial que representa, literalmente, o infinito matemático. Exemplo:</p>
 
-            <h3>Uma Breve História (Para fazer sentido)</h3>
+            <code><p><strong>JavaScript</strong> </p>
+            <p>const resultado = 10 / 0;</p>
+            <p>console.log(resultado); // Vai exibir: Infinity</p></code>
 
-            <p> Nos anos 90, o JavaScript foi criado para o navegador Netscape.Logo depois, a Microsoft criou a sua própria versão para o Internet Explorer, chamada JScript.</p>
+            <p><strong>NaN (Not a Number / Não é um Número)</strong>: Ele serve para indicar que uma operação matemática falhou ou deu um resultado inválido/impossível. Apesar do nome significar "Não é um Número", o tipo dele para o JavaScript ainda é considerado um number especial! Se você tentar multiplicar um texto por um número. Exemplo:</p>
 
-            <p>Como cada navegador começou a criar suas próprias regras, a internet virou uma bagunça (um código que funcionava em um navegador quebrava no outro).</p>
-            <p>Para resolver isso, eles pediram para uma organização internacional chamada ECMA padronizar a linguagem. Nasceu aí o ECMAScript.</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const resultadoInvalido = "Olá" * 5; </p>
+            <p>console.log(resultadoInvalido); // Vai exibir: NaN</p></code>
 
-            <h3>Por que você ouve falar tanto de "ES6", "ES7", etc.?</h3>
+            <p><strong>string (Texto):</strong> são Dados textuais que precisam estar envolvidos por aspas simples ('), duplas (") ou crases (` `). Como vimos antes, serve para qualquer cadeia de caracteres (letras, palavras, frases, códigos). Exemplo:</p>
 
-            <p><strong>ES</strong> é a abreviação de EcmaScript. O número ao lado é a versão da regra.</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome = 'Ana';</p>
+            <p>const frase = "Estou aprendendo JS";</p></code>
 
-            <p><strong>ES5 (2009):</strong> É o JavaScript mais antigo.</p>
+            <p><strong>boolean (Booleano):</strong> É um tipo de dado que só aceita dois valores possíveis: true (verdadeiro) ou false (falso). O tipo de tomada do JavaScript: ou está ligado, ou está desligado. Exemplo:</p>
 
-            <p><strong>ES6 / ES2015:</strong> Foi a maior atualização da história da linguagem. Ela mudou o JavaScript de patamar, trazendo coisas que usamos hoje como o let, const, as Arrow Functions e as Template Strings (as crases para textos).</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const estaChovendo = false;</p>
+            <p>const maiorDeIdade = true;</p></code>
 
-            <p><strong>Atualizações Anuais:</strong> Hoje em dia, o comitê do ECMAScript lança uma versão nova todo ano (ES2024, ES2025, etc.) trazendo pequenas melhorias.</p>
+            <p><strong>null (Nulo):</strong> Usa-se o null quando quer dizer explicitamente para o computador: <strong>"Esta variável existe, mas ela está vazia de propósito neste momento"</strong>. O null representa a ausência intencional de um valor. Exemplo: Um campo de "segundo nome" em um formulário que o usuário não preencheu.</p>
 
-            
-            <aside id="destaque"><em>💡 <strong>Resumo da ópera:</strong> Você não precisa aprender duas coisas diferentes. Quando você estuda JavaScript moderno, você já está estudando as versões mais recentes do ECMAScript.</em></aside>
-    
-        </section>
+            <code> <p><strong>JavaScript</strong></p>
+            <p>let segundoNome = null; // O desenvolvedor definiu que está vazio</p></code>
+
+            <p> <strong>undefined (Indefinido):</strong> Ao contrário do null (que é intencional), o undefined é o padrão do JavaScript para variáveis que foram declaradas com let, mas não receberam nenhum valor inicial. O undefined significa que algo foi criado, mas nunca recebeu nenhum conteúdo.</p> 
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>let minhaVariavel;</p>
+            <p>console.log(minhaVariavel); // Vai exibir: undefined (porque não ganhou valor)</p></code>
+
+            <p><strong>object (Objeto):</strong> É uma coleção de dados relacionados. É como uma ficha cadastral de alguma coisa do mundo real. Aqui entramos nos tipos estruturais. Um objeto permite agrupar várias informações em um único lugar usando pares de chave: valor.</p>
+
+            <code><p><strong>JavaScript</strong></p>
+            <pre>  const carro = {
+        marca: "Toyota",
+        ano: 2024,
+        ligado: true
+    };</pre></code>
+
+            <p> <strong>Array (Lista):</strong> É uma caixa onde você coloca vários dados em fila, separados por vírgulas e envolvidos por colchetes [ ]. O Array é, na verdade, um tipo especial de Objeto, mas que funciona como uma lista ordenada.  Exemplo:</p>
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>const frutas = ["Maçã", "Banana", "Morango"];</p>
+            <p>const numerosSorteados = [12, 45, 23, 8];</p></code>
+
+            <p><strong>function (Função):</strong> É um "verbo" ou uma "máquina" que processa dados e te devolve uma resposta. Você pode guardá-las dentro de variáveis se quiser. No JavaScript, as funções também são tratadas como um tipo de dado. Elas são blocos de código que realizam uma ação quando são chamadas. </p>
+
+            <code><p><strong>JavaScript</strong></p>
+            <pre>  function saudar() {
+        return "Olá, mundo!";
+    }
     </main>
 
      <nav id="menu">
