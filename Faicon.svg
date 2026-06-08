@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 1122.5197 793.70081"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="Faicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.56126601"
+     inkscape:cx="583.50229"
+     inkscape:cy="295.75994"
+     inkscape:window-width="1436"
+     inkscape:window-height="835"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient6"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop6" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop7" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6"
+       id="linearGradient7"
+       x1="257.38597"
+       y1="384.3786"
+       x2="865.13374"
+       y2="384.3786"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(1.2977223e-6,12.471807)" />
+  </defs>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9"
+       width="764.34344"
+       height="304.66833"
+       x="160.35178"
+       y="244.51624"
+       ry="135.40817" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:170.702px;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi Italic';writing-mode:lr-tb;direction:ltr;fill:#000080;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       x="248.12132"
+       y="441.10956"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         x="248.12132"
+         y="441.10956"
+         style="stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"><tspan
+           style="fill:#000000;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           id="tspan6">JA:Dev</tspan><tspan
+           style="fill:#800080;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           id="tspan5">{}</tspan></tspan></text>
+  </g>
+</svg>
