@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="297mm"
-   height="210mm"
-   viewBox="0 0 1122.5197 793.70081"
+   width="3840"
+   height="2160"
+   viewBox="0 0 3840 2160"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
@@ -23,10 +23,10 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
-     inkscape:document-units="mm"
-     inkscape:zoom="0.56126601"
-     inkscape:cx="583.50229"
-     inkscape:cy="295.75994"
+     inkscape:document-units="px"
+     inkscape:zoom="0.29166667"
+     inkscape:cx="1918.2857"
+     inkscape:cy="1080"
      inkscape:window-width="1436"
      inkscape:window-height="835"
      inkscape:window-x="0"
@@ -35,6 +35,16 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6"
+       id="linearGradient7"
+       x1="257.38596"
+       y1="384.3786"
+       x2="865.13373"
+       y2="384.3786"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4686064,0,0,1.4686064,-263.37725,-201.61975)" />
     <linearGradient
        id="linearGradient6"
        inkscape:collect="always">
@@ -47,16 +57,6 @@
          offset="1"
          id="stop7" />
     </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient6"
-       id="linearGradient7"
-       x1="257.38597"
-       y1="384.3786"
-       x2="865.13374"
-       y2="384.3786"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.4686064,0,0,1.4686064,-263.37725,-201.61975)" />
   </defs>
   <g
      inkscape:label="Camada 1"
@@ -64,7 +64,7 @@
      id="layer1">
     <g
        id="g1"
-       transform="matrix(1.4462987,0,0,1.4462987,-235.18261,-139.67599)">
+       transform="matrix(3.3013739,0,0,3.3013739,134.14291,-268.85479)">
       <rect
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
          id="rect9"
