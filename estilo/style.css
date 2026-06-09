@@ -36,8 +36,23 @@ header {
     background-color: var(--destaque);
     color: var(--texto);
     padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
 }
 
-#menu ul {
+nav#menu ul {
     list-style: none;
+    display: flex;
+    gap: 10px;
 }
+
+nav#menu a {
+    text-decoration: none;
+    color: var(--texto-inverso);
+    font-weight:600;
+    padding: 12px 10px;
+    border-radius: 5px;
+}
+
+nav
