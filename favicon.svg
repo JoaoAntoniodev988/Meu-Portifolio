@@ -26,7 +26,7 @@
      inkscape:document-units="px"
      inkscape:zoom="0.29166667"
      inkscape:cx="1918.2857"
-     inkscape:cy="1080"
+     inkscape:cy="905.14286"
      inkscape:window-width="1436"
      inkscape:window-height="835"
      inkscape:window-x="0"
@@ -44,7 +44,7 @@
        x2="865.13373"
        y2="384.3786"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.4686064,0,0,1.4686064,-263.37725,-201.61975)" />
+       gradientTransform="matrix(5.6246025,0,0,5.6246025,-1178.9091,-1749.0017)" />
     <linearGradient
        id="linearGradient6"
        inkscape:collect="always">
@@ -62,32 +62,27 @@
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <g
-       id="g1"
-       transform="matrix(3.3013739,0,0,3.3013739,134.14291,-268.85479)">
-      <rect
-         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
-         id="rect9"
-         width="1122.5197"
-         height="447.43787"
-         x="0"
-         y="139.16212"
-         ry="198.86131" />
-      <text
-         xml:space="preserve"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:250.694px;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi Italic';writing-mode:lr-tb;direction:ltr;fill:#000080;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
-         x="101.0153"
-         y="427.88031"
-         id="text4"><tspan
-           sodipodi:role="line"
-           id="tspan4"
-           x="101.0153"
-           y="427.88031"
-           style="stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"><tspan
-             style="fill:#000000;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
-             id="tspan6">JA.Dev</tspan><tspan
-             style="fill:#800080;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
-             id="tspan5">{}</tspan></tspan></text>
-    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:960.131px;font-family:Dyuthi;-inkscape-font-specification:'Dyuthi Italic';writing-mode:lr-tb;direction:ltr;fill:#000080;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       x="216.67456"
+       y="661.91486"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         x="216.67456"
+         y="661.91486"
+         style="stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"><tspan
+           style="fill:#000000;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           id="tspan6">JA.</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="216.67456"
+         y="1862.0786"
+         style="stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan1"><tspan
+           style="fill:#000000;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           id="tspan2">Dev</tspan><tspan
+           style="fill:#800080;fill-opacity:1;stroke:url(#linearGradient7);stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           id="tspan5">{}</tspan></tspan></text>
   </g>
 </svg>
