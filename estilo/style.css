@@ -24,11 +24,37 @@ body {
 }
 
 main {
+    padding: 10px;
     background-color: #ffffff;
     height: 90vh;
     weight: 90vw;
 }
 
+section#ficha {
+    background-color: var(--fundo-card);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+section#ficha img.foto {
+    width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 5px solid var(--fundo-card);
+    outline: 5px solid var(--destaque);
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+section#ficha h1 {
+    color: var(--destaque);
+    margin: 15px 0px;
+    font-size: 1.5em;
+    text-align: center;
+}
 
 nav {
     position: fixed;
