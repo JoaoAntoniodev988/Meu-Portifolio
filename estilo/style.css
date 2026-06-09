@@ -68,6 +68,7 @@ nav#menu a {
 
 header img {
     width: 6vw;
+    display: block;
 }
 
 nav#menu a {
