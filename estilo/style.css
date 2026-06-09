@@ -56,6 +56,21 @@ section#ficha h1 {
     text-align: center;
 }
 
+section#ficha p {
+    color: var(--texto);
+    text-align: justify;
+}
+
+div#social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6em;
+    gap: 1em;
+    margin-top: 15px;
+}
+
+
 nav {
     position: fixed;
     bottom: 0;
