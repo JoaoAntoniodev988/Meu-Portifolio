@@ -35,10 +35,12 @@ body {
 header {
     background-color: var(--destaque);
     color: var(--texto);
-    padding: 10px;
     display: flex;
-    justify-content: flex-end;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0px;
+    /*justify-content: flex-end;*/
+    /*align-content: center;*/
 }
 
 nav#menu ul {
@@ -51,8 +53,22 @@ nav#menu a {
     text-decoration: none;
     color: var(--texto-inverso);
     font-weight:600;
-    padding: 12px 10px;
-    border-radius: 5px;
+    padding: 12px 4px;
+    /*border-radius: 5px;
+    transition: background-color 0.5s, color 0.5s;*/
 }
 
-nav
+nav#menu a:hover {
+    /*background-color: var(--destaque-inverso);
+    color: var (--destaque);*/
+}
+
+
+/*@media screen and (min-width: 360px, 414, 412, 393) {
+    nav#menu a {
+    justify-content: center;
+    align-items: center;
+    padding: 12px 3px;
+    /*border-radius: 5px;
+    transition: background-color 0.5s, color 0.5s;*/
+
