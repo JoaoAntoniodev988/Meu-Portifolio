@@ -16,7 +16,6 @@
 }
 
 body { 
-    display: inline-block;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.5em;
     color: var(--texto);
@@ -24,6 +23,7 @@ body {
 }
 
 main {
+    display: inline-block;
     display: grid;
     grid-template-columns: auto 90vw auto;
     gap: 20px;
