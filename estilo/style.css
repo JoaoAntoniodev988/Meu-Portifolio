@@ -167,8 +167,23 @@ article h2 {
     border-radius: 4px;
 }
 
+#projetos-container {
+    display: flex;
+    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
 
+#projetos-container .projeto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--fundo-principal);
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 5px solid var(--destaque-inverso);
 
+}
   
 nav {
     position: fixed;
