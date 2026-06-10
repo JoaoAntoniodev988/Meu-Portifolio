@@ -32,7 +32,7 @@ main {
     align-items: flex-start;
     gap: 20px;
     margin-top: 20px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 section#ficha {
@@ -71,6 +71,7 @@ strong {
     color: var(--destaque);
     text-align: left;
 }
+
 
 section#ficha h2 {
     color: var(--destaque);
@@ -168,11 +169,20 @@ article h2 {
 }
 
 #projetos-container {
-    display: flex;
-    flex-direction: column-reverse;
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 2fr;
     gap: 20px;
 }
+
+img {
+    width: 20vw;
+
+}
+
+#projeto-info h3 {
+    font-weight: 200;
+}
+
 
 #projetos-container .projeto {
     display: flex;
@@ -220,6 +230,11 @@ nav {
 
     #skill-container {
         grid-template-columns: repeat(2, 1fr); /* Cria as duas colunas */
+        width: 97vw;
+    }
+
+    img {
+        width: 10vw;
     }
 
 }
