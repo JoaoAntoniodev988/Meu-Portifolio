@@ -232,19 +232,33 @@ nav {
 
     #skill-container {
         grid-template-columns: repeat(2, 1fr); /* Cria as duas colunas */
-        width: 97vw;
+        width: 97vw; /* Define a largura do container*/
     }
 
  #projetos-container .projeto {
     transition: border-color 0.5s, border-width 0.5s;
+    display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0px;
 }
 
  #projetos-container .projeto:hover {
     border-color: var(--destaque);
     border-left-width: 15px;
     cursor: pointer;
+ }
+
+ #projetos-container .projeto-info {
+    max-width: 80%;
+ }
+
+#projetos-container .foto {
+    aspect-ratio: 1/1;
+    max-width: 10%;
+    max-height: 500px;
  }
 
 }
