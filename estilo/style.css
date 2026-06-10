@@ -57,10 +57,9 @@ section#ficha img.foto {
 }
 
 section#ficha h1 {
-    color: var(--destaque);
+    color: var(--texto);
     margin: 15px 0px;
     font-size: 1.5em;
-    text-align: center;
 }
 
 strong {
