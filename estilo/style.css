@@ -60,10 +60,16 @@ section#ficha h1 {
     color: var(--texto);
     margin: 15px 0px;
     font-size: 1.5em;
+    text-align: center;
+}
+
+li {
+    hyphens: auto;
 }
 
 strong {
     color: var(--destaque);
+    text-align: left;
 }
 
 section#ficha h2 {
@@ -80,7 +86,7 @@ section#ficha h2 {
 .lista {
     hyphens: auto;
     padding-left: 30px;
-    text-align: left;
+    text-align: justify;
 }
 
 
