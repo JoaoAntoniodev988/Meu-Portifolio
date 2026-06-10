@@ -15,7 +15,8 @@
     --fundo-card: #ffffff;
 }
 
-body { 
+body {
+    background-attachment: fixed;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.5em;
     color: var(--texto);
@@ -28,7 +29,7 @@ main {
     grid-template-columns: auto 90vw auto;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 20px;
     margin-top: 20px;
 }
