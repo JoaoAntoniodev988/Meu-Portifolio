@@ -16,7 +16,6 @@
 }
 
 body {
-    background-attachment: fixed;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.5em;
     color: var(--texto);
@@ -25,13 +24,10 @@ body {
 
 main {
     display: grid;
-    display: flex;
-    grid-template-columns: auto 90vw auto;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: 20px;
     margin-top: 20px;
+    width: 100%;
 }
 
 section#ficha {
@@ -142,7 +138,6 @@ article h2 {
 }
 
 .nome {
-    font-weight: bold;
     color: var(--texto);
 }
 
@@ -167,42 +162,6 @@ article h2 {
     border-radius: 4px;
 }
 
-#projetos-container {
-    display: grid;
-    grid-template-columns: 2fr;
-    gap: 20px;
-    width: 90vw;
-    padding-bottom: 30px;
-}
-
-#detalhes {
-    margin-bottom: -20px;
-}
-
-
-/* Configuração da imagem do container*/
- img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    overflow: hidden;
-    border-radius: 8px;
-
-}
-
-
-#projetos-container .projeto {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    border-radius: 8px;
-    border-left: 5px solid var(--destaque-inverso);
-
-}
-
-  
 nav {
     position: fixed;
     bottom: 0;
@@ -239,51 +198,68 @@ footer {
 
 @media screen and (min-width: 712px) {
 
-    nav {
-    width: 100%;
-    border-top: 1px solid #e0e0e0; /* Linha fina divisória */
-    z-index: 9999;                 /* Garante que fica sempre por cima do conteúdo */
-    color: var(--texto);
-    padding-top: 10px;
-    background-color: var(--fundo-card);
-    box-shadow: 2px 2px 8px 5px var(--destaque-inverso);}
-
-    #skill-container {
-        grid-template-columns: repeat(2, 1fr); /* Cria as duas colunas */
-        width: 97vw; /* Define a largura do container*/
+    main {
+        display: grid;
+        /* Define 300px fixos para o perfil e o resto (1fr) para os detalhes */
+        grid-template-columns: 400px 1fr; 
+        gap: 30px;                       
+        width: 95%; /* Ocupa 95% do ecrã de forma limpa */
+        max-width: 1200px;               
+        margin: 20px auto;                  
+        align-items: start;              
     }
 
+    section#ficha {
+        grid-column: 1 / 2;              
+        height: fit-content;
+        position: sticky;                
+        top: 100px;                       
+    }
+
+    section#detalhes {
+        grid-column: 2 / 3;              
+        width: 100%; /* Garante que os detalhes preencham a coluna 2 sem estourar */
+    }
+
+    /* CORRIGIDO: Removido o 97vw que jogava as skills para fora da tela */
+    #skill-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas perfeitas */
+        gap: 20px 40px;
+        width: 100%; /* Ocupa apenas o espaço de dentro do card */
+    }
+
+    /* CORRIGIDO: Ajustado para usar Grid ou Flex flexível nos cards de projeto */
     #projetos-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-        align-items: stretch;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Dois projetos lado a lado */
         gap: 25px;
+        width: 100%;
     }
 
     #projetos-container .projeto {
+        transition: border-color 0.5s, border-width 0.5s;
+        display: flex;
+        flex-direction: column; /* Organiza imagem e texto verticalmente dentro do mini-card */
+    }
+
+    
+     #projetos-container .projeto {
         transition: border-color 0.5s, border-width 0.5s;
         display: flex;}
 
     #projetos-container .projeto:hover {
         border-color: var(--destaque);
         border-left-width: 15px;
-        cursor: pointer;}
+        cursor: pointer;} 
 
-    #projetos-container .projeto-info {
+     #projetos-container .projeto-info {
         max-width: 100%;}
 
-    img {
-        max-height: 100px;
-        border-radius: 8px;
-        max-width: 140px;
-        overflow: hidden;
-        object-fit: cover; /* Garante que a imagem preencha o espaço sem amassar */
-        object-position: 0px 0px;/* Deslocamento: [Eixo X (Horizontal)] [Eixo Y (Vertical)] */
-        }
+    
 
     footer {
+
         display: block;
         background-color: var(--destaque);
         color: var(--texto-inverso);
@@ -292,13 +268,20 @@ footer {
         width: 100vw;
         height: 80px;
         margin-bottom: 50px;
-        }
-
-    footer > p {
-    padding-top: 10px;}
 
 }
 
+img.fotop {
+    width: 100px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+footer > p {
+
+padding-top: 10px;} 
+    /* ... seu código do footer e hover permanecem iguais ... */
+}
 
 
     
