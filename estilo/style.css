@@ -47,6 +47,10 @@ section#ficha img.foto {
     margin-bottom: 20px;
 }
 
+#logo {
+    display: none;
+}
+
 img.fotop {
     width: 100px;
     overflow: hidden;
@@ -206,13 +210,13 @@ footer {
 
     main {
         display: grid;
-        /* Define 300px fixos para o perfil e o resto (1fr) para os detalhes */
+        /* Define 4000px fixos para o perfil e o resto (1fr) para os detalhes */
         grid-template-columns:350px 1fr; 
         gap: 30px;                       
         width: 100%; /* Ocupa 95% do ecrã de forma limpa */
-        max-width: 1200px;               
+        max-width: 1400px;               
         margin: 20px auto;                  
-        align-items: start;              
+        align-items: start;            
     }
 
     section#ficha {
@@ -225,6 +229,8 @@ footer {
     section#detalhes {
         grid-column: 2 / 3;              
         width: 100%; /* Garante que os detalhes preencham a coluna 2 sem estourar */
+        height: fit-content;
+        position: sticky;  
     }
 
     /* CORRIGIDO: Removido o 97vw que jogava as skills para fora da tela */
@@ -250,7 +256,7 @@ footer {
     }
 
     
-     #projetos-container .projeto {
+    #projetos-container .projeto {
         transition: border-color 0.5s, border-width 0.5s;
         display: flex;}
 
@@ -259,7 +265,7 @@ footer {
         border-left-width: 15px;
         cursor: pointer;} 
 
-     #projetos-container .projeto-info {
+    #projetos-container .projeto-info {
         max-width: 100%;}
 
     footer {
@@ -275,12 +281,29 @@ footer {
 }
 
 header {
+    position: sticky;
+    top: 0;
     display: block;
     width: 100vw;
     z-index: 9999;                 /* Garante que fica sempre por cima do conteúdo */
     color: var(--texto);
-    padding: 10px;
+    padding: 5px;
     background-color: var(--destaque);
+}
+
+#logo {
+    display: block;
+    max-width: 100px;
+    max-height: 40px;
+}
+
+
+menu {
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
 }
 
 #cima ul {
