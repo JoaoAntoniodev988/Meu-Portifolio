@@ -29,7 +29,7 @@ main {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: nowrap;
-    margin-bottom: 70px;
+    gap: 15px;
 }
 
 
@@ -39,6 +39,13 @@ section#ficha {
     border-radius: 8px;
     grid-column: 2;
 }
+
+section#detalhes {
+        grid-column: 1 / 2;
+        width: 100%;
+        overflow-y: auto; /* Se você quiser que ela TAMBÉM role de forma independente, mantenha a linha abaixo. 
+        Se quiser que ela fique estática, mude para overflow: hidden; */
+    }
 
 section#ficha img.foto {
     width: 200px;
@@ -53,6 +60,8 @@ section#ficha img.foto {
     margin: auto;
     margin-bottom: 20px;
 }
+
+
 
 #logo {
     display: none;
@@ -123,6 +132,26 @@ div#social a {
 div#social a:hover {
     color: var(--destaque-inverso);
 }
+
+div#movel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6em;
+    gap: 1em;
+    margin-top: 15px;
+}
+
+div#movel a {
+    color: var(--destaque);
+    transition: 0.5s;
+}
+
+div#movel a:hover {
+    color: var(--destaque-inverso);
+}
+
+
 
 article {
     background-color: var(--fundo-card);
@@ -271,6 +300,10 @@ footer {
         grid-template-columns: 1fr;
         gap: 25px;
         width: 100%;
+    }
+
+    #movel {
+        display: none;
     }
 
     footer {
