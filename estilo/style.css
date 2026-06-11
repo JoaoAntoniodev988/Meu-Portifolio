@@ -208,44 +208,17 @@ footer {
 
 @media screen and (min-width: 712px) {
 
-    /* Trava a rolagem da página inteira para permitir que apenas as colunas rolem */
-    body {
-        overflow: hidden; 
-        height: 100vh;
-        display: flex;
-        flex-direction: column; /* Alinha o bloco principal e o footer verticalmente */
+    body, html {
+        width: 100vw;
     }
 
     main {
         display: grid;
-        /* Define 4000px fixos para o perfil e o resto (1fr) para os detalhes */
-        grid-template-columns: 400px 1fr; 
+        /* Define 400px fixos para o perfil e o resto (1fr) para os detalhes */
+        grid-template-columns: 500px 1fr; 
         gap: 10px;                       
-        width: 100%; /* Ocupa 95% do ecrã de forma limpa */
-        max-width: 100%;               
-        margin: 20px auto;                                
-        align-items: flex-start; /* Fundamental para o sticky funcionar corretamente */  
-        /* Força o main a ocupar exatamente a altura visível da tela, descontando margens */
-        height: calc(100vh - 60px);        
-    }
-
-    section#ficha {
-        grid-column: 1 / 2;  
-        height: 100%; /* Ocupa a altura total do main */            
-        /* Ativa a rolagem independente aqui: */
-        overflow-y: auto; 
-        padding-right: 10px; /* Espaço para a barra de rolagem não cobrir o texto */  
-        margin-bottom: 400px;
-        margin-left: 10px;                         
-    }
-
-    section#detalhes {
-        grid-column: 2 / 3;              
-        width: 100%; /* Garante que os detalhes preencham a coluna 2 sem estourar */
-        height: 100%; /* Ocupa a altura total do main */
-        /* Ativa a rolagem independente aqui também: */
-        overflow-y: auto; 
-        padding-right: 10px;
+        width: 85vw; /* Ocupa 100% do ecrã de forma limpa */ 
+        margin: auto;                                        
     }
 
     /* CORRIGIDO: Removido o 97vw que jogava as skills para fora da tela */
