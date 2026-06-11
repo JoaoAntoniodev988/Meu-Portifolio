@@ -58,9 +58,10 @@ img.fotop {
 }
 
 section#ficha h1 {
-    color: var(--texto);
+    color: var(--destaque);
     margin: 15px 0px;
     font-size: 1.5em;
+    font-weight: bolder;
     text-align: center;
 }
 
