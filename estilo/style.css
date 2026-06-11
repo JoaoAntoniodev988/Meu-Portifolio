@@ -219,14 +219,14 @@ footer {
     main {
         display: grid;
         /* Define 4000px fixos para o perfil e o resto (1fr) para os detalhes */
-        grid-template-columns:350px 1fr; 
-        gap: 30px;                       
+        grid-template-columns: 400px 1fr; 
+        gap: 10px;                       
         width: 100%; /* Ocupa 95% do ecrã de forma limpa */
-        max-width: 1400px;               
+        max-width: 100%;               
         margin: 20px auto;                                
-        align-items: stretch; /* Fundamental para o sticky funcionar corretamente */  
+        align-items: flex-start; /* Fundamental para o sticky funcionar corretamente */  
         /* Força o main a ocupar exatamente a altura visível da tela, descontando margens */
-        height: calc(100vh - 40px);        
+        height: calc(100vh - 60px);        
     }
 
     section#ficha {
@@ -235,7 +235,8 @@ footer {
         /* Ativa a rolagem independente aqui: */
         overflow-y: auto; 
         padding-right: 10px; /* Espaço para a barra de rolagem não cobrir o texto */  
-        margin-bottom: 400px;                         
+        margin-bottom: 400px;
+        margin-left: 10px;                         
     }
 
     section#detalhes {
