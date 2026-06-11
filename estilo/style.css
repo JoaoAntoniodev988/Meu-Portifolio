@@ -123,7 +123,7 @@ article {
 
 article h2 {
     color: var(--destaque);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 /* Container principal das habilidades */
@@ -176,7 +176,7 @@ article h2 {
 }
 
 #detalhes {
-    margin-bottom: -25px;
+    margin-bottom: -20px;
 }
 
 
@@ -202,19 +202,6 @@ article h2 {
 
 }
 
-footer {
-    background-color: var(--destaque);
-    color: var(--texto-inverso);
-    text-align: center;
-    padding: 10px;
-    width: 100vw;
-    height: 80px;
-    margin-bottom: 100px;
-    }
-
-footer > p {
-    padding-top: 10px;
-}
   
 nav {
     position: fixed;
@@ -246,8 +233,20 @@ nav {
     color: var(--destaque);
 }
 
+footer {
+    display: none;
+}
 
 @media screen and (min-width: 712px) {
+
+    nav {
+    width: 100%;
+    border-top: 1px solid #e0e0e0; /* Linha fina divisória */
+    z-index: 9999;                 /* Garante que fica sempre por cima do conteúdo */
+    color: var(--texto);
+    padding-top: 10px;
+    background-color: var(--fundo-card);
+    box-shadow: 2px 2px 8px 5px var(--destaque-inverso);}
 
     #skill-container {
         grid-template-columns: repeat(2, 1fr); /* Cria as duas colunas */
@@ -283,6 +282,20 @@ nav {
         object-fit: cover; /* Garante que a imagem preencha o espaço sem amassar */
         object-position: 0px 0px;/* Deslocamento: [Eixo X (Horizontal)] [Eixo Y (Vertical)] */
         }
+
+    footer {
+        display: block;
+        background-color: var(--destaque);
+        color: var(--texto-inverso);
+        text-align: center;
+        padding: 10px;
+        width: 100vw;
+        height: 80px;
+        margin-bottom: 50px;
+        }
+
+    footer > p {
+    padding-top: 10px;}
 
 }
 
