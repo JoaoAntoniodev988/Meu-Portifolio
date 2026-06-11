@@ -15,9 +15,6 @@
     --fundo-card: #ffffff;
 }
 
-main {
-    margin-bottom: 70px;
-}
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -25,6 +22,16 @@ body {
     color: var(--texto);
     background-color: var(--fundo-principal);
 }
+
+main {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 70px;
+}
+
 
 section#ficha {
     background-color: var(--fundo-card);
@@ -216,7 +223,7 @@ footer {
     main {
         display: grid;
         grid-template-columns: 450px 1fr; /* Define 450px fixos para o perfil e o resto (1fr) para os detalhes */
-        gap: 10px;                       
+        gap: 25px;                       
         width: 90%; /* Ocupa 90% do ecrã de forma limpa */ 
         margin-top: 40px; 
         margin-left: 75px; 
@@ -230,7 +237,9 @@ footer {
         grid-column: 2 / 3; /* Posicionada na coluna da direita */
         height: 100%; /* Força a seção a usar toda a altura delimitada pelo main */ 
         overflow-y: auto; /* MÁGICA AQUI: Ativa a rolagem vertical apenas dentro deste bloco */
-        padding-right: 15px; /* Um pequeno espaçamento na direita para a barra de rolagem não esmagar o seu texto */
+        padding-left: 95px;
+        padding-right: 75px;
+
     }
 
     section#ficha::-webkit-scrollbar {
@@ -241,10 +250,8 @@ footer {
     section#detalhes {
         grid-column: 1 / 2;
         height: 100%;
-
         overflow-y: auto; /* Se você quiser que ela TAMBÉM role de forma independente, mantenha a linha abaixo. 
         Se quiser que ela fique estática, mude para overflow: hidden; */
-        padding-right: 15px;
     }
 
     section#detalhes::-webkit-scrollbar {
@@ -254,15 +261,14 @@ footer {
     /* CORRIGIDO: Removido o 97vw que jogava as skills para fora da tela */
     #skill-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Duas colunas perfeitas */
-        gap: 20px 40px;
-        width: 100%; /* Ocupa apenas o espaço de dentro do card */
+        grid-template-columns: 1fr; /* Duas colunas perfeitas */
+        width: 90%; /* Ocupa apenas o espaço de dentro do card */
     }
 
     /* CORRIGIDO: Ajustado para usar Grid ou Flex flexível nos cards de projeto */
     #projetos-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Dois projetos lado a lado */
+        grid-template-columns: 1fr;
         gap: 25px;
         width: 100%;
     }
