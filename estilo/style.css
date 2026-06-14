@@ -21,6 +21,7 @@ body {
     line-height: 1.5em;
     color: var(--texto);
     background-color: var(--fundo-principal);
+    hyphens: auto;
 }
 
 .telas-pequenas {
@@ -117,13 +118,11 @@ section#ficha h2 {
 .lista {
     hyphens: auto;
     padding-left: 30px;
-    text-align: justify;
 }
 
 
 section#ficha p {
     color: var(--texto);
-    text-align: justify;
     hyphens: auto;
 }
 
