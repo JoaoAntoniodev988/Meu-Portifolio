@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mastering CSS Grid: Teoria e Laboratório</title>
+<style>
+:root {
+  --primary: #ff5722;
+  --primary-light: #ffe0b2;
+  --bg: #f8f9fa;
+  --container-bg: #ffffff;
+  --item-bg: #e0f7fa;
+  --item-border: #00bcd4;
+  --text-color: #212529;
+}
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-wrapper { width: 100%; max-width: 1100px; }
+h1, h2 { color: var(--primary); }
+h2 { border-bottom: 2px solid var(--primary-light); padding-bottom: 8px; margin-top: 40px; }
+.docs-section { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px; }
+.docs-section p { line-height: 1.6; color: #4a4a4a; }
+code { background-color: #f1f1f1; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #d63384; font-size: 0.9em; }
+.concept-box { background: var(--primary-light); padding: 15px; border-radius: 8px; border-left: 5px solid var(--primary); margin: 20px 0; color: #5d4037; }
+.props-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+.prop-card { background: #fafafa; border: 1px solid #eee; border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 6px; }
+.prop-card strong { color: #d63384; font-family: monospace; }
+.prop-card p { margin: 6px 0 0; font-size: 13px; color: #555; }
+.playground-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid var(--primary-light);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+.control-group { display: flex; flex-direction: column; }
+label { font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #555; }
+select, input { padding: 10px; border-radius: 6px; border: 1px solid #ddd; background: #fff; font-size: 14px; }
+.grid-container {
+  background-color: #f0f0f0;
+  border: 3px dashed var(--primary);
+  border-radius: 8px;
+  min-height: 380px;
+  display: grid;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.grid-item {
+  background-color: var(--item-bg);
+  border: 2px solid var(--item-border);
+  color: #006064;
+  padding: 20px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  min-width: 60px;
+  min-height: 50px;
+}
+.code-output {
+  background: #1e1e1e;
+  color: #adbac7;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.code-output .property { color: #79c0ff; }
+.code-output .value { color: #8dd39e; }
+.preset-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.preset-bar button {
+  padding: 8px 14px; border-radius: 6px; border: 1px solid var(--primary);
+  background: #fff; color: var(--primary); font-weight: 600; cursor: pointer;
+  transition: all 0.2s;
+}
+.preset-bar button:hover { background: var(--primary); color: #fff; }
+</style>
+</head>
+<body>
+<div class="main-wrapper">
+  <h1>Mestre do CSS Grid Layout</h1>
+  <p>Compreenda o funcionamento estrutural em duas dimensões e experimente <strong>todas</strong> as propriedades de container em tempo real.</p>
+  <section class="docs-section">
+    <h2>1. O Modelo Bidimensional (2D)</h2>
+    <p>O <strong>CSS Grid Layout</strong> opera criando uma malha invisível de linhas horizontais e verticais. A grande diferença para o Flexbox é que no Grid você dita o comportamento das linhas e das colunas simultaneamente a partir do elemento pai.</p>
+    <div class="concept-box">
+      <strong>A revolução da unidade <code>fr</code>:</strong> Esqueça porcentagens (33.33%). Com <code>1fr 1fr 1fr</code>, o navegador divide o espaço disponível em três partes exatamente iguais de forma automática.
+    </div>
+    <h2>2. Todas as Propriedades de Container</h2>
+    <div class="props-grid">
+      <div class="prop-card"><strong>display</strong><p>Define o elemento como contêiner grid (<code>grid</code> ou <code>inline-grid</code>).</p></div>
+      <div class="prop-card"><strong>grid-template-columns</strong><p>Define o número e o tamanho das colunas da grade.</p></div>
+      <div class="prop-card"><strong>grid-template-rows</strong><p>Define o número e o tamanho das linhas da grade.</p></div>
+      <div class="prop-card"><strong>grid-template</strong><p>Atalho para definir <code>rows</code>, <code>columns</code> e áreas em uma única declaração.</p></div>
+      <div class="prop-card"><strong>gap</strong><p>Espaçamento uniforme entre linhas e colunas (row-gap + column-gap).</p></div>
+      <div class="prop-card"><strong>grid-auto-rows</strong><p>Tamanho padrão de linhas criadas implicitamente (fora do template).</p></div>
+      <div class="prop-card"><strong>grid-auto-columns</strong><p>Tamanho padrão de colunas criadas implicitamente.</p></div>
+      <div class="prop-card"><strong>align-items</strong><p>Alinha o conteúdo de cada item no eixo vertical dentro da célula.</p></div>
+      <div class="prop-card"><strong>justify-items</strong><p>Alinha o conteúdo de cada item no eixo horizontal dentro da célula.</p></div>
+      <div class="prop-card"><strong>align-content</strong><p>Alinha toda a grade no eixo vertical quando há espaço sobrando.</p></div>
+      <div class="prop-card"><strong>justify-content</strong><p>Alinha toda a grade no eixo horizontal quando há espaço sobrando.</p></div>
+      <div class="prop-card"><strong>place-items</strong><p>Atalho para <code>align-items</code> + <code>justify-items</code>.</p></div>
+      <div class="prop-card"><strong>place-content</strong><p>Atalho para <code>align-content</code> + <code>justify-content</code>.</p></div>
+      <div class="prop-card"><strong>repeat()</strong><p>Função para repetir padrões: <code>repeat(3, 1fr)</code> ou <code>repeat(auto-fit, minmax(150px, 1fr))</code>.</p></div>
+      <div class="prop-card"><strong>unidade fr</strong><p>Representa uma fração do espaço livre disponível no container.</p></div>
+    </div>
+  </section>
+  <h2>3. Laboratório de Estruturas (Grid Playground)</h2>
+  <section class="playground-section">
+    <div class="preset-bar">
+      <button onclick="applyPreset('dashboard')">📊 Dashboard</button>
+      <button onclick="applyPreset('gallery')">🖼️ Galeria Responsiva</button>
+      <button onclick="applyPreset('holy-grail')">⛪ Holy Grail</button>
+      <button onclick="applyPreset('centered')">🎯 Tudo Centralizado</button>
+      <button onclick="applyPreset('reset')">↺ Reset</button>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>grid-template-columns:</label>
+        <select id="columns" onchange="updateGrid()">
+          <option value="repeat(3, 1fr)">repeat(3, 1fr)</option>
+          <option value="1fr 2fr 1fr">1fr 2fr 1fr</option>
+          <option value="repeat(auto-fit, minmax(150px, 1fr))">auto-fit minmax(150px,1fr)</option>
+          <option value="repeat(auto-fill, minmax(100px, 1fr))">auto-fill minmax(100px,1fr)</option>
+          <option value="100px 1fr">100px 1fr</option>
+          <option value="repeat(4, 1fr)">repeat(4, 1fr)</option>
+          <option value="200px 1fr 200px">200px 1fr 200px</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>grid-template-rows:</label>
+        <select id="rows" onchange="updateGrid()">
+          <option value="auto">auto</option>
+          <option value="repeat(2, 100px)">repeat(2, 100px)</option>
+          <option value="100px 200px">100px 200px</option>
+          <option value="repeat(3, 1fr)">repeat(3, 1fr)</option>
+          <option value="minmax(80px, auto)">minmax(80px, auto)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>grid-auto-rows:</label>
+        <select id="autoRows" onchange="updateGrid()">
+          <option value="auto">auto</option>
+          <option value="80px">80px</option>
+          <option value="120px">120px</option>
+          <option value="minmax(100px, auto)">minmax(100px, auto)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>grid-auto-columns:</label>
+        <select id="autoCols" onchange="updateGrid()">
+          <option value="auto">auto</option>
+          <option value="100px">100px</option>
+          <option value="1fr">1fr</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>gap:</label>
+        <select id="gap" onchange="updateGrid()">
+          <option value="10px">10px</option>
+          <option value="25px">25px</option>
+          <option value="0px">0px</option>
+          <option value="40px">40px</option>
+          <option value="10px 30px">10px 30px (row col)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>justify-items (H interno):</label>
+        <select id="justifyItems" onchange="updateGrid()">
+          <option value="stretch">stretch</option>
+          <option value="center">center</option>
+          <option value="start">start</option>
+          <option value="end">end</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>align-items (V interno):</label>
+        <select id="alignItems" onchange="updateGrid()">
+          <option value="stretch">stretch</option>
+          <option value="center">center</option>
+          <option value="start">start</option>
+          <option value="end">end</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>justify-content (H da grade):</label>
+        <select id="justifyContent" onchange="updateGrid()">
+          <option value="start">start</option>
+          <option value="center">center</option>
+          <option value="end">end</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+          <option value="space-evenly">space-evenly</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>align-content (V da grade):</label>
+        <select id="alignContent" onchange="updateGrid()">
+          <option value="start">start</option>
+          <option value="center">center</option>
+          <option value="end">end</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+          <option value="space-evenly">space-evenly</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>place-items (atalho):</label>
+        <select id="placeItems" onchange="updateGrid()">
+          <option value="">(usa items individuais)</option>
+          <option value="center">center</option>
+          <option value="start stretch">start stretch</option>
+          <option value="end center">end center</option>
+          <option value="stretch stretch">stretch stretch</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>place-content (atalho):</label>
+        <select id="placeContent" onchange="updateGrid()">
+          <option value="">(usa content individuais)</option>
+          <option value="center">center</option>
+          <option value="space-between center">space-between center</option>
+          <option value="space-around">space-around</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Quantidade de Blocos:</label>
+        <input type="number" id="itemCount" value="6" min="1" max="20" onchange="createItems()">
+      </div>
+    </div>
+    <div class="grid-container" id="gridContainer"></div>
+    <div class="code-output" id="codeOutput"></div>
+  </section>
+</div>
+<script>
+function createItems() {
+  const container = document.getElementById('gridContainer');
+  const count = document.getElementById('itemCount').value;
+  container.innerHTML = '';
+  for (let i = 1; i <= count; i++) {
+    const item = document.createElement('div');
+    item.className = 'grid-item';
+    item.innerText = 'Bloco ' + i;
+    container.appendChild(item);
+  }
+}
+const ids = ['columns','rows','autoRows','autoCols','gap','justifyItems','alignItems','justifyContent','alignContent','placeItems','placeContent'];
+function updateGrid() {
+  const c = document.getElementById('gridContainer');
+  const v = {};
+  ids.forEach(id => v[id] = document.getElementById(id).value);
+  c.style.gridTemplateColumns = v.columns;
+  c.style.gridTemplateRows = v.rows;
+  c.style.gridAutoRows = v.autoRows;
+  c.style.gridAutoColumns = v.autoCols;
+  c.style.gap = v.gap;
+  c.style.justifyItems = v.justifyItems;
+  c.style.alignItems = v.alignItems;
+  c.style.justifyContent = v.justifyContent;
+  c.style.alignContent = v.alignContent;
+  c.style.placeItems = v.placeItems;
+  c.style.placeContent = v.placeContent;
+  const lines = [
+    `<span class="property">.grid-container</span> {`,
+    `  <span class="property">display</span>: <span class="value">grid</span>;`,
+    `  <span class="property">grid-template-columns</span>: <span class="value">${v.columns}</span>;`,
+    `  <span class="property">grid-template-rows</span>: <span class="value">${v.rows}</span>;`,
+    `  <span class="property">grid-auto-rows</span>: <span class="value">${v.autoRows}</span>;`,
+    `  <span class="property">grid-auto-columns</span>: <span class="value">${v.autoCols}</span>;`,
+    `  <span class="property">gap</span>: <span class="value">${v.gap}</span>;`,
+    `  <span class="property">justify-items</span>: <span class="value">${v.justifyItems}</span>;`,
+    `  <span class="property">align-items</span>: <span class="value">${v.alignItems}</span>;`,
+    `  <span class="property">justify-content</span>: <span class="value">${v.justifyContent}</span>;`,
+    `  <span class="property">align-content</span>: <span class="value">${v.alignContent}</span>;`,
+    v.placeItems ? `  <span class="property">place-items</span>: <span class="value">${v.placeItems}</span>;` : '',
+    v.placeContent ? `  <span class="property">place-content</span>: <span class="value">${v.placeContent}</span>;` : '',
+    `}`
+  ].filter(Boolean).join('\n');
+  document.getElementById('codeOutput').innerHTML = lines;
+}
+function setVals(obj) {
+  Object.entries(obj).forEach(([k,val]) => {
+    const el = document.getElementById(k);
+    if (!el) return;
+    if (![...el.options].some(o => o.value === val)) {
+      const opt = document.createElement('option');
+      opt.value = val; opt.text = val; el.appendChild(opt);
+    }
+    el.value = val;
+  });
+  updateGrid();
+}
+function applyPreset(name) {
+  const presets = {
+    dashboard: { columns:'200px 1fr 200px', rows:'auto', autoRows:'120px', autoCols:'auto', gap:'25px', justifyItems:'stretch', alignItems:'stretch', justifyContent:'stretch', alignContent:'start', placeItems:'', placeContent:'', itemCount:6 },
+    gallery: { columns:'repeat(auto-fit, minmax(150px, 1fr))', rows:'auto', autoRows:'120px', autoCols:'auto', gap:'10px', justifyItems:'stretch', alignItems:'stretch', justifyContent:'stretch', alignContent:'start', placeItems:'', placeContent:'', itemCount:9 },
+    'holy-grail': { columns:'200px 1fr 200px', rows:'80px 1fr 80px', autoRows:'auto', autoCols:'auto', gap:'10px', justifyItems:'stretch', alignItems:'stretch', justifyContent:'stretch', alignContent:'stretch', placeItems:'', placeContent:'', itemCount:5 },
+    centered: { columns:'repeat(3, 100px)', rows:'repeat(2, 80px)', autoRows:'auto', autoCols:'auto', gap:'15px', justifyItems:'center', alignItems:'center', justifyContent:'center', alignContent:'center', placeItems:'', placeContent:'', itemCount:6 },
+    reset: { columns:'repeat(3, 1fr)', rows:'auto', autoRows:'auto', autoCols:'auto', gap:'10px', justifyItems:'stretch', alignItems:'stretch', justifyContent:'start', alignContent:'start', placeItems:'', placeContent:'', itemCount:6 }
+  };
+  const p = presets[name];
+  document.getElementById('itemCount').value = p.itemCount;
+  createItems();
+  setVals(p);
+}
+createItems();
+updateGrid();
+</script>
+</body>
+</html>

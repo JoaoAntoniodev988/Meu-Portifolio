@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mastering Flexbox: Teoria e Laboratório</title>
+<style>
+:root {
+  --primary: #6200ee;
+  --primary-light: #ece0fd;
+  --bg: #f8f9fa;
+  --container-bg: #ffffff;
+  --item-bg: #03dac6;
+  --text-color: #212529;
+  --accent: #d63384;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-wrapper { width: 100%; max-width: 1100px; }
+h1, h2, h3 { color: var(--primary); margin-bottom: 12px; }
+h2 { border-bottom: 2px solid var(--primary-light); padding-bottom: 8px; margin-top: 40px; }
+h3 { margin-top: 20px; font-size: 18px; }
+.docs-section { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px; }
+.docs-section p { line-height: 1.6; color: #4a4a4a; margin-bottom: 10px; }
+code { background-color: #f1f1f1; padding: 2px 6px; border-radius: 4px; font-family: 'Fira Code', monospace; color: var(--accent); font-size: 0.9em; }
+.axis-box { background: var(--primary-light); padding: 15px; border-radius: 8px; border-left: 5px solid var(--primary); margin: 20px 0; color: #3a1a6b; }
+.props-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+.prop-card { background: #fafafa; border: 1px solid #eee; border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 6px; }
+.prop-card strong { color: var(--accent); font-family: monospace; }
+.prop-card p { margin: 6px 0 0; font-size: 13px; color: #555; }
+.playground-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid var(--primary-light);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  width: 100%;
+}
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+.control-group { display: flex; flex-direction: column; }
+.control-group.section-title { grid-column: 1 / -1; color: var(--primary); font-weight: 700; margin-top: 10px; border-bottom: 1px dashed var(--primary-light); padding-bottom: 4px; }
+label { font-weight: bold; margin-bottom: 6px; font-size: 13px; color: #555; }
+select, input { padding: 10px; border-radius: 6px; border: 1px solid #ddd; background: #fff; font-size: 14px; }
+.flex-container {
+  background-color: #f0f0f0;
+  border: 3px dashed var(--primary);
+  border-radius: 8px;
+  min-height: 320px;
+  display: flex;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.flex-item {
+  background-color: var(--item-bg);
+  color: #000;
+  padding: 20px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  min-height: 60px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.code-output {
+  background: #1e1e1e;
+  color: #adbac7;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.code-output .property { color: #79c0ff; }
+.code-output .value { color: #8dd39e; }
+.code-output .selector { color: #f0883e; }
+.preset-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.preset-bar button {
+  padding: 8px 14px; border-radius: 6px; border: 1px solid var(--primary);
+  background: #fff; color: var(--primary); font-weight: 600; cursor: pointer;
+  transition: all 0.2s;
+}
+.preset-bar button:hover { background: var(--primary); color: #fff; }
+.item-controls { background: #faf7ff; border: 1px solid var(--primary-light); padding: 16px; border-radius: 8px; margin-bottom: 20px; }
+.item-controls h3 { margin-top: 0; }
+.item-controls .row { display: grid; grid-template-columns: 80px repeat(4, 1fr); gap: 10px; align-items: center; margin-bottom: 8px; }
+.item-controls .row.header { font-weight: bold; color: #555; font-size: 12px; }
+.item-controls input, .item-controls select { padding: 6px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="main-wrapper">
+  <h1>Mestre do Flexbox Layout</h1>
+  <p>Aprenda <strong>todas</strong> as propriedades do Flexbox (container e itens) com explicações e um laboratório interativo.</p>
+  <section class="docs-section">
+    <h2>1. O Modelo Unidimensional (1D)</h2>
+    <p>O <strong>Flexbox</strong> distribui espaço ao longo de um único eixo por vez — horizontal (<code>row</code>) ou vertical (<code>column</code>). Toda configuração depende de entender dois eixos:</p>
+    <div class="axis-box">
+      <strong>Eixo Principal (main axis):</strong> definido por <code>flex-direction</code>. É nele que <code>justify-content</code> e <code>flex-grow</code>/<code>shrink</code>/<code>basis</code> atuam.<br>
+      <strong>Eixo Cruzado (cross axis):</strong> perpendicular ao principal. É nele que <code>align-items</code>, <code>align-self</code> e <code>align-content</code> atuam.
+    </div>
+    <h2>2. Propriedades do Container (pai)</h2>
+    <div class="props-grid">
+      <div class="prop-card"><strong>display</strong><p>Ativa o flex: <code>flex</code> ou <code>inline-flex</code>.</p></div>
+      <div class="prop-card"><strong>flex-direction</strong><p>Direção do eixo principal: <code>row</code>, <code>row-reverse</code>, <code>column</code>, <code>column-reverse</code>.</p></div>
+      <div class="prop-card"><strong>flex-wrap</strong><p>Permite quebra de linha: <code>nowrap</code>, <code>wrap</code>, <code>wrap-reverse</code>.</p></div>
+      <div class="prop-card"><strong>flex-flow</strong><p>Atalho de <code>flex-direction</code> + <code>flex-wrap</code>.</p></div>
+      <div class="prop-card"><strong>justify-content</strong><p>Distribuição no eixo principal: <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code>, <code>space-around</code>, <code>space-evenly</code>.</p></div>
+      <div class="prop-card"><strong>align-items</strong><p>Alinhamento no eixo cruzado: <code>stretch</code>, <code>center</code>, <code>flex-start</code>, <code>flex-end</code>, <code>baseline</code>.</p></div>
+      <div class="prop-card"><strong>align-content</strong><p>Alinha múltiplas linhas (só funciona com <code>flex-wrap: wrap</code>).</p></div>
+      <div class="prop-card"><strong>gap / row-gap / column-gap</strong><p>Espaçamento entre itens sem precisar de margin.</p></div>
+      <div class="prop-card"><strong>place-content</strong><p>Atalho para <code>align-content</code> + <code>justify-content</code>.</p></div>
+    </div>
+    <h2>3. Propriedades dos Itens (filhos)</h2>
+    <div class="props-grid">
+      <div class="prop-card"><strong>order</strong><p>Reordena visualmente os itens (padrão 0). Não muda o DOM.</p></div>
+      <div class="prop-card"><strong>flex-grow</strong><p>Fator de crescimento quando há espaço sobrando (padrão 0).</p></div>
+      <div class="prop-card"><strong>flex-shrink</strong><p>Fator de encolhimento quando falta espaço (padrão 1).</p></div>
+      <div class="prop-card"><strong>flex-basis</strong><p>Tamanho inicial do item antes de distribuir espaço (<code>auto</code>, <code>200px</code>, <code>30%</code>).</p></div>
+      <div class="prop-card"><strong>flex</strong><p>Atalho de <code>grow shrink basis</code>. Ex.: <code>flex: 1 1 200px</code>.</p></div>
+      <div class="prop-card"><strong>align-self</strong><p>Sobrescreve <code>align-items</code> apenas neste item.</p></div>
+    </div>
+  </section>
+  <h2>4. Laboratório Flexbox (Playground)</h2>
+  <section class="playground-section">
+    <div class="preset-bar">
+      <button onclick="applyPreset('center')">🎯 Tudo Centralizado</button>
+      <button onclick="applyPreset('navbar')">🧭 Navbar</button>
+      <button onclick="applyPreset('cards')">🃏 Cards Responsivos</button>
+      <button onclick="applyPreset('holy-grail')">⛪ Holy Grail (column)</button>
+      <button onclick="applyPreset('reset')">↺ Reset</button>
+    </div>
+    <div class="controls">
+      <div class="control-group section-title">Container</div>
+      <div class="control-group">
+        <label>flex-direction:</label>
+        <select id="direction" onchange="updateFlex()">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>flex-wrap:</label>
+        <select id="wrap" onchange="updateFlex()">
+          <option value="nowrap">nowrap</option>
+          <option value="wrap">wrap</option>
+          <option value="wrap-reverse">wrap-reverse</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>justify-content:</label>
+        <select id="justify" onchange="updateFlex()">
+          <option value="flex-start">flex-start</option>
+          <option value="center">center</option>
+          <option value="flex-end">flex-end</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+          <option value="space-evenly">space-evenly</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>align-items:</label>
+        <select id="align" onchange="updateFlex()">
+          <option value="stretch">stretch</option>
+          <option value="center">center</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="baseline">baseline</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>align-content (precisa wrap):</label>
+        <select id="alignContent" onchange="updateFlex()">
+          <option value="normal">normal</option>
+          <option value="stretch">stretch</option>
+          <option value="center">center</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+          <option value="space-evenly">space-evenly</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>row-gap:</label>
+        <select id="rowGap" onchange="updateFlex()">
+          <option value="10px">10px</option>
+          <option value="0px">0px</option>
+          <option value="25px">25px</option>
+          <option value="50px">50px</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>column-gap:</label>
+        <select id="colGap" onchange="updateFlex()">
+          <option value="10px">10px</option>
+          <option value="0px">0px</option>
+          <option value="25px">25px</option>
+          <option value="50px">50px</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Altura do container:</label>
+        <select id="height" onchange="updateFlex()">
+          <option value="320px">320px</option>
+          <option value="200px">200px</option>
+          <option value="450px">450px</option>
+          <option value="600px">600px</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Quantidade de Itens:</label>
+        <input type="number" id="itemCount" value="4" min="1" max="12" onchange="rebuildItems()">
+      </div>
+    </div>
+    <div class="item-controls">
+      <h3>Propriedades dos Itens (filhos)</h3>
+      <div class="row header">
+        <div>Item</div><div>order</div><div>flex-grow</div><div>flex-shrink</div><div>align-self</div>
+      </div>
+      <div id="itemRows"></div>
+    </div>
+    <div class="flex-container" id="container"></div>
+    <div class="code-output" id="codeOutput"></div>
+  </section>
+</div>
+<script>
+let itemState = [];
+function rebuildItems() {
+  const count = parseInt(document.getElementById('itemCount').value) || 1;
+  // preserva estado existente
+  const next = [];
+  for (let i = 0; i < count; i++) {
+    next.push(itemState[i] || { order: 0, grow: 0, shrink: 1, alignSelf: 'auto' });
+  }
+  itemState = next;
+  renderItemRows();
+  renderContainerItems();
+  updateFlex();
+}
+function renderItemRows() {
+  const wrap = document.getElementById('itemRows');
+  wrap.innerHTML = '';
+  itemState.forEach((s, idx) => {
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `
+      <div><strong>#${idx + 1}</strong></div>
+      <input type="number" value="${s.order}" data-i="${idx}" data-k="order">
+      <input type="number" min="0" value="${s.grow}" data-i="${idx}" data-k="grow">
+      <input type="number" min="0" value="${s.shrink}" data-i="${idx}" data-k="shrink">
+      <select data-i="${idx}" data-k="alignSelf">
+        ${['auto','stretch','center','flex-start','flex-end','baseline']
+          .map(v => `<option value="${v}" ${v === s.alignSelf ? 'selected' : ''}>${v}</option>`).join('')}
+      </select>
+    `;
+    wrap.appendChild(row);
+  });
+  wrap.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', e => {
+      const i = +e.target.dataset.i;
+      const k = e.target.dataset.k;
+      itemState[i][k] = e.target.type === 'number' ? +e.target.value : e.target.value;
+      updateFlex();
+    });
+  });
+}
+function renderContainerItems() {
+  const container = document.getElementById('container');
+  container.innerHTML = '';
+  itemState.forEach((_, i) => {
+    const item = document.createElement('div');
+    item.className = 'flex-item';
+    item.innerText = i + 1;
+    container.appendChild(item);
+  });
+}
+function updateFlex() {
+  const c = document.getElementById('container');
+  const direction = document.getElementById('direction').value;
+  const wrap = document.getElementById('wrap').value;
+  const justify = document.getElementById('justify').value;
+  const align = document.getElementById('align').value;
+  const alignContent = document.getElementById('alignContent').value;
+  const rowGap = document.getElementById('rowGap').value;
+  const colGap = document.getElementById('colGap').value;
+  const height = document.getElementById('height').value;
+  c.style.flexDirection = direction;
+  c.style.flexWrap = wrap;
+  c.style.justifyContent = justify;
+  c.style.alignItems = align;
+  c.style.alignContent = alignContent;
+  c.style.rowGap = rowGap;
+  c.style.columnGap = colGap;
+  c.style.minHeight = height;
+  // aplicar itens
+  [...c.children].forEach((el, i) => {
+    const s = itemState[i];
+    if (!s) return;
+    el.style.order = s.order;
+    el.style.flexGrow = s.grow;
+    el.style.flexShrink = s.shrink;
+    el.style.alignSelf = s.alignSelf;
+  });
+  // gerar código
+  const itemsCode = itemState.map((s, i) => (
+    `<span class="selector">.flex-item:nth-child(${i + 1})</span> {\n` +
+    `  <span class="property">order</span>: <span class="value">${s.order}</span>;\n` +
+    `  <span class="property">flex</span>: <span class="value">${s.grow} ${s.shrink} auto</span>;\n` +
+    `  <span class="property">align-self</span>: <span class="value">${s.alignSelf}</span>;\n` +
+    `}`
+  )).join('\n\n');
+  document.getElementById('codeOutput').innerHTML =
+`<span class="selector">.flex-container</span> {
+  <span class="property">display</span>: <span class="value">flex</span>;
+  <span class="property">flex-direction</span>: <span class="value">${direction}</span>;
+  <span class="property">flex-wrap</span>: <span class="value">${wrap}</span>;
+  <span class="property">justify-content</span>: <span class="value">${justify}</span>;
+  <span class="property">align-items</span>: <span class="value">${align}</span>;
+  <span class="property">align-content</span>: <span class="value">${alignContent}</span>;
+  <span class="property">row-gap</span>: <span class="value">${rowGap}</span>;
+  <span class="property">column-gap</span>: <span class="value">${colGap}</span>;
+  <span class="property">min-height</span>: <span class="value">${height}</span>;
+}
+${itemsCode}`;
+}
+function setControls(obj) {
+  Object.entries(obj).forEach(([k, v]) => {
+    const el = document.getElementById(k);
+    if (el) el.value = v;
+  });
+}
+function applyPreset(name) {
+  const presets = {
+    center: {
+      ctrl: { direction:'row', wrap:'nowrap', justify:'center', align:'center', alignContent:'normal', rowGap:'10px', colGap:'10px', height:'320px', itemCount:3 },
+      items: [{order:0,grow:0,shrink:1,alignSelf:'auto'}]
+    },
+    navbar: {
+      ctrl: { direction:'row', wrap:'nowrap', justify:'space-between', align:'center', alignContent:'normal', rowGap:'10px', colGap:'10px', height:'200px', itemCount:4 },
+      items: [{order:0,grow:0,shrink:1,alignSelf:'auto'},{order:0,grow:1,shrink:1,alignSelf:'auto'},{order:0,grow:0,shrink:1,alignSelf:'auto'},{order:0,grow:0,shrink:1,alignSelf:'auto'}]
+    },
+    cards: {
+      ctrl: { direction:'row', wrap:'wrap', justify:'center', align:'stretch', alignContent:'center', rowGap:'25px', colGap:'25px', height:'450px', itemCount:6 },
+      items: Array(6).fill({order:0,grow:1,shrink:1,alignSelf:'auto'})
+    },
+    'holy-grail': {
+      ctrl: { direction:'column', wrap:'nowrap', justify:'space-between', align:'stretch', alignContent:'normal', rowGap:'10px', colGap:'10px', height:'450px', itemCount:3 },
+      items: [{order:0,grow:0,shrink:1,alignSelf:'auto'},{order:0,grow:1,shrink:1,alignSelf:'stretch'},{order:0,grow:0,shrink:1,alignSelf:'auto'}]
+    },
+    reset: {
+      ctrl: { direction:'row', wrap:'nowrap', justify:'flex-start', align:'stretch', alignContent:'normal', rowGap:'10px', colGap:'10px', height:'320px', itemCount:4 },
+      items: Array(4).fill({order:0,grow:0,shrink:1,alignSelf:'auto'})
+    }
+  };
+  const p = presets[name];
+  setControls(p.ctrl);
+  document.getElementById('itemCount').value = p.ctrl.itemCount;
+  itemState = p.items.map(s => ({ ...s }));
+  // garante tamanho certo
+  while (itemState.length < p.ctrl.itemCount) itemState.push({order:0,grow:0,shrink:1,alignSelf:'auto'});
+  renderItemRows();
+  renderContainerItems();
+  updateFlex();
+}
+rebuildItems();
+</script>
+</body>
+</html>
