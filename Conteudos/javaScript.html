@@ -47,6 +47,12 @@ main {
     padding: 20px;
 }
 
+main ul {
+    margin: 10px 10px;
+    padding: 2px 20px;
+    line-height: 20px;
+}
+
 #destaque {
     background-color: var(--cor-destaque);
     margin: 0px 10px;
@@ -126,65 +132,154 @@ nav {
        <hr>
         <section classs="variaveis">
 
-        <h2>Variáveis</h2>
+            <h2>Variáveis</h2>
 
-        <p>Uma variável é como uma caixa etiquetada onde você guarda uma informação para usar mais tarde. No JavaScript moderno, usamos duas palavras-chave principais para criar essas caixas:</p>
-            <ul>
-                <li> <strong>const (Constante)</strong>: Cria uma gaveta que, uma vez fechada com um valor dentro, nunca mais pode ser alterada. Use sempre esta por padrão.</li>
-                <li><strong>let</strong>: Cria uma gaveta que pode ter o valor substituído ao longo do tempo. Use quando souber que o dado vai mudar (como a pontuação de um jogo).</li>
-            </ul>
-    
-        <aside id="destaque">(Nota: Você talvez veja o <strong>var</strong> em códigos antigos. Ele caiu em desuso porque causava alguns comportamentos confusos no código. Evite usar).</aside>
+            <p>Uma variável é como uma caixa etiquetada onde você guarda uma informação para usar mais tarde. No JavaScript moderno, usamos duas palavras-chave principais para criar essas caixas:</p>
+            
+            <p><strong>const (Constante)</strong>: Cria uma gaveta que, uma vez fechada com um valor dentro, nunca mais pode ser alterada. Use sempre esta por padrão.</p>
 
-        <code>  <p><strong>JavaScript</strong></p>
-        <p>const nome = "Lucas"; // Este nome não muda</p>
-        <p>let pontos = 10;     // O jogo começou, o jogador tem 10 pontos e pode mudar no decorrer do jogo.</p></code>
+            <p><strong>let</strong>: Cria uma gaveta que pode ter o valor substituído ao longo do tempo. Use quando souber que o dado vai mudar (como a pontuação de um jogo).</p>
+        
+            <aside id="destaque">(Nota: Você talvez veja o <strong>var</strong> em códigos antigos. Ele caiu em desuso porque causava alguns comportamentos confusos no código. Evite usar).</aside>
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome = "Lucas"; // Este nome não muda</p>
+            <p>let pontos = 10;     // O jogo começou, o jogador tem 10 pontos e pode mudar no decorrer do jogo.</p></code>
 
 
-        <h3>Regras de identificadores das variáveis</h3>
+            <h3>Regras de identificadores das variáveis</h3>
 
-        <p>Aborda as regras gramaticais para dar nome às coisas no JavaScript.Em programação, um Identificador é simplesmente o nome que você escolhe para suas variáveis, constantes, funções ou classes. O JavaScript possui regras rígidas sobre o que é permitido e o que vai quebrar o seu código. Exemplos práticos:</p>
+            <p>Aborda as regras gramaticais para dar nome às coisas no JavaScript.Em programação, um Identificador é simplesmente o nome que você escolhe para suas variáveis, constantes, funções ou classes. O JavaScript possui regras rígidas sobre o que é permitido e o que vai quebrar o seu código. Exemplos práticos:</p>
 
-        <ul>
-            <li><strong>Podem começar com letra, $ ou _:</strong><br>
-            O primeiro caractere do nome da sua variável é o mais restrito. Ele só pode ser uma letra (maíuscula ou minúscula), o símbolo do cifrão ($) ou o underline (_).
+            <p><strong>Podem começar com letra, $ ou _:</strong><br>
+            O primeiro caractere do nome da sua variável é o mais restrito. Ele só pode ser uma letra (maíuscula ou minúscula), o símbolo do cifrão ($) ou o underline (_).</p>
+
             <code><p><strong>JavaScript</strong></p>
             <p>const nome = "Lucas";    // ✅ Válido (começa com letra)</p>
             <p>const $preco = 10.90;    // ✅ Válido (muito usado em bibliotecas como jQuery ou RxJS)</p>
             <p>const _id = "usr_123";   // ✅ Válido (comum para indicar variáveis privadas/internas)</p>
-            </code></li>
-            <li><strong>Não podem começar com números</strong><br>
-            Embora você possa usar números no nome da variável, eles nunca podem vir na primeira posição.
-            JavaScript
-            const 1ano = 2026;  // ❌ Erro de Sintaxe! O JavaScript se confunde achando que é um número puro.
-            const ano1 = 2026;  // ✅ Válido! O número no final ou meio é totalmente permitido.</li>
-            <li><strong>É possível usar letras ou números</strong><br>
-            Depois do primeiro caractere, você está livre para misturar letras (de A a Z) e números (de 0 a 9).
+            </code>
+            
+            <p><strong>Não podem começar com números:</strong><br>
+            Embora você possa usar números no nome da variável, eles nunca podem vir na primeira posição.</p>
+
+            <code>
             <p><strong>JavaScript</strong></p>
-            <p>const apartamento202 = true; // ✅ Perfeito</p></li>
-            <li><strong>É possível usar acentos e símbolos</strong><br>
-            O JavaScript moderno aceita caracteres Unicode, o que significa que tecnicamente você pode usar acentos. Porém, há uma pegadinha de boa prática aqui!
+            <p>const 1ano = 2026;  // ❌ Erro de Sintaxe! O JavaScript se confunde achando que é um número puro.</p>
+            <p>const ano1 = 2026;  // ✅ Válido! O número no final ou meio é totalmente permitido.</p>
+            </code>
+
+            <p><strong>É possível usar letras ou números:</strong><br>
+            Depois do primeiro caractere, você está livre para misturar letras (de A a Z) e números (de 0 a 9).</p>
+            <code>
             <p><strong>JavaScript</strong></p>
+            <p>const apartamento202 = true; // ✅ Perfeito</p>
+            </code>
+
+            <p><strong>É possível usar acentos e símbolos:</strong><br>
+            O JavaScript moderno aceita caracteres Unicode, o que significa que tecnicamente você pode usar acentos. Porém, há uma pegadinha de boa prática aqui!</p>
+            <code><p><strong>JavaScript</strong></p>
             <p>const preço = 50;   // ✅ Funciona no JavaScript, mas...</p>
-            <p>const calça = "Jeans"; // ✅ Também funciona… </p>
+            <p>const calça = "Jeans"; // ✅ Também funciona… </p></code>
+            <aside id="destaque">⚠️ Alerta de Boa Prática: Embora o JavaScript permita acentos, a comunidade global de programação evita ao máximo. Usar acentos ou o ç pode gerar problemas de codificação quando seu código for rodar em servidores internacionais ou quando você trabalhar com programadores estrangeiros. Prefira preco e calca.</aside><br>
 
-            <aside id="destaque">⚠️ Alerta de Boa Prática: Embora o JavaScript permita acentos, a comunidade global de programação evita ao máximo. Usar acentos ou o ç pode gerar problemas de codificação quando seu código for rodar em servidores internacionais ou quando você trabalhar com programadores estrangeiros. Prefira preco e calca.</aside></li>
+            <p><strong>Não podem conter espaços</strong><br>
+            Uma variável precisa ser uma palavra única e contínua. O computador não entende que duas palavras separadas por espaço pertencem ao mesmo nome.</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome usuario = "Mariana"; // ❌ Erro de Sintaxe! O espaço quebra o código.</p></code>
+            <p>Para resolver isso, a comunidade JavaScript usa um padrão chamado camelCase (onde a primeira palavra é minúscula e as seguintes começam com letra maiúscula, parecendo as corcovas de um camelo):</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nomeUsuario = "Mariana"; // ✅ Perfeito! Padrão camelCase.</p></code>
 
-            <li><strong>Não podem conter espaços</strong><br>
-            Uma variável precisa ser uma palavra única e contínua. O computador não entende que duas palavras separadas por espaço pertencem ao mesmo nome.
-            <p><strong>JavaScript</strong></p>
-            <p>const nome usuario = "Mariana"; // ❌ Erro de Sintaxe! O espaço quebra o código.</p>
+            
+            <p><strong>Não podem ser palavras reservadas</strong><br>
+            O JavaScript tem uma lista de palavras que pertencem à própria linguagem (como comandos e instruções). Você não pode usar essas palavras como nome das suas variáveis, senão o motor do navegador entra em curto-circuito.</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const let = 10;      // ❌ Erro! "let" é uma palavra reservada para criar variáveis.</p>
+            <p>const function = 5;  // ❌ Erro! "function" é reservada para criar funções.</p>
+            <p>const const = "Oi";  // ❌ Erro! "const" é reservada.</p></code>
+        </section>
+        <hr>
+        <section class="Tipos-de-dados">
+            <h2>Tipos de Dados: O que vai dentro das variaveis</h2>
 
-            Para resolver isso, a comunidade JavaScript usa um padrão chamado camelCase (onde a primeira palavra é minúscula e as seguintes começam com letra maiúscula, parecendo as corcovas de um camelo):
-            JavaScript
-            const nomeUsuario = "Mariana"; // ✅ Perfeito! Padrão camelCase.</li>
-<li>Não podem ser palavras reservadas
-O JavaScript tem uma lista de palavras que pertencem à própria linguagem (como comandos e instruções). Você não pode usar essas palavras como nome das suas variáveis, senão o motor do navegador entra em curto-circuito.
-JavaScript
-const let = 10;      // ❌ Erro! "let" é uma palavra reservada para criar variáveis.
-const function = 5;  // ❌ Erro! "function" é reservada para criar funções.
-const const = "Oi";  // ❌ Erro! "const" é reservada.</li>
-        </ul>
+            <p><strong>number (Número):</strong> é Qualquer valor    numérico, seja positivo, negativo, inteiro ou decimal.
+            Diferente de outras linguagens que separam números inteiros de números com vírgula, o JavaScript coloca tudo na mesma caixa chamada number.Exemplo:</p>
+            <code> <p><strong>JavaScript</strong></p>
+            <p>const idade = 26;       // Inteiro</p>
+            <p>const preco = 99.90;    // Decimal (sempre use ponto, não vírgula)</p>
+            <p>const temperatura = -5; // Negativo</p>
+            </code>
+
+            <p><strong>Infinity (Infinito)</strong>: Ele aparece quando você faz uma operação matemática cujo resultado é maior do que o maior número que o JavaScript consegue processar, ou em divisões por zero.Este é um valor numérico especial que representa, literalmente, o infinito matemático. Exemplo:</p>
+
+            <code><p><strong>JavaScript</strong> </p>
+            <p>const resultado = 10 / 0;</p>
+            <p>console.log(resultado); // Vai exibir: Infinity</p></code>
+
+
+            <p>
+                NaN (Not a Number / Não é um Número)
+                Apesar do nome significar "Não é um Número", o tipo dele para o JavaScript ainda é considerado um number especial!
+            </p>
+    • O que é: Ele serve para indicar que uma operação matemática falhou ou deu um resultado inválido/impossível.
+    • Exemplo: Se você tentar multiplicar um texto por um número:
+      JavaScript
+      const resultadoInvalido = "Olá" * 5; 
+      console.log(resultadoInvalido); // Vai exibir: NaN
+4. string (Texto)
+Como vimos antes, serve para qualquer cadeia de caracteres (letras, palavras, frases, códigos).
+    • O que é: Dados textuais que precisam estar envolvidos por aspas simples ('), duplas (") ou crases (` `).
+    • Exemplo:
+      JavaScript
+      const nome = 'Ana';
+      const frase = "Estou aprendendo JS";
+5. boolean (Booleano)
+O tipo de tomada do JavaScript: ou está ligado, ou está desligado.
+    • O que é: Um tipo de dado que só aceita dois valores possíveis: true (verdadeiro) ou false (falso).
+    • Exemplo:
+          JavaScript
+          const estaChovendo = false;
+          const maiorDeIdade = true;
+6. null (Nulo)
+O null representa a ausência intencional de um valor.
+    • O que é: Você usa o null quando quer dizer explicitamente para o computador: "Esta variável existe, mas ela está vazia de propósito neste momento".
+    • Exemplo: Um campo de "segundo nome" em um formulário que o usuário não preencheu.
+      JavaScript
+      let segundoNome = null; // O desenvolvedor definiu que está vazio
+7. undefined (Indefinido)
+O undefined significa que algo foi criado, mas nunca recebeu nenhum conteúdo.
+    • O que é: Ao contrário do null (que é intencional), o undefined é o padrão do JavaScript para variáveis que foram declaradas com let, mas não receberam nenhum valor inicial.
+    • Exemplo:
+          JavaScript
+          let minhaVariavel; 
+          console.log(minhaVariavel); // Vai exibir: undefined (porque não ganhou valor)
+8. object (Objeto)
+Aqui entramos nos tipos estruturais. Um objeto permite agrupar várias informações em um único lugar usando pares de chave: valor.
+    • O que é: Uma coleção de dados relacionados. É como uma ficha cadastral de alguma coisa do mundo real.
+    • Exemplo:
+          JavaScript
+          const carro = {
+              marca: "Toyota",
+              ano: 2024,
+              ligado: true
+          };
+9. Array (Lista)
+O Array é, na verdade, um tipo especial de Objeto, mas que funciona como uma lista ordenada.
+    • O que é: Uma caixa onde você coloca vários dados em fila, separados por vírgulas e envolvidos por colchetes [ ].
+    • Exemplo:
+          JavaScript
+          const frutas = ["Maçã", "Banana", "Morango"];
+          const numerosSorteados = [12, 45, 23, 8];
+10. function (Função)
+No JavaScript, as funções também são tratadas como um tipo de dado. Elas são blocos de código que realizam uma ação quando são chamadas.
+    • O que é: Um "verbo" ou uma "máquina" que processa dados e te devolve uma resposta. Você pode guardá-las dentro de variáveis se quiser.
+    • Exemplo:
+          JavaScript
+          function saudar() {
+              return "Olá, mundo!";
+          }
+
         </section>
 
 
