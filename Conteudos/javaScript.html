@@ -41,7 +41,7 @@ section h2, h3, p {
     margin: 10px;
 }
 
-.introdução {
+main {
     background-color: var(--fundo-card);
     margin: 10px 10px 45px 10px;
     padding: 20px;
@@ -122,9 +122,69 @@ nav {
             
             <aside id="destaque"><em>💡 <strong>Resumo da ópera:</strong> Você não precisa aprender duas coisas diferentes. Quando você estuda JavaScript moderno, você já está estudando as versões mais recentes do ECMAScript.</em></aside>
     
-        </section>
+        </section><br>
+       <hr>
         <section classs="variaveis">
-            
+
+        <h2>Variáveis</h2>
+
+        <p>Uma variável é como uma caixa etiquetada onde você guarda uma informação para usar mais tarde. No JavaScript moderno, usamos duas palavras-chave principais para criar essas caixas:</p>
+            <ul>
+                <li> <strong>const (Constante)</strong>: Cria uma gaveta que, uma vez fechada com um valor dentro, nunca mais pode ser alterada. Use sempre esta por padrão.</li>
+                <li><strong>let</strong>: Cria uma gaveta que pode ter o valor substituído ao longo do tempo. Use quando souber que o dado vai mudar (como a pontuação de um jogo).</li>
+            </ul>
+    
+        <aside id="destaque">(Nota: Você talvez veja o <strong>var</strong> em códigos antigos. Ele caiu em desuso porque causava alguns comportamentos confusos no código. Evite usar).</aside>
+
+        <code>  <p><strong>JavaScript</strong></p>
+        <p>const nome = "Lucas"; // Este nome não muda</p>
+        <p>let pontos = 10;     // O jogo começou, o jogador tem 10 pontos e pode mudar no decorrer do jogo.</p></code>
+
+
+        <h3>Regras de identificadores das variáveis</h3>
+
+        <p>Aborda as regras gramaticais para dar nome às coisas no JavaScript.Em programação, um Identificador é simplesmente o nome que você escolhe para suas variáveis, constantes, funções ou classes. O JavaScript possui regras rígidas sobre o que é permitido e o que vai quebrar o seu código. Exemplos práticos:</p>
+
+        <ul>
+            <li><strong>Podem começar com letra, $ ou _:</strong><br>
+            O primeiro caractere do nome da sua variável é o mais restrito. Ele só pode ser uma letra (maíuscula ou minúscula), o símbolo do cifrão ($) ou o underline (_).
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome = "Lucas";    // ✅ Válido (começa com letra)</p>
+            <p>const $preco = 10.90;    // ✅ Válido (muito usado em bibliotecas como jQuery ou RxJS)</p>
+            <p>const _id = "usr_123";   // ✅ Válido (comum para indicar variáveis privadas/internas)</p>
+            </code></li>
+            <li><strong>Não podem começar com números</strong><br>
+            Embora você possa usar números no nome da variável, eles nunca podem vir na primeira posição.
+            JavaScript
+            const 1ano = 2026;  // ❌ Erro de Sintaxe! O JavaScript se confunde achando que é um número puro.
+            const ano1 = 2026;  // ✅ Válido! O número no final ou meio é totalmente permitido.</li>
+            <li><strong>É possível usar letras ou números</strong><br>
+            Depois do primeiro caractere, você está livre para misturar letras (de A a Z) e números (de 0 a 9).
+            <p><strong>JavaScript</strong></p>
+            <p>const apartamento202 = true; // ✅ Perfeito</p></li>
+            <li><strong>É possível usar acentos e símbolos</strong><br>
+            O JavaScript moderno aceita caracteres Unicode, o que significa que tecnicamente você pode usar acentos. Porém, há uma pegadinha de boa prática aqui!
+            <p><strong>JavaScript</strong></p>
+            <p>const preço = 50;   // ✅ Funciona no JavaScript, mas...</p>
+            <p>const calça = "Jeans"; // ✅ Também funciona… </p>
+
+            <aside id="destaque">⚠️ Alerta de Boa Prática: Embora o JavaScript permita acentos, a comunidade global de programação evita ao máximo. Usar acentos ou o ç pode gerar problemas de codificação quando seu código for rodar em servidores internacionais ou quando você trabalhar com programadores estrangeiros. Prefira preco e calca.</aside></li>
+
+            <li><strong>Não podem conter espaços</strong><br>
+            Uma variável precisa ser uma palavra única e contínua. O computador não entende que duas palavras separadas por espaço pertencem ao mesmo nome.
+            <p><strong>JavaScript</strong></p>
+            <p>const nome usuario = "Mariana"; // ❌ Erro de Sintaxe! O espaço quebra o código.</p>
+
+            Para resolver isso, a comunidade JavaScript usa um padrão chamado camelCase (onde a primeira palavra é minúscula e as seguintes começam com letra maiúscula, parecendo as corcovas de um camelo):
+            JavaScript
+            const nomeUsuario = "Mariana"; // ✅ Perfeito! Padrão camelCase.</li>
+<li>Não podem ser palavras reservadas
+O JavaScript tem uma lista de palavras que pertencem à própria linguagem (como comandos e instruções). Você não pode usar essas palavras como nome das suas variáveis, senão o motor do navegador entra em curto-circuito.
+JavaScript
+const let = 10;      // ❌ Erro! "let" é uma palavra reservada para criar variáveis.
+const function = 5;  // ❌ Erro! "function" é reservada para criar funções.
+const const = "Oi";  // ❌ Erro! "const" é reservada.</li>
+        </ul>
         </section>
 
 
