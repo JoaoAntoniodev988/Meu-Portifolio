@@ -523,35 +523,206 @@ nav {
                             <li>Exponenciação Simplificada (=)
                                 <ul>
                                     <li>Forma longa: n = n 2 (Eleva o valor de n ao quadrado).</li>
-                                    <li></li>
-                                    <li></li>
+                                    <li>Forma simplificada: n = 2</li>
+                                    <li>Resultado: Se n era 4, 4 2 (4 elevado a 2) = 16.</li>
                                 </ul>
-                            • 
-                            • Forma simplificada: n = 2
-                            • Resultado: Se n era 4, 4 2 (4 elevado a 2) = 16.</li>
+                            </li>
 
                             <li>Módulo Simplificado (%=)
-                • Forma longa: n = n % 5 (Pega o resto da divisão de n por 5).
-                • Forma simplificada: n %= 5
-                • Resultado: Se n era 16, ao dividir 16 por 5 dá 3 (que dá 15) e resta 1. Logo, o resultado é 1.  💡 Por que os programadores usam isso?
-            No dia a dia, você verá quase todo mundo usando a versão da direita. Ela deixa o código mais limpo, mais rápido de ler e evita erros de digitação quando as variáveis possuem nomes longos, como:
-            JavaScript
-            // Ruim / Longo
-            quantidadeItensNoCarrinho = quantidadeItensNoCarrinho + 1;
-
-            // Lindo / Simplificado
-            quantidadeItensNoCarrinho += 1;</li>
+                                <ul>
+                                    <li>Forma longa: n = n % 5 (Pega o resto da divisão de n por 5).</li>
+                                    <li>Forma simplificada: n %= 5</li>
+                                    <li>Resultado: Se n era 16, ao dividir 16 por 5 dá 3 (que dá 15) e resta 1. Logo, o resultado é 1. </li>
+                                </ul>
+                            </li>
                         </ol>
-        
-            3. 
-            4. 
-            5. 
-            6. 
-           </p> </li>
+
+                    <aside id="destaque">
+                    💡 Por que os programadores usam isso?
+                    No dia a dia, você verá quase todo mundo usando a versão da direita. Ela deixa o código mais limpo, mais rápido de ler e evita erros de digitação quando as variáveis possuem nomes longos, como:
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>// Ruim / Longo</p>
+                        <p>quantidadeItensNoCarrinho = quantidadeItensNoCarrinho + 1;</p>
+                        <p>// Lindo / Simplificado
+                        quantidadeItensNoCarrinho += 1;</p>
+                    </code>
+                    </aside>
+                </li>
             </ul>
-
-
         </section>
+
+        <hr>
+        <section class="ordem-de-precedencia">
+                <h2>Ordem de Precedência dos Operadores.</h2>
+                <p>Ordem de Precedência dos Operadores. Assim como na matemática da escola nós aprendemos que a multiplicação deve ser feita antes da soma, o JavaScript também tem uma lista de prioridades para decidir o que ele vai calcular primeiro quando encontra uma linha de código cheia de operadores misturados.  Vamos entender esse fluxo de prioridades dividido em grupos:</p>
+                
+               
+                <p>
+                    <strong>1º Grupo:</strong>
+                    <ul>
+                        <li>() Parênteses: Têm prioridade máxima absoluta sobre qualquer outra coisa. Se você quiser que uma soma seja feita antes de uma multiplicação, coloque-a entre parênteses.</li><br>
+                        <li>Exponenciação: É resolvida logo em seguida.</li><br>
+                        <li>/ , * , %: Divisão, multiplicação e resto têm a mesma prioridade entre si (se aparecerem juntos, o JS resolve quem estiver mais à esquerda primeiro).
+                        Nota: O + e o - vêm logo abaixo deles.</li>
+                    </ul>
+                    
+                </p>
+
+                    <p><strong>2º Grupo:</strong></p>
+                    
+                        <p>
+                            Operadores Relacionais (Comparações)
+                            Depois que todas as contas matemáticas da linha foram resolvidas e viraram números limpos, o JavaScript passa para as comparações.
+                        </p>
+                        <p><strong>> , < , >= , <= , === , !==:</strong> Ele avalia se um número é maior, menor ou igual ao outro. O resultado desse grupo sempre se transforma em true ou false.</p>
+                
+
+                <p><strong>3º Grupo:</strong></p>
+                <p>
+                    Operadores Lógicos (Decisões)
+                    Por último, o JavaScript pega os resultados true ou false das comparações e aplica as regras lógicas. Eles possuem uma ordem interna muito rígida entre si:
+                    ! (NÃO / NOT): É o primeiro a agir, invertendo o valor lógico que estiver colado nele.
+                </p>
+                <p><strong>&& (E / AND):</strong> É o próximo a ser resolvido.</p>
+                <p><strong>|| (OU / OR):</strong> É o último da fila. Tem a menor prioridade de todos.</p>
+                <p>
+                    Verificando na Prática (O poder dos parênteses)
+                    Veja como a ordem de precedência muda completamente o resultado final com os mesmos elementos:
+                </p>
+                <p><strong>Cenário A (Sem parênteses)</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const resultado = 5 + 10 * 2 > 20 && true;</p>
+                    <p>Aritmética primeiro: O JS faz 10 * 2 (20) e depois soma 5 $\rightarrow$ 25.</p>
+                    <p>Relacional depois: Ele compara 25 > 20 $\rightarrow$ true.</p>
+                    <p>Lógico por último: Ele avalia true && true $\rightarrow$ true.</p>
+                </code>
+
+                <p><strong>Cenário B (Forçando com parênteses)</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const resultado = (5 + 10) * 2 > 40 || true;</p>
+                    <p>Parênteses no topo: O JS ignora a regra da multiplicação e faz primeiro 5 + 10 (15).</p>
+                    <p>Resto da aritmética: Faz 15 * 2 $\rightarrow$ 30.</p>
+                    <p>Relacional: Compara 30 > 40 $\rightarrow$ false.</p>
+                    <p>Lógico por último: Avalia false || true $\rightarrow$ true.</p>
+                </code>
+        </section>
+        <hr>
+        <section>
+                <h2>DOM </h2>
+                <p>O DOM (Document Object Model) é o ponto de virada na jornada de qualquer pessoa que estuda JavaScript. É através dele que o JavaScript deixa de ser apenas lógica no console e passa a dar vida, cor e movimento às páginas web reais. Aqui está a estrutura completa para entender o DOM do zero:</p>
+
+                <h3>O que é o DOM (Document Object Model)?</h3>
+                <p>Quando você abre um site, o navegador lê o arquivo HTML e cria, na memória dele, uma representação viva e organizada daquela página. Essa estrutura é o DOM.</p> 
+                <ul>
+                    <li><strong>O Conceito:</strong> O DOM transforma o seu código HTML em um "objeto" gigante que o JavaScript consegue ler, alterar, adicionar ou apagar.</li><br>
+
+                    <li><strong>A Árvore do DOM (DOM Tree):</strong> O DOM organiza a página como se fosse uma árvore genealógica invertida. O topo de tudo é o document. Abaixo dele vêm a "tag pai" <code>html</code> que se ramifica nos "filhos" <code>head e body </code>, que por sua vez têm seus próprios filhos <code> h1, p, a, button,</code>.</li>
+                </ul>
+    
+
+                <h3>Selecionando Elementos (Como o JS encontra as coisas)</h3>
+                <p>Antes de mudar qualquer elemento na página, o JavaScript precisa "encontrar" esse elemento. Antigamente existiam muitos comandos para isso, mas hoje usamos principalmente dois:</p>
+
+                <ul>
+                    <li><strong>document.querySelector():</strong> É o canivete suíço. Ele encontra o primeiro elemento que corresponda ao seletor CSS que você passar (seja o nome da tag, uma classe ou um ID).</li><br>
+
+                    <li> <strong>document.querySelectorAll():</strong> Encontra todos os elementos que batem com a descrição e os coloca em uma lista (uma espécie de array).</li>
+
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>// Selecionando pelo nome da tag</p>
+                        <p>const titulo = document.querySelector("h1");</p>
+                        <p>// Selecionando por uma classe (usa o ponto .)</p>
+                        <p>const botaoSucesso = document.querySelector(".btn-enviar");</p>
+                        <p>// Selecionando por um ID (usa a hashtag #)</p>
+                        <p>const inputNome = document.querySelector("#campo-nome");</p>
+                    </code>
+                </ul>
+
+                <h3>Manipulando Elementos (Como o JS altera a página)</h3>
+                <p>Depois de selecionar o elemento e guardá-lo em uma variável, você pode usar as propriedades do JavaScript para modificar a página em tempo real.</p>
+                    <ul>
+                        <li><p><strong>Alterando Textos e Conteúdos</strong></p>
+                        <ul>
+                            <li><strong>.innerText ou .textContent:</strong> Altera apenas o texto puro dentro do elemento.</li><br>
+                            <li><strong>.innerHTML: </strong>Permite alterar o texto e ainda injetar novas tags HTML lá dentro.</li>
+                        </ul> </li>
+                            <code>
+                                <p><strong>JavaScript</strong></p>
+                            <p>titulo.innerText = "Bem-vindo ao meu site interativo!";</p>
+                            </code>
+                            <li><strong>Alterando Estilos (CSS)</strong> <p>Você pode mudar qualquer propriedade visual usando o atributo .style.</p>
+                        <code>
+                                <p><strong>JavaScript</strong></p>
+                            <p>// Deixando o fundo do botão vermelho</p>
+                            <p>botaoSucesso.style.backgroundColor = "red";</p>
+                            <p>botaoSucesso.style.color = "white";</p>
+                            </code></li>
+                            <li><strong>Manipulando Classes (A melhor prática)</strong> <p> Em vez de mudar o CSS linha por linha no JavaScript, o ideal é criar uma classe no CSS e apenas "ligar ou desligar" essa classe usando o .classList.</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>titulo.classList.add("destaque");    // Adiciona a classe</p>
+                            <p>titulo.classList.remove("escondido"); // Remove a classe</p>
+                            <p>titulo.classList.toggle("modo-escuro"); // Se tiver a classe remove, se não tiver adiciona!</p>
+                        </code></li>
+                    </ul>
+
+                <h3>Eventos (Como o JS reage ao Usuário)</h3>
+                <p>Os eventos são as ações que acontecem no navegador: um clique, um movimento de mouse, o pressionar de uma tecla ou o envio de um formulário. O JavaScript fica "escutando" esses eventos para disparar um bloco de código (função) quando eles acontecem.</p>
+
+                <p>Usamos o método <strong>addEventListener()</strong>, que precisa de dois argumentos: o nome do evento que ele deve ouvir e o que ele deve fazer quando o evento acontecer.</p>
+
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const botao = document.querySelector("#meu-botao");</p>
+                    <p>// Criando a função de ação</p> <pre> function darBoasVindas() {
+        alert("Você clicou no botão! Parabéns!");
+    }
+</pre>
+
+                <p>// Dizendo ao botão para escutar o "click" e rodar a função</p>
+                </code>
+
+                <p>botao.addEventListener("click", darBoasVindas);</p>
+                <aside id="destaque">
+                    <p>🚀 <strong>Resumo do Fluxo do DOM</strong></p>
+                    Toda e qualquer interatividade que você vê na internet hoje segue este mesmo ciclo de 3 passos:
+                    <ol>
+                        <li> <strong>Selecionar:</strong> O JS encontra o elemento (ex: o botão do carrinho de compras).</li>
+                        <li><strong>Escutar:</strong> O JS espera a ação do usuário (ex: o clique no botão).</li>
+                        <li><strong>Executar:</strong> O JS roda uma função que altera a página (ex: adiciona "+1" no ícone do carrinho).</li>
+                    </ol>
+                       
+                        
+                        
+                </aside>
+
+                <h2>Arvore DOM</h2>
+                <p>Para entender a Árvore DOM (DOM Tree), imagine que o navegador é um tradutor. Ele pega o arquivo de texto bruto (o seu código HTML) e o transforma em um grande mapa ramificado cheio de conexões.</p>
+                <p>Esse mapa tem o formato de uma árvore genealógica invertida, onde tudo nasce de uma única raiz e vai se dividindo em galhos (ramos) e folhas. Cada elemento, texto ou atributo do seu HTML se transforma em um Nó (Node) dentro dessa árvore. Veja como o navegador organiza essa hierarquia:</p>
+                
+                    1. A Raiz (document)
+                É a base de tudo. O objeto document é o ponto de partida para qualquer coisa que você queira fazer no JavaScript. Se você quer tocar em um botão, você tem que pedir licença ao document primeiro.
+                    2. O Elemento Raiz (<html>)
+                É o primeiro galho real da árvore. Ele engloba absolutamente tudo o que existe na sua página.
+                    3. Os Elementos Pais (Parents)
+                São as tags que possuem outras tags dentro delas. No nível principal, o <html> se divide em dois filhos grandes:
+                    • <head> (informações de bastidores, como o título da aba).
+                    • <body> (tudo o que o usuário realmente vê na tela).
+                    4. Os Elementos Filhos (Children) e Irmãos (Siblings)
+                As tags dentro do <body> continuam se ramificando.
+                    • Se você tem uma tag <div> e dentro dela um <h1> e um <p>, a <div> é a mãe/pai, enquanto o <h1> e o <p> são filhos entre si e irmãos um do outro.
+                Como o HTML se transforma em Árvore (Na Prática)
+                Se você escrever este código HTML simples:
+
+                imagem
+
+                Por que essa estrutura é tão importante?
+                O JavaScript só consegue navegar pela sua página porque o DOM é uma árvore organizada. Isso permite que você use a lógica de "andar pelos galhos" usando código. Por exemplo, você pode dizer ao JavaScript: "Ache o elemento <body>, pegue o primeiro filho dele (que é o <h1>) e mude a cor dele para azul."
+                        </section>
     
 
 
