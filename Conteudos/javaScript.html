@@ -59,6 +59,12 @@ main ol {
     line-height: 20px;
 }
 
+pre {
+    white-space: pre-wrap; 
+    word-break: break-all;
+    line-height: 25px;
+}
+
 #destaque {
     background-color: var(--cor-destaque);
     margin: 0px 10px;
@@ -380,24 +386,17 @@ nav {
                 </li><br>
                 <li> <strong>Formatação de Moedas e Regiões (Intl.NumberFormat):</strong>
             A forma mais profissional e poderosa do JavaScript para formatar moedas, porcentagens e padrões de países automaticamente.
-            <code>
-                <p><strong>JavaScript</strong></p>
-                <p>
-                    const salario = 5000.50;
-                    // Formatando para o Real Brasileiro (R$)
-                </p>
-                <p>
-                    const formatadorReal = new Intl.NumberFormat('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                    });
-                </p>
-                <p>console.log(formatadorReal.format(salario)); // Exibe: R$ 5.000,50</p>
-                
-            </code>
-
-                </li>
-                
+<code>
+<pre><strong>JavaScript</strong>
+const salario = 5000.50;
+// Formatando para o Real Brasileiro (R$)
+const formatadorReal = new Intl.NumberFormat('pt-BR', {
+style: 'currency',
+currency: 'BRL'
+});
+console.log(formatadorReal.format(salario)); // Exibe: R$ 5.000,50
+</pre>
+</code></li>
             </ul>
 
             <p>Esses quatro pontos dão a você o controle total sobre as informações que entram e saem do seu programa.</p>
@@ -576,7 +575,6 @@ nav {
                             Depois que todas as contas matemáticas da linha foram resolvidas e viraram números limpos, o JavaScript passa para as comparações.
                         </p>
                         <p><strong>> , < , >= , <= , === , !==:</strong> Ele avalia se um número é maior, menor ou igual ao outro. O resultado desse grupo sempre se transforma em true ou false.</p>
-                
 
                 <p><strong>3º Grupo:</strong></p>
                 <p>
@@ -758,61 +756,424 @@ nav {
                     <p><strong>Limitação:</strong> Você só pode atribuir uma única função por tipo de evento. Se outra parte do script tentar assinar o mesmo evento, ela irá sobrescrever a função anterior.</p> 
                     
                         <code>
-                        <p>
-                            <pre style="white-space: pre-wrap; word-break: break-all;"> <strong>JavaScript</strong>
+                            <pre> <strong>JavaScript</strong>
 const botao = document.querySelector('button');
 botao.onclick = function() { console.log("Ação 1"); };
-botao.onclick = function() { console.log("Ação 2"); }; // Sobrescreveu a Ação 1!
-                            </pre>
-                        </p>
-                        </code></li>
-                    <li><strong>addEventListener (Padrão Moderno - DOM Level 2):</strong>
-                É o método recomendado pela W3C. Ele aceita o tipo do evento, a função de callback e um objeto opcional de configurações.</li>
-                    <li></li>
+botao.onclick = function() { console.log("Ação 2"); }; // Sobrescreveu a Ação 1!</pre></code></li><br>
+                <li><strong>addEventListener (Padrão Moderno - DOM Level 2):</strong>
+                É o método recomendado pela W3C. Ele aceita o tipo do evento, a função de callback e um objeto opcional de configurações. <p><strong>Vantagens:</strong> Permite adicionar múltiplos ouvintes ao mesmo evento, oferece controle fino de propagação e permite a remoção limpa do ouvinte usando <strong>removeEventListener</strong>.</p>
+                <code>
+                    <pre><strong>JavaScript</strong>
+const botao = document.querySelector('button');
+function dispararLog() { console.log("Botão acionado!"); }
+// Adicionando o ouvinte
+botao.addEventListener('click', dispararLog);
+// Removendo quando não for mais necessário (evita vazamento de memória)
+botao.removeEventListener('click', dispararLog);</pre>
+                </code></li>
+                    
+                </ul> 
+
+                <h3>O Fluxo de Propriação: Event Bubbling e Capturing</h3>
+                    <p>É quando um evento acontece em um elemento do DOM, ele não afeta apenas aquele elemento isolado. Ele viaja por toda a árvore de elementos. Esse comportamento segue um fluxo oficial dividido em 3 fases essenciais: </p>
+                    
+                    <ol>
+                        <li><strong>Fase de Captura (Capture Phase): </strong>O evento desce a árvore do DOM, partindo do elemento raiz (window, document, &#x3C;body&#x3E;) até chegar bem perto do elemento real que sofreu a ação.</li><br>
+                        <li><strong>Fase de Alvo (Target Phase):</strong> O navegador detecta que chegou ao elemento exato onde a ação ocorreu (ex: o &#x3C;a&#x3E; ou &#x3C;button&#x3E; clicado) e dispara o gatilho nele.</li><br>
+
+                        <li><strong>Fase de Borbulhamento (Bubbling Phase):</strong> O evento faz o caminho inverso: ele sobe de volta pela árvore do DOM, do elemento filho até a raiz, disparando os ouvintes de todos os elementos pais no caminho. Este é o comportamento padrão do navegador.</li>
+                    </ol></li>
+
+                <p>Controlando o Fluxo com Código</p>
+                <p>O objeto de evento (event) nos dá ferramentas para gerenciar e interromper essa viagem na árvore:</p>
+
+                <ul>
+                    <li><strong>event.stopPropagation():</strong> Interrompe o borbulhamento imediatamente. Se você clicar em um botão interno, o evento não subirá para a &#x3C;div&#x3E; mãe. Muito útil para janelas modais ou menus drop-down onde o clique de dentro não deve fechar a caixa externa.</li><br>
+                    <li><strong>event.stopImmediatePropagation():</strong> Além de impedir o evento de subir para os pais, ele impede que outros listeners configurados no mesmo elemento atual executem.</li>
                 </ul>
 
+                <h3>O Objeto do Evento (Event Object)</h3>
+                <p>Sempre que um callback é executado, o navegador injeta automaticamente um argumento contendo uma coleção rica de metadados sobre o ocorrido. Por convenção de código, os desenvolvedores capturam essa variável nomeando-a como e, evt ou event.</p>
+                <p>Propriedades e Métodos Fundamentais:</p>
+                
+                    <ul>
+                        <li><strong>e.target:</strong> Faz referência ao elemento exato que disparou o evento (onde o usuário realmente interagiu, ex: a imagem dentro de um botão).</li><br>
+                        <li><strong>e.currentTarget: </strong>Faz referência ao elemento que está escutando o evento (onde o .addEventListener foi atrelado). Eles podem ser diferentes devido ao efeito de borbulhamento.</li><br>
+                        <li><strong>e.type:</strong> Retorna uma string com o nome do evento executado (ex: "click", "keyup").</li><br>
+                        <li><strong>e.preventDefault():</strong> Cancela o comportamento nativo padrão que o navegador executaria para aquela tag. Exemplos: impede uma tag <a> de redirecionar a URL ou impede um <form> de recarregar a página ao enviar dados.</li>
+                    </ul>
+
+                <h2>Delegação de Eventos (Event Delegation)</h2>
+                <p>Em aplicações robustas e dinâmicas (como listas infinitas ou e-commerces onde itens entram e saem da tela a todo momento), adicionar um <strong>.addEventListener</strong> para cada botão individual prejudica o consumo de memória do dispositivo.</p>
+
+                <p>A técnica de Delegação de Eventos resolve isso aproveitando o mecanismo de <strong>Event Bubbling</strong>. Em vez de ouvir os filhos, nós penduramos um único ouvinte no elemento pai e inspecionamos quem disparou a ação usando <strong>e.target</strong>.  Exemplo Prático de Arquitetura Limpa:</p>
                
-                    • Vantagens: Permite adicionar múltiplos ouvintes ao mesmo evento, oferece controle fino de propagação e permite a remoção limpa do ouvinte usando removeEventListener.
-                JavaScript
-                const botao = document.querySelector('button');
+<code><pre><strong>JavaScript</strong>
+// Capturamos a lista (Pai) e não os itens (Filhos)
+const listaProdutos = document.querySelector('#lista-produtos');
+listaProdutos.addEventListener('click', function(e) {
+// Verifica se o clique aconteceu de fato em um botão de exclusão
+if (e.target && e.target.classList.contains('btn-deletar')) {
+const idProduto = e.target.dataset.id;
+console.log(`Produto ${idProduto} removido com sucesso!`);
+}
+});</pre></code>
+            </section>
 
-                function dispararLog() { console.log("Botão acionado!"); }
-                // Adicionando o ouvinte
-                botao.addEventListener('click', dispararLog);
-                // Removendo quando não for mais necessário (evita vazamento de memória)
-                botao.removeEventListener('click', dispararLog);
-                3. O Fluxo de Propriação: Event Bubbling e Capturing
-                Quando um evento acontece em um elemento do DOM, ele não afeta apenas aquele elemento isolado. Ele viaja por toda a árvore de elementos. Esse comportamento segue um fluxo oficial dividido em 3 fases essenciais:
-                As Três Fases:
-                    1. Fase de Captura (Capture Phase): O evento desce a árvore do DOM, partindo do elemento raiz (window, document, <body>) até chegar bem perto do elemento real que sofreu a ação.
-                    2. Fase de Alvo (Target Phase): O navegador detecta que chegou ao elemento exato onde a ação ocorreu (ex: o <a> ou <button> clicado) e dispara o gatilho nele.
-                    3. Fase de Borbulhamento (Bubbling Phase): O evento faz o caminho inverso: ele sobe de volta pela árvore do DOM, do elemento filho até a raiz, disparando os ouvintes de todos os elementos pais no caminho. Este é o comportamento padrão do navegador.
-                Controlando o Fluxo com Código
-                O objeto de evento (event) nos dá ferramentas para gerenciar e interromper essa viagem na árvore:
-                    • event.stopPropagation(): Interrompe o borbulhamento imediatamente. Se você clicar em um botão interno, o evento não subirá para a <div> mãe. Muito útil para janelas modais ou menus drop-down onde o clique de dentro não deve fechar a caixa externa.
-                    • event.stopImmediatePropagation(): Além de impedir o evento de subir para os pais, ele impede que outros listeners configurados no mesmo elemento atual executem.
-                4. O Objeto do Evento (Event Object)
-                Sempre que um callback é executado, o navegador injeta automaticamente um argumento contendo uma coleção rica de metadados sobre o ocorrido. Por convenção de código, os desenvolvedores capturam essa variável nomeando-a como e, evt ou event.
-                Propriedades e Métodos Fundamentais:
-                    • e.target: Faz referência ao elemento exato que disparou o evento (onde o usuário realmente interagiu, ex: a imagem dentro de um botão).
-                    • e.currentTarget: Faz referência ao elemento que está escutando o evento (onde o .addEventListener foi atrelado). Eles podem ser diferentes devido ao efeito de borbulhamento.
-                    • e.type: Retorna uma string com o nome do evento executado (ex: "click", "keyup").
-                    • e.preventDefault(): Cancela o comportamento nativo padrão que o navegador executaria para aquela tag. Exemplos: impede uma tag <a> de redirecionar a URL ou impede um <form> de recarregar a página ao enviar dados.
-                5. Delegação de Eventos (Event Delegation)
-                Em aplicações robustas e dinâmicas (como listas infinitas ou e-commerces onde itens entram e saem da tela a todo momento), adicionar um .addEventListener para cada botão individual prejudica o consumo de memória do dispositivo.
-                A técnica de Delegação de Eventos resolve isso aproveitando o mecanismo de Event Bubbling. Em vez de ouvir os filhos, nós penduramos um único ouvinte no elemento pai e inspecionamos quem disparou a ação usando e.target.
-                Exemplo Prático de Arquitetura Limpa:
-                JavaScript
-                // Capturamos a lista (Pai) e não os itens (Filhos)
-                const listaProdutos = document.querySelector('#lista-produtos');
+            <section class="classificação-dos-eventos">
+                <h2>Classificação dos Principais Eventos do DOM</h2>
+                <p>Para facilitar o mapeamento cognitivo, agrupamos os eventos em categorias com base em sua origem no sistema:</p>
 
-                listaProdutos.addEventListener('click', function(e) {
-                    // Verifica se o clique aconteceu de fato em um botão de exclusão
-                    if (e.target && e.target.classList.contains('btn-deletar')) {
-                        const idProduto = e.target.dataset.id;
-                        console.log(`Produto ${idProduto} removido com sucesso!`);
-                    }
-                });
+                <p><strong>Eventos de Mouse</strong></p>
+                <ul>
+                    <li><strong>click:</strong> Disparado com um clique rápido (pressionar e soltar).</li><br>
+                    <li><strong>dblclick:</strong> Clique duplo rápido.</li><br>
+                    <li><strong>mouseenter / mouseleave:</strong> Disparados quando o ponteiro entra ou sai da área do elemento. (Não borbulham, ao contrário de mouseover/mouseout).</li><br>
+                    <li><strong>mousemove: </strong>Disparado continuamente a cada pixel que o mouse se move sobre a caixa.</li>
+                </ul>
+
+                <p><strong>Eventos de Teclado</strong></p>
+                <ul>
+                    <li><strong>keydown:</strong> Disparado no momento em que uma tecla é pressionada.</li><br>
+                    <li><strong>keyup:</strong> Disparado quando a tecla é solta.</li>
+                    <p>Nota Técnica: Para capturar qual caractere foi acionado, inspecione as propriedades e.key (retorna o caractere visual, ex: "Enter") ou e.code (retorna o código físico da tecla, ex: "KeyA").</p>
+                </ul>
+
+                <p><strong>Eventos de Formulário</strong></p>
+                <ul>
+                    <li><strong>submit:</strong> Disparado no envio do formulário (essencial capturar para validações antes do envio HTTP).</li><br>
+                    <li><strong>change:</strong> Disparado quando o valor de um campo muda e o usuário perde o foco dele (comum em &#x3C;select&#x3E;).</li><br>
+                    <li><strong>input:</strong> Disparado em tempo real a cada caractere digitado ou apagado em um campo de texto.</li>
+                </ul>
+
+                <p><strong>Eventos do Ciclo de Vida do Documento</strong></p>
+                <ul>
+                    <li><strong>DOMContentLoaded:</strong> Disparado quando o HTML foi totalmente lido e a árvore do DOM foi construída na memória, sem esperar por imagens ou folhas de estilo externas. Excelente ponto para iniciar scripts.</li><br>
+                    <li><strong>load:</strong> Disparado na janela (window) apenas quando tudo na página (incluindo imagens pesadas, scripts e CSS) foi baixado com sucesso.</li><br>
+                    <li><strong>resize:</strong> Disparado quando o tamanho da janela do navegador é alterado.</li><br>
+                    <li><strong>scroll:</strong> Disparado quando o usuário rola a tela vertical ou horizontalmente.</li>
+                </ul>
+            </section>
+
+            <section class="Estruturas-condicionais">
+
+                <h2>Estruturas Condicionais em JavaScript: Guia de Controle de Fluxo</h2>
+                <p>Por padrão, os interpretadores de JavaScript executam o código de forma linear: de cima para baixo, linha por linha. As estruturas condicionais quebram essa linearidade. Elas atuam como bifurcações no código, permitindo que a aplicação tome decisões em tempo de execução com base em testes lógicos (expressões booleanas).</p>
+                <p>Se a condição estipulada for avaliada como verdadeira (true), um bloco específico de código é executado; se for falsa (false), o interpretador ignora esse bloco e segue outro caminho.</p>
+
+                <h3>A Estrutura Base: if, else if e else</h3>
+                <p>É a ferramenta mais comum para tomada de decisão no JavaScript. Ela avalia expressões lógicas e direciona o fluxo do script.</p>
+
+                <ul>
+                    <li><strong>O Bloco if (Se)</strong></li>
+                    <p>Executa um bloco de código apenas se a condição entre parênteses for verdadeira.</p>
+
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>const velocidade = 85;</p>
+                        
+                                        <p>
+                        if (velocidade > 80) {
+                            console.log("Usuário multado por excesso de velocidade!");
+                        }
+                                        </p>
+                    </code>
+
+                <li><strong>O Bloco else (Senão)</strong></li>
+                
+                <p>Funciona como um plano de contingência. Ele executa um código alternativo caso a condição do if seja falsa.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const idade = 16;</p>
+                    <p>
+                        if (idade >= 18) {
+                            console.log("Acesso autorizado.");
+                        } else {
+                            console.log("Acesso negado. Usuário menor de idade.");
+                        }
+                    </p>
+                </code>
+                <li><strong>O Encadeamento com else if (Senão Se)</strong></li>
+                <p>Utilizado quando há mais de dois caminhos possíveis para resolver o problema. O JavaScript avalia as condições em ordem e executa o primeiro bloco que for verdadeiro.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nota = 7.5;</p>
+                    <p>
+                        if (nota >= 9.0) {
+                            console.log("Excelente! Quadro de honra.");
+                        }
+                    </p><p>
+                        else if (nota >= 7.0) {
+                            console.log("Aprovado regular.");
+                        } else if (nota >= 5.0) {
+                            console.log("Em recuperação.");
+                        }</p> <p>
+                        else {
+                            console.log("Reprovado.");
+                        }
+                    </p>
+                </code>
+
+                </ul>  
+
+                <h3>Condição Múltipla: switch</h3>
+                <p>Quando você precisa testar uma única variável contra múltiplos valores exatos fixos, o encadeamento de muitos else if pode tornar o código poluído e difícil de ler. O bloco switch organiza essa estrutura de forma limpa através de "casos".</p>
+                <p><strong>Anatomia do switch:</strong></p>
+                <ul>
+                    <li><strong>case:</strong> Define o valor a ser comparado com a variável.</li><br>
+                    <li><strong>break:</strong> Interrompe a execução do switch. Se você esquecer o break, o interpretador continuará executando todos os próximos casos abaixo de forma cascata, mesmo que eles não correspondam ao valor (comportamento conhecido como fall-through).</li><br>
+                    <li><strong>default:</strong> Funciona como o else. É o código executado se nenhum dos casos anteriores for correspondido.
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const diaSemana = 3;</p>
+                            <p>let nomeDia = "";</p>
+
+                            <p>switch (diaSemana) {</p>
+                                    <p>
+                                        case 1: <br>
+                                            nomeDia = "Segunda-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        case 2: <br>
+                                            nomeDia = "Terça-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        case 3: <br>
+                                            nomeDia = "Quarta-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        default: <br>
+                                            nomeDia = "Dia inválido ou final de semana";
+                                                            }
+                                    </p>
+                            console.log(nomeDia); // Saída: Quarta-feira
+                        </code></li>
+                </ul>
+ 
+                <h3>O Operador Ternário (Condicional Curto)</h3>
+                <p>O operador ternário é uma forma compacta de escrever um if / else que serve puramente para atribuir um valor ou retornar um dado. Ele recebe esse nome porque é o único operador do JavaScript que exige três operandos.</p>
+                <p><strong>Sintaxe:</strong></p>
+                <p>
+                    $$\text{condição } ? \text{ valor\_se\_verdadeiro} : \text{ valor\_se\_falso}$$
+                    Exemplo Prático:
+                </p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const saldo = 150;</p>
+                    <p>
+                        // Utilizando IF / ELSE tradicional
+                        let statusConta;
+                    </p>
+                    <p>
+                        if (saldo >= 0) {
+                            statusConta = "Positivo";
+                        } else {
+                            statusConta = "Negativo";
+                        }
+                    </p>
+                    <p>// O mesmo comportamento refatorado com Operador Ternário:</p>
+                    <p>const statusTernario = saldo >= 0 ? "Positivo" : "Negativo";</p>
+                </code>
+
+                
+                <aside id="destaque">Nota de UI/UX e Código Limpo: Não encadeie múltiplos operadores ternários uns dentro dos outros (ex: condicao ? var1 : condicao2 ? var2 : var3). Isso destrói a legibilidade do código. Se houver mais de duas opções, prefira o if / else ou switch.</aside>
+
+                <h3>Conceito Avançado: Truthy e Falsy</h3>
+                <p>No JavaScript, uma condição dentro do if não precisa ser necessariamente uma expressão matemática ou lógica pura (como x > 5). Você pode passar qualquer tipo de dado (strings, números, objetos) diretamente na condição.</p>
+                <p>O JavaScript converte esse dado implicitamente para um booleano (true ou false). É aqui que entram os conceitos de Truthy e Falsy:</p>
+                <p><strong>Valores Falsy (Valores avaliados como false)</strong></p>
+                <p>Existem exatamente 6 valores que o JavaScript sempre considerará falsos em uma condicional:</p>
+                <ol>
+                    <li>false (O booleano nativo)</li>
+                    <li>0 (O número zero, incluindo -0)</li>
+                    <li>"" ou '' (Strings vazias)</li>
+                    <li>null (Ausência intencional de valor)</li>
+                    <li>undefined (Variável declarada, mas não inicializada)</li>
+                    <li> NaN (Not a Number - erro matemático)</li>
+                </ol>
+
+                <p><strong>Valores Truthy (Valores avaliados como true)</strong></p>
+                <p>Todo o restante do JavaScript é avaliado como verdadeiro. Isso inclui arrays vazios [], objetos vazios {} e strings com pelo menos um caractere de espaço " ".</p>
+                <p>Exemplo de uso prático em APIs:</p>
+                <code>
+                    <strong><p>JavaScript</p></strong>
+                    <p>const usuarioLogado = "Gabriel"; // String preenchida (Truthy)</p>
+                    <p>
+                        if (usuarioLogado) {
+                            console.log(`Bem-vindo, ${usuarioLogado}!`); // Executa porque a string não está vazia
+                        }
+                    </p> <p>
+                        else {
+                            console.log("Por favor, faça o login.");
+                        }
+                    </p>
+                </code>
+
+                <h3>Curto-Circuito Lógico (Short-Circuit Evaluation)</h3>
+                
+                <p>Os operadores lógicos && (AND) e || (OR) podem ser usados fora dos blocos if para criar condicionais rápidas e elegantes. Eles interrompem a leitura assim que encontram o resultado definitivo da expressão.</p>
+                <p><strong>Operador && (Executa se for verdadeiro)</strong></p>
+                <p>Ele avalia o código da esquerda. Se for verdadeiro, ele avança e executa/retorna o código da direita. É muito utilizado em frameworks modernos (como o React) para renderizar elementos na tela.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const exibirMenu = true;</p>
+                    <p>// Se exibirMenu for true, executa a função da direita. Se for false, o código para ali mesmo.</p>
+                    <p>exibirMenu && renderizarMenuNavegacao();</p>
+                </code>
+                <p><strong>Operador || (Garante um valor padrão se for falso)</strong></p>
+                <p>Ele avalia o código da esquerda. Se for verdadeiro, ele para ali mesmo e o retorna. Se for falso (ou seja, se a variável vier nula ou vazia), ele avança e assume o valor de segurança à direita.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nomeDigitado = ""; // Usuário não preencheu o campo (Falsy)</p>
+                    <p>// Garante que o sistema tenha um nome válido para exibir</p>
+                    <p>const nomeFinal = nomeDigitado || "Usuário Anônimo";</p>
+                    <p>console.log(nomeFinal); // Saída: Usuário Anônimo</p>
+                </code>
+
+            </section>
+
+            <section class="estrutura-de-repetição">
+                <h2>Estruturas de Repetição em JavaScript: Automação e Loops</h2>
+                
+                <p>No desenvolvimento de software, frequentemente precisamos executar o mesmo bloco de código várias vezes seguidas (por exemplo, ler os 50 produtos de um carrinho, renderizar 10 posts na tela ou rodar um cálculo até atingir um limite).</p>
+
+                <p>Em vez de copiar e colar linhas de código, utilizamos estruturas de repetição (conhecidas como Loops ou Laços). Elas repetem uma instrução com base em uma condição lógica: enquanto a condição for verdadeira (true), o bloco continua rodando; no momento em que se torna falsa (false), o laço é quebrado e o programa segue em frente.</p>
+
+                <aside id="destaque">Aviso de Performance (Loop Infinito): Se a condição do seu laço de repetição nunca se tornar falsa, o código rodará infinitamente. Isso consome 100% do processamento disponível e trava a aba do navegador do usuário.</aside>
+
+                <h3>Estrutura Controlada por Contador: for</h3>
+                <p>O laço for é a estrutura ideal quando você sabe exatamente quantas vezes precisa repetir aquela ação. Ele centraliza em uma única linha as três etapas essenciais de um loop: a inicialização, a condição de parada e o incremento.</p>
+
+                <p><strong>Sintaxe:</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        for (inicialização; condição; incremento) {
+                            // Código que será repetido
+                        }
+                    </p>
+                </code>
+                <p><strong>Exemplo Prático:</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        // Contando de 1 até 5
+                        for (let i = 1; i <= 5; i++) {
+                            console.log(`Contagem: ${i}`);
+                        }
+                    </p>
+                    <ul>
+                        <li>let i = 1: Cria uma variável de controle (ponteiro) que começa no número 1.</li>
+                        <li>i <= 5: A condição de teste. O loop vai rodar enquanto i for menor ou igual a 5.</li>
+                        <li>i++: O incremento. Soma +1 na variável i ao final de cada repetição.</li>
+                    </ul>
+                </code>
+               <h3>Estruturas Controladas por Condição: while e do...while</h3>
+                <p>Essas estruturas são perfeitas para cenários onde você não sabe previamente quantas repetições serão necessárias, pois dependem de uma condição que muda dinamicamente durante o processo (como esperar o usuário acertar uma senha).</p>
+
+                <ul>
+                    <li><strong>O Laço while (Enquanto):</strong> Ele avalia a condição antes de executar o bloco de código. Se a condição começar como falsa, o bloco dentro dele nunca será executado.
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>let energia = 3;</p>
+                     <p>
+                         while (energia > 0) {
+                            console.log(`Correndo... Energia restante: ${energia}`);
+                            energia--; <p>// Modifica a variável para evitar o loop infinito</p>
+                         }
+                     </p>
+                </code></li>
+
+                    <li><strong>O Laço do...while (Faça... Enquanto):</strong> Diferente do anterior, ele executa o bloco de código pelo menos uma vez antes de testar a condição. A validação lógica acontece apenas no final.
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>let tentativaConexao = 0;</p>
+                        <p>
+                            do {
+                                tentativaConexao++;
+                                console.log(`Tentando conectar ao servidor... Tentativa ${tentativaConexao}`);
+                            
+                                <p>// Supondo que a conexão falhou, o loop para se atingir 3 tentativas</p>
+                            } while (tentativaConexao < 3);
+                        </p>
+                    </code></li>
+                </ul>
+
+                <h3>Loops Especializados para Coleções: for...of e for...in</h3>
+                
+                <p>O JavaScript moderno oferece atalhos nativos elegantes para percorrer estruturas de dados compostas (como listas/arrays e objetos) sem a necessidade de gerenciar contadores manuais.</p>
+                <p><strong>A. O Laço for...of (Iterando sobre Arrays):</strong> Lê e entrega o valor de cada elemento de uma lista, um por um, do início ao fim.</p>
+                
+                
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const tecnologias = ["HTML", "CSS", "JavaScript", "React"];</p>
+                    <p>
+                        for (const tech of tecnologias) {
+                            console.log(`Estudando a tecnologia: ${tech}`);
+                        }
+                    </p>
+                    <p>// Saída: Entrega os nomes das tecnologias diretamente.</p>
+                </code>
+                <p><strong>B. O Laço for...in (Iterando sobre Objetos):</strong> Diferente do anterior, ele é projetado para percorrer as propriedades (chaves) de um objeto literal.</p>
+                
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        const usuario = {
+                            nome: "Alice",
+                            idade: 25,
+                            profissao: "Engenheira de Software"
+                        };
+                    </p>
+                    <p>
+                        for (const chave in usuario) {
+                            console.log(`${chave}: ${usuario[chave]}`);
+                        }
+                    </p>
+                    <p>
+                        /* Saída:
+                        nome: Alice
+                        idade: 25
+                        profissao: Engenheira de Software
+                        */
+                    </p>
+                </code>
+                <h3>Comandos de Interrupção de Fluxo: break e continue</h3>
+                <p>Às vezes, precisamos interferir no comportamento padrão do loop antes que a condição principal seja atingida. Para isso, o JavaScript disponibiliza duas palavras-chave:</p>
+                <p><strong>A. O Comando break:</strong> Interrompe e encerra o loop imediatamente, jogando o fluxo do programa para a linha logo após a estrutura de repetição.</p>
+
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const listaNumeros = [10, 20, 35, 40, 50];</p>
+                    <p>
+                        for (const num of listaNumeros) {
+                            if (num === 35) {
+                                <p>
+                                    console.log("Número 35 encontrado! Parando a busca.");
+                                    break; // O loop é cancelado e ignora os números 40 e 50.
+                                </p>
+                            <p>}</p>
+                            <p>console.log(`Analisando: ${num}`);</p>
+                        <p>}</p>
+                    </p>
+                </code>
+                <p><strong>B. O Comando continue:</strong> Não encerra o loop. Em vez disso, ele pula apenas a repetição atual e vai direto para o próximo passo do laço.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// Imprimindo apenas números ímpares (pulando os pares)</p>
+                    <p>
+                        for (let i = 1; i <= 5; i++) {
+                            if (i % 2 === 0) {
+                                <p>continue; // Se for par, ignora o console.log abaixo e vai para o próximo número</p>
+                            }
+                            console.log(`Número Ímpar: ${i}`);
+                        }
+                    </p>
+                </code>
             </section>
     
 
