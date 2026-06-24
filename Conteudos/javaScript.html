@@ -1169,11 +1169,219 @@ console.log(`Produto ${idProduto} removido com sucesso!`);
                         for (let i = 1; i <= 5; i++) {
                             if (i % 2 === 0) {
                                 <p>continue; // Se for par, ignora o console.log abaixo e vai para o próximo número</p>
-                            }
-                            console.log(`Número Ímpar: ${i}`);
+                            <p>}</p>
+                            <p>console.log(`Número Ímpar: ${i}`);</p>
+                        <p>}</p>
+                    </p>
+                </code>
+            </section>
+
+            <section>
+                <h2>Variáveis Compostas (Arrays) em JavaScript: Estruturas de Dados</h2>
+                <p>No desenvolvimento de software, variáveis simples (como as que armazenam strings ou números) funcionam como caixas que guardam um único valor por vez. As Variáveis Compostas, popularmente conhecidas como Arrays (ou Vetores/Listas), mudam esse cenário: elas funcionam como armários organizados, capazes de armazenar múltiplos valores sob o nome de uma única variável.</p>
+
+                <h3>O que é um Array?</h3>
+                <p>Um Array é uma estrutura de dados linear e indexada. Ele permite agrupar diversos elementos em uma única coleção sequencial. No JavaScript, os arrays são dinâmicos (seu tamanho pode crescer ou diminuir em tempo de execução) e heterogêneos (um único array pode misturar números, strings, booleanos e até outros arrays).</p>
+                <p><strong>O Conceito de Índice (Index)</strong></p>
+                <p>O segredo para gerenciar um array é entender que toda posição possui um número de índice, e a contagem sempre começa no zero (0).</p>
+                <h3>Criação e Acesso a Elementos</h3>
+                <p><strong>A. Criando um Array</strong></p>
+                <p>A forma mais recomendada e limpa de declarar um array é utilizando colchetes [].</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        // Criando um array de strings
+                        const frutas = ["Abacaxi", "Banana", "Morango", "Uva"];
+                    </p>
+                </code>
+                <p><strong>B. Acessando Valores pelo Índice</strong></p>
+                <p>Para ler ou modificar um valor específico de dentro do array, referenciamos o nome da variável seguido pelo índice desejado entre colchetes.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>console.log(frutas[0]); // Saída: "Abacaxi" (Primeiro elemento)</p>
+                    <p>
+                        console.log(frutas[2]); // Saída: "Morango"
+                        // Modificando um valor existente
+                    </p>
+                    <p>frutas[1] = "Melancia"; // Substitui "Banana" por "Melancia"</p>
+                    <p>console.log(frutas);    // Saída: ["Abacaxi", "Melancia", "Morango", "Uva"]</p>
+                </code>
+                <p><strong>C. Descobrindo o Tamanho do Array</strong></p>
+                <p>A propriedade nativa .length retorna a quantidade total de elementos contidos no array.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>console.log(frutas.length); // Saída: 4</p>
+                    <aside id="destaque">Nota de Engenharia: Como os índices começam no 0, o último elemento de qualquer array sempre estará localizado na posição array.length - 1.</aside>
+                </code>
+               <h3>Métodos Fundamentais de Manipulação (Inserção e Remoção)</h3>
+                <p>O JavaScript fornece uma API rica em métodos prontos para modificar os elementos de um array sem a necessidade de reescrevê-lo manualmente:</p>
+                <p><strong>No Final do Array:</strong></p>
+                <ul>
+                    <li><strong>push(elemento):</strong> Adiciona um ou mais elementos ao final do array.</li><br>
+                    <li><strong>pop():</strong> Remove e retorna o último elemento do array. <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const numeros = [10, 20];</p>
+                    <p>numeros.push(30); // [10, 20, 30]</p>
+                    <p>numeros.pop();    // [10, 20] (o número 30 foi removido)</p>
+                </code></li>
+                </ul>
+                
+                <p><strong>No Início do Array:</strong></p>
+                <ul>
+                    <li><strong>unshift(elemento):</strong> Insere um elemento na primeira posição (índice 0) e empurra todos os outros para a frente.</li><br>
+                    <li><strong>shift():</strong> Remove o primeiro elemento do array, reindexando todos os demais.<code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const clientes = ["Carlos", "Ana"];</p>
+                    <p>clientes.unshift("Bruno"); // ["Bruno", "Carlos", "Ana"]</p>
+                    <p>clientes.shift();            // ["Carlos", "Ana"] (Bruno foi removido)</p>
+                </code></li>
+                </ul>
+
+              
+                <p><strong>Em Qualquer Posição:</strong></p>
+                <ul>
+                    <li>splice(indice, quantidade, novos_elementos): Um método versátil. Ele pode remover itens de qualquer lugar do array e, opcionalmente, injetar novos valores no lugar. <p><strong>JavaScript</strong></p>
+                    <p>const cores = ["Vermelho", "Verde", "Azul", "Amarelo"];</p>
+                    <p>// Remove 2 elementos a partir do índice 1 (remove "Verde" e "Azul")</p>
+                    <p>cores.splice(1, 2); </p>
+                    <p>console.log(cores); // Saída: ["Vermelho", "Amarelo"]</p></li>
+                </ul>
+
+                <h3>Combinando Repetições com Arrays (Iteração)</h3>
+                <p>Arrays e Loops nasceram para trabalhar juntos. Percorrer uma variável composta para ler ou processar seus dados é uma das tarefas mais comuns do desenvolvimento.</p>
+                <p><strong>A. Iteração com for Tradicional (Contador)</strong></p>
+                <p>Útil quando você precisa saber o número do índice durante a execução.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const precos = [100, 250, 400];</p>
+                    <p>
+                        for (let i = 0; i < precos.length; i++) {
+                            console.log(`O produto no índice ${i} custa R$ ${precos[i]}`);
                         }
                     </p>
                 </code>
+                <p><strong>B. Iteração Avançada com for...of</strong></p>
+                <p>A forma mais limpa e elegante caso você precise apenas dos valores e não se importe com os números dos índices.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nomes = ["Julia", "Pedro", "Lucas"];</p>
+                    <p>
+                        for (const nome of nomes) {
+                            console.log(`Olá, ${nome}!`);
+                        }
+                    </p>
+                </code>
+                <h3>Arrays Multidimensionais (Matrizes)</h3>
+                <p>Como o JavaScript permite armazenar qualquer tipo de dados dentro de um array, você pode colocar arrays dentro de outros arrays. Isso cria estruturas bidimensionais (como tabelas com linhas e colunas), conhecidas matematicamente como Matrizes.</p>
+                <p><strong>Exemplo Prático:</strong>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// Uma matriz de jogo da velha (3x3)</p>
+                    <p>
+                        const tabuleiro = [
+                            <p>["X", "O", "X"], // Linha 0</p>
+                            <p>["O", "X", " "], // Linha 1</p>
+                            <p>["X", " ", "O"]  // Linha 2</p>
+                        <p>];</p>
+                    </p>
+                    <p>// Para acessar um elemento, passamos dois colchetes: [linha][coluna]</p>
+                    <p>console.log(tabuleiro[0][1]); // Saída: "O" (Linha 0, Coluna 1)</p>
+                    <p>console.log(tabuleiro[2][0]); // Saída: "X" (Linha 2, Coluna 0)</p>
+                </code>
+            </section>
+
+            <section>
+                <h2>Funções em JavaScript: Modularização e Escopo</h2>
+                <p>As Funções são um dos pilares mais importantes do JavaScript. Elas funcionam como "fábricas de processamento" ou blocos de receitas: você isola um pedaço de código que executa uma tarefa específica, dá um nome a ele e pode reutilizá-lo quantas vezes quiser ao longo do seu programa, evitando repetição de código.</p>
+
+                <h3>O que é uma Função?</h3>
+                <p>Em termos lógicos, uma função é um subprograma que recebe dados de entrada (chamados de parâmetros), processa esses dados através de um conjunto de instruções e envia uma resposta de saída (o retorno).</p>
+                <p>O ciclo de vida de uma função é dividido em dois momentos cruciais:</p>
+                <ol>
+                    <li><strong>Declaração:</strong> Quando você cria a receita e diz ao JavaScript o que ela faz. (O código não roda aqui).</li><br>
+                    <li><strong>Invocação (ou Chamada):</strong> Quando você ativa a função para executar as instruções na memória.</li>
+                </ol>
+
+                <h3>Anatomia de uma Função Tradicional</h3>
+                <p>A forma clássica de declarar uma função no JavaScript utiliza a palavra-chave function.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// <strong>1. DECLARAÇÃO:</strong> Criando a função</p>
+                    <p>
+                        function calcularDobro(numero) {
+                            <p>// 'numero' é o parâmetro (a variável de entrada)</p>
+                            <p>const resultado = numero * 2;</p>
+                            <p>return resultado; // Envia o valor processado para fora da função</p>
+                        <p>}</p>
+                    </p>
+                    <p>// <strong>2. INVOCAÇÃO:</strong> Chamando a função para ser usada</p>
+                    <p>const valorFinal = calcularDobro(5); // Passamos o número 5 como 'argumento'</p>
+                    <p>console.log(valorFinal); // Saída: 10</p>
+                    <p><strong>O papel da instrução return:</strong></p>
+                    <p>A palavra-chave return é fundamental. Ela encerra a execução da função imediatamente e "cospe" o resultado para quem a chamou. Se você esquecer de colocar o return, a função executará suas linhas mas retornará o valor undefined.</p>
+                </code>
+                <h3>Tipos de Funções no JavaScript</h3>
+                <p>O JavaScript evoluiu e oferece diferentes maneiras de escrever funções, adaptando-se a necessidades de performance e estilo de escrita de código.</p>
+                <p><strong>A. Funções Anônimas (Expressão de Função)</strong></p>
+                <p>É uma função que não possui um nome explícito após a palavra function. Ela é armazenada diretamente dentro de uma variável comum.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        const saudar = function(nome) {
+                            return `Olá, ${nome}!`;
+                        };
+                    </p>
+                    <p>console.log(saudar("Mariana")); // Saída: Olá, Mariana!</p>
+                </code>
+                <p><strong>B. Arrow Functions (Funções de Seta)</strong></p>
+                <p>Introduzidas no JavaScript moderno (ES6), as Arrow Functions fornecem uma sintaxe extremamente compacta. Elas removem a necessidade da palavra function e usam o símbolo =>.</p>
+                <code>
+                    <strong>JavaScript</strong>
+                    <p>// Sintaxe padrão da Arrow Function</p>
+                    <p>
+                        const somar = (a, b) => {
+                            return a + b;
+                        };
+                    </p>
+                    <p>// Se a função tiver apenas UMA linha de código, podemos encurtar ainda mais:</p>
+                    <p>// O retorno torna-se implícito (não precisa digitar a palavra 'return' nem chaves)</p>
+                    <p>const multiplicar = (a, b) => a * b;</p>
+                    <p>console.log(multiplicar(3, 4)); // Saída: 12</p>
+                </code>
+                4. Parâmetros vs. Argumentos
+                Embora sejam usados como sinônimos, há uma diferença técnica conceitual:
+                    • Parâmetros: São os nomes das variáveis declarados na definição da função (as "vagas" esperando preenchimento).
+                    • Argumentos: São os valores reais passados para a função no momento em que ela é invocada.
+                Parâmetros com Valor Padrão (Default Parameters)
+                Você pode definir um valor de segurança para caso quem chame a função esqueça de passar um argumento.
+                JavaScript
+                function configurarDesconto(preco, taxa = 0.1) {
+                    return preco - (preco * taxa);
+                }
+                console.log(configurarDesconto(100));       // Saída: 90 (Usou a taxa padrão de 10%)
+                console.log(configurarDesconto(100, 0.3));  // Saída: 70 (Ignorou o padrão e usou 30%)
+                5. Escopo de Variáveis nas Funções
+                O conceito de Escopo determina onde uma variável pode ser acessada ou modificada dentro do seu código. As funções criam uma barreira de proteção conhecida como Escopo Local.
+                    • Escopo Global: Variáveis criadas fora de qualquer função pertencem ao escopo global e podem ser lidas por qualquer parte do arquivo.
+                    • Escopo Local (ou de Função): Variáveis criadas dentro de uma função nasceram ali dentro e morrem ali dentro. O mundo exterior não tem acesso a elas.
+                JavaScript
+                const globalVar = "Eu sou global";
+                function testarEscopo() {
+                    const localVar = "Eu sou local";
+                    console.log(globalVar); // Funciona! Consegue ler variáveis de fora.
+                    console.log(localVar);  // Funciona!
+                }
+                testarEscopo();
+                console.log(localVar); // ERRO! O sistema quebra porque localVar não existe fora da função.
+
+                Os Proximos passos em Js
+                    1. Função 
+                    2. objetos
+                    3. modularização
+                    4. RegEx
+                    5. JSON
+                    6. AJAX
+                    7. NodeJS
             </section>
     
 
