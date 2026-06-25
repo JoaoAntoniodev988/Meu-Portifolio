@@ -119,148 +119,191 @@ nav {
 </style>
 </head>
 <body>
-       <header class="telas-pequenas">
+        <header class="telas-pequenas">
         <h1>JavaScript</h1>
         <p>Desenvolvimento Web</p>
     </header>
 
     <main>
-        <section>
-            <h2>Operadores</h2>
+        <section class="Estruturas-condicionais">
+
+                <h2>Estruturas Condicionais em JavaScript: Guia de Controle de Fluxo</h2>
+                <p>Por padrão, os interpretadores de JavaScript executam o código de forma linear: de cima para baixo, linha por linha. As estruturas condicionais quebram essa linearidade. Elas atuam como bifurcações no código, permitindo que a aplicação tome decisões em tempo de execução com base em testes lógicos (expressões booleanas).</p>
+                <p>Se a condição estipulada for avaliada como verdadeira (true), um bloco específico de código é executado; se for falsa (false), o interpretador ignora esse bloco e segue outro caminho.</p>
+
+                <h3>A Estrutura Base: if, else if e else</h3>
+                <p>É a ferramenta mais comum para tomada de decisão no JavaScript. Ela avalia expressões lógicas e direciona o fluxo do script.</p>
+
                 <ul>
-                    <li><strong>Operadores Aritméticos</strong>: São os operadores matemáticos clássicos que usamos para fazer cálculos.
-                        <p>Os Símbolos: <br></p>
-                            <ul>
-                                <li><strong>+</strong> (Adição) / <strong>- </strong>(Subtração)</li>
-                                <li><strong>* </strong>(Multiplicação) / <strong>/ </strong>(Divisão)</li>
-                                <li><strong>% </strong>(Módulo / Resto da divisão): Muito usado para descobrir se um número é par ou ímpar.</li>
-                                <li><strong>** </strong>(Exponenciação): Elevar um número a uma potência.</li>
-                            </ul>
-                        Exemplo: <br>
+                    <li><strong>O Bloco if (Se)</strong></li>
+                    <p>Executa um bloco de código apenas se a condição entre parênteses for verdadeira.</p>
+
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>const velocidade = 85;</p>
+                        
+                                        <p>
+                        if (velocidade > 80) {
+                            console.log("Usuário multado por excesso de velocidade!");
+                        }
+                                        </p>
+                    </code>
+
+                <li><strong>O Bloco else (Senão)</strong></li>
+                
+                <p>Funciona como um plano de contingência. Ele executa um código alternativo caso a condição do if seja falsa.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const idade = 16;</p>
+                    <p>
+                        if (idade >= 18) {
+                            console.log("Acesso autorizado.");
+                        } else {
+                            console.log("Acesso negado. Usuário menor de idade.");
+                        }
+                    </p>
+                </code>
+                <li><strong>O Encadeamento com else if (Senão Se)</strong></li>
+                <p>Utilizado quando há mais de dois caminhos possíveis para resolver o problema. O JavaScript avalia as condições em ordem e executa o primeiro bloco que for verdadeiro.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nota = 7.5;</p>
+                    <p>
+                        if (nota >= 9.0) {
+                            console.log("Excelente! Quadro de honra.");
+                        }
+                    </p><p>
+                        else if (nota >= 7.0) {
+                            console.log("Aprovado regular.");
+                        } else if (nota >= 5.0) {
+                            console.log("Em recuperação.");
+                        }</p> <p>
+                        else {
+                            console.log("Reprovado.");
+                        }
+                    </p>
+                </code>
+
+                </ul>  
+
+                <h3>Condição Múltipla: switch</h3>
+                <p>Quando você precisa testar uma única variável contra múltiplos valores exatos fixos, o encadeamento de muitos else if pode tornar o código poluído e difícil de ler. O bloco switch organiza essa estrutura de forma limpa através de "casos".</p>
+                <p><strong>Anatomia do switch:</strong></p>
+                <ul>
+                    <li><strong>case:</strong> Define o valor a ser comparado com a variável.</li><br>
+                    <li><strong>break:</strong> Interrompe a execução do switch. Se você esquecer o break, o interpretador continuará executando todos os próximos casos abaixo de forma cascata, mesmo que eles não correspondam ao valor (comportamento conhecido como fall-through).</li><br>
+                    <li><strong>default:</strong> Funciona como o else. É o código executado se nenhum dos casos anteriores for correspondido.
                         <code>
                             <p><strong>JavaScript</strong></p>
-                            <p>const resto = 11 % 2; // O resultado é 1 (porque 11 dividido por 2 dá 5 e sobra 1)</p>
-                            <p>const quadrado = 3 ** 2; // 3 elevado a 2 = 9</p>
+                            <p>const diaSemana = 3;</p>
+                            <p>let nomeDia = "";</p>
+
+                            <p>switch (diaSemana) {</p>
+                                    <p>
+                                        case 1: <br>
+                                            nomeDia = "Segunda-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        case 2: <br>
+                                            nomeDia = "Terça-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        case 3: <br>
+                                            nomeDia = "Quarta-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        default: <br>
+                                            nomeDia = "Dia inválido ou final de semana";
+                                                            }
+                                    </p>
+                            console.log(nomeDia); // Saída: Quarta-feira
                         </code></li>
-                    <li><strong>Operadores Relacionais (Comparação)</strong>: Servem para comparar dois valores e avaliar a relação entre eles. O resultado dessa comparação é sempre um booleano (true ou false).
-                        <p>Os Símbolos:</p>
-                        <ul>
-                            <li> <strong>> </strong>(Maior que) / <strong> < </strong>(Menor que)</li>
-                            <li> <strong>>=</strong> (Maior ou igual) / <strong><=</strong> (Menor ou igual)</li>
-                            <li><strong>==</strong> (Igualdade ampla): Compara apenas o valor, ignorando o tipo de dado. (Evite usar)</li>
-                            <li><strong>=== </strong>(Igualdade estrita): Compara o valor E o tipo de dado. (Sempre use este)</li>
-                            <li><strong>!== </strong>(Diferente estrito): Verifica se os valores ou tipos são diferentes.</li>
-                        </ul>
-            
-                        <p>Exemplo:</p>
-                        <code>
-                            <p><strong>JavaScript</strong></p>
-                            <p>console.log(5 == "5");  // true (o JS converte o texto para número antes de comparar)</p>
-                            <p>console.log(5 === "5"); // false (são iguais no valor, mas um é Number e o outro é String)</p>
-                        </code> </li>
-                    <li><strong>Operadores Lógicos</strong>: Servem para combinar várias comparações relacionais e criar regras de negócio mais complexas.
-                        <p>Os Símbolos:</p>
-                        <ul>
-                            <li>&& (E / AND): A frase inteira só é verdade se tudo for verdade.</li>
-                            <li>|| (OU / OR): A frase inteira é verdade se pelo menos um elemento for verdade.</li>
-                            <li>! (NÃO / NOT): Inverte o booleano. Se algo era true, vira false.</li>
-                        </ul>
-                    <p>Exemplo:</p>
-                        <code>
-                            <p><strong>JavaScript</strong></p>
-                            <p>const temIdade = true;</p>
-                            <p>const temPermissaoDosPais = false;
-                            <p>// O jovem pode viajar se tiver idade OU a permissão</p></p>
-                            <p>const podeViajar = temIdade || temPermissaoDosPais; // true</p>
-                        </code></li>
-                    <li><strong>Operador Ternário</strong>: O operador ternário é um atalho elegante para criar uma estrutura de decisão rápida (um if / else de uma linha só). Ele recebe esse nome porque é o único operador do JavaScript que usa três argumentos.
-                        <p>A Estrutura: condição ? valor_se_verdade : valor_se_falso;</p>
-                    <p>Exemplo:</p>
-                        <code>
-                            <p><strong>JavaScript</strong></p>
-                            <p>const idade = 20;</p>
-                            <p>// Se idade for maior ou igual a 18, retorna "Maior de idade", senão retorna "Menor de idade"</p>
-                            <p>const status = idade >= 18 ? "Maior de idade" : "Menor de idade";</p>
-                            <p>console.log(status); // "Maior de idade"</p>
-                        </code>
-                    O operador ternário e os operadores relacionais (===) são os que os iniciantes mais demoram para se acostumar, mas são os mais usados no dia a dia.</li>
-                    <li><strong>Operadores de Atribuição</strong>: Servem para guardar ou atualizar o valor de uma variável. O operador básico você já conhece: o sinal de igual (=). Mas existem atalhos inteligentes:
-                    <p>Os Símbolos:</p>
-                    <ul>
-                        <li> = (Atribuição simples)</li>
-                        <li> += (Soma e atribui): Pega o valor atual e soma mais um tanto.</li>
-                        <li> -= (Subtrai e atribui)</li>
-                        <li> *= (Multiplica e atribui)</li>
-                    </ul>
-                    <p>Exemplo:</p>
-                        <code>
-                            <p><strong>JavaScript</strong></p>
-                            <p>let pontos = 10;</p>
-            
-                            <p>// O jeito longo: pontos = pontos + 5;</p>
-                            <p>// O jeito inteligente (Operador de Atribuição):</p>
-                            <p>pontos += 5; // Agora pontos vale 15</p>
-                        </code></li>
-                    <li><strong>Operadores de Atribuição Composta</strong>: Operadores de Atribuição Composta (ou simplesmente "simplificação de atribuição"). Em programação, passamos muito tempo atualizando o valor de uma variável com base no valor que ela já possuía antes. O JavaScript nos oferece esse "atalho"  para não termos que repetir o nome da variável duas vezes.
-                        <p>Assumindo que começamos com let n = 3:
-                            <ol>
-                                <li>Adição Simplificada (+=)
-                                    <ul>
-                                        <li>Forma longa: n = n + 4 (Pega o valor atual de n, que é 3, soma 4 e guarda o resultado 7 de volta em n).</li>
-                                        <li>Forma simplificada: n += 4</li>
-                                        <li>Resultado: 7</li>
-                                    </ul>
-                                </li>
-                                <li> Subtração Simplificada (-=)
-                                    <ul>
-                                        <li>Forma longa: n = n - 5 (Pega o valor atual de n, subtrai 5 e guarda o resultado).</li>
-                                        <li>Forma simplificada: n -= 5</li>
-                                        <li>Resultado: Se n era 7, 7 - 5 = 2.</li>
-                                    </ul>
-                                </li>
-                                <li>Multiplicação Simplificada (*=)
-                                    <ul>
-                                        <li>Forma longa: n = n * 4 (Multiplica o valor atual por 4).</li>
-                                        <li>Forma simplificada: n *= 4</li>
-                                        <li>Resultado: Se n era 2, 2 * 4 = 8.</li>
-                                    </ul>
-                                </li>
-                                <li>Divisão Simplificada (/=)
-                                    <ul>
-                                        <li>Forma longa: n = n / 2 (Divide o valor atual por 2).</li>
-                                        <li>Forma simplificada: n /= 2</li>
-                                        <li>Resultado: Se n era 8, 8 / 2 = 4.</li>
-                                    </ul>
-                                </li>
-                                <li>Exponenciação Simplificada (=)
-                                    <ul>
-                                        <li>Forma longa: n = n 2 (Eleva o valor de n ao quadrado).</li>
-                                        <li>Forma simplificada: n = 2</li>
-                                        <li>Resultado: Se n era 4, 4 2 (4 elevado a 2) = 16.</li>
-                                    </ul>
-                                </li>
-                                <li>Módulo Simplificado (%=)
-                                    <ul>
-                                        <li>Forma longa: n = n % 5 (Pega o resto da divisão de n por 5).</li>
-                                        <li>Forma simplificada: n %= 5</li>
-                                        <li>Resultado: Se n era 16, ao dividir 16 por 5 dá 3 (que dá 15) e resta 1. Logo, o resultado é 1. </li>
-                                    </ul>
-                                </li>
-                            </ol>
-                        <aside id="destaque">
-                        💡 Por que os programadores usam isso?
-                        No dia a dia, você verá quase todo mundo usando a versão da direita. Ela deixa o código mais limpo, mais rápido de ler e evita erros de digitação quando as variáveis possuem nomes longos, como:
-                        <code>
-                            <p><strong>JavaScript</strong></p>
-                            <p>// Ruim / Longo</p>
-                            <p>quantidadeItensNoCarrinho = quantidadeItensNoCarrinho + 1;</p>
-                            <p>// Lindo / Simplificado
-                            quantidadeItensNoCarrinho += 1;</p>
-                        </code>
-                        </aside>
-                    </li>
                 </ul>
-        </section>
+ 
+                <h3>O Operador Ternário (Condicional Curto)</h3>
+                <p>O operador ternário é uma forma compacta de escrever um if / else que serve puramente para atribuir um valor ou retornar um dado. Ele recebe esse nome porque é o único operador do JavaScript que exige três operandos.</p>
+                <p><strong>Sintaxe:</strong></p>
+                <p>
+                    $$\text{condição } ? \text{ valor\_se\_verdadeiro} : \text{ valor\_se\_falso}$$
+                    Exemplo Prático:
+                </p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const saldo = 150;</p>
+                    <p>
+                        // Utilizando IF / ELSE tradicional
+                        let statusConta;
+                    </p>
+                    <p>
+                        if (saldo >= 0) {
+                            statusConta = "Positivo";
+                        } else {
+                            statusConta = "Negativo";
+                        }
+                    </p>
+                    <p>// O mesmo comportamento refatorado com Operador Ternário:</p>
+                    <p>const statusTernario = saldo >= 0 ? "Positivo" : "Negativo";</p>
+                </code>
+
+                
+                <aside id="destaque">Nota de UI/UX e Código Limpo: Não encadeie múltiplos operadores ternários uns dentro dos outros (ex: condicao ? var1 : condicao2 ? var2 : var3). Isso destrói a legibilidade do código. Se houver mais de duas opções, prefira o if / else ou switch.</aside>
+
+                <h3>Conceito Avançado: Truthy e Falsy</h3>
+                <p>No JavaScript, uma condição dentro do if não precisa ser necessariamente uma expressão matemática ou lógica pura (como x > 5). Você pode passar qualquer tipo de dado (strings, números, objetos) diretamente na condição.</p>
+                <p>O JavaScript converte esse dado implicitamente para um booleano (true ou false). É aqui que entram os conceitos de Truthy e Falsy:</p>
+                <p><strong>Valores Falsy (Valores avaliados como false)</strong></p>
+                <p>Existem exatamente 6 valores que o JavaScript sempre considerará falsos em uma condicional:</p>
+                <ol>
+                    <li>false (O booleano nativo)</li>
+                    <li>0 (O número zero, incluindo -0)</li>
+                    <li>"" ou '' (Strings vazias)</li>
+                    <li>null (Ausência intencional de valor)</li>
+                    <li>undefined (Variável declarada, mas não inicializada)</li>
+                    <li> NaN (Not a Number - erro matemático)</li>
+                </ol>
+
+                <p><strong>Valores Truthy (Valores avaliados como true)</strong></p>
+                <p>Todo o restante do JavaScript é avaliado como verdadeiro. Isso inclui arrays vazios [], objetos vazios {} e strings com pelo menos um caractere de espaço " ".</p>
+                <p>Exemplo de uso prático em APIs:</p>
+                <code>
+                    <strong><p>JavaScript</p></strong>
+                    <p>const usuarioLogado = "Gabriel"; // String preenchida (Truthy)</p>
+                    <p>
+                        if (usuarioLogado) {
+                            console.log(`Bem-vindo, ${usuarioLogado}!`); // Executa porque a string não está vazia
+                        }
+                    </p> <p>
+                        else {
+                            console.log("Por favor, faça o login.");
+                        }
+                    </p>
+                </code>
+
+                <h3>Curto-Circuito Lógico (Short-Circuit Evaluation)</h3>
+                
+                <p>Os operadores lógicos && (AND) e || (OR) podem ser usados fora dos blocos if para criar condicionais rápidas e elegantes. Eles interrompem a leitura assim que encontram o resultado definitivo da expressão.</p>
+                <p><strong>Operador && (Executa se for verdadeiro)</strong></p>
+                <p>Ele avalia o código da esquerda. Se for verdadeiro, ele avança e executa/retorna o código da direita. É muito utilizado em frameworks modernos (como o React) para renderizar elementos na tela.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const exibirMenu = true;</p>
+                    <p>// Se exibirMenu for true, executa a função da direita. Se for false, o código para ali mesmo.</p>
+                    <p>exibirMenu && renderizarMenuNavegacao();</p>
+                </code>
+                <p><strong>Operador || (Garante um valor padrão se for falso)</strong></p>
+                <p>Ele avalia o código da esquerda. Se for verdadeiro, ele para ali mesmo e o retorna. Se for falso (ou seja, se a variável vier nula ou vazia), ele avança e assume o valor de segurança à direita.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nomeDigitado = ""; // Usuário não preencheu o campo (Falsy)</p>
+                    <p>// Garante que o sistema tenha um nome válido para exibir</p>
+                    <p>const nomeFinal = nomeDigitado || "Usuário Anônimo";</p>
+                    <p>console.log(nomeFinal); // Saída: Usuário Anônimo</p>
+                </code>
+
+            </section>
     </main>
 
      <nav id="menu">

@@ -71,6 +71,12 @@ main h3 {
     font-size: 12pt;
 }
 
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
 #destaque {
     background-color: var(--cor-principal);
     margin: 0px 10px;
@@ -112,79 +118,123 @@ nav {
 </style>
 </head>
 <body>
-      <header class="telas-pequenas">
+       <header class="telas-pequenas">
         <h1>JavaScript</h1>
-        <p>Intermédiario</p>
+        <p>Desenvolvimento Web</p>
     </header>
 
     <main>
-        <section class="Tipos-de-dados">
-            <h2>Tipos de Dados: O que vai dentro das variaveis</h2>
+         <section>
+            <h2>Manipulação de Dados</h2>
+            <p>Manipular dados significa alterar o seu estado ou extrair informações úteis deles. Cada tipo de dado tem seus próprios "superpoderes" (métodos).</p>
 
-            <p><strong>number (Número):</strong> é Qualquer valor    numérico, seja positivo, negativo, inteiro ou decimal.
-            Diferente de outras linguagens que separam números inteiros de números com vírgula, o JavaScript coloca tudo na mesma caixa chamada number. Exemplo:</p>
-            <code> <p><strong>JavaScript</strong></p>
-            <p>const idade = 26;       // Inteiro</p>
-            <p>const preco = 99.90;    // Decimal (sempre use ponto, não vírgula)</p>
-            <p>const temperatura = -5; // Negativo</p>
+         <h3>Manipulando Strings (Textos)</h3>
+
+            <ul>
+                <li>Descobrir o tamanho <strong>(.length)</strong>: Conta quantos caracteres o texto tem.</li>
+                <li>Mudar a caixa <strong>(.toUpperCase() / .toLowerCase())</strong>: Deixar tudo em maiúsculo ou minúsculo.</li>
+                <li>Cortar pedaços <strong>(.slice())</strong>: Extrair apenas uma parte do texto.</li>
+            </ul>
+
+            <code>
+                <p><strong>JavaScript</strong></p>
+                <p>const frase = "JavaScript é incrível!";</p>
+                <p>console.log(frase.length);        // 22 (contando os espaços)</p>
+                <p>console.log(frase.toUpperCase()); // "JAVASCRIPT É INCRÍVEL!"</p>
             </code>
 
-            <p><strong>Infinity (Infinito)</strong>: Ele aparece quando você faz uma operação matemática cujo resultado é maior do que o maior número que o JavaScript consegue processar, ou em divisões por zero. Este é um valor numérico especial que representa, literalmente, o infinito matemático. Exemplo:</p>
+            <h3>Manipulando Números (Objeto Math)</h3>
+            <p>Para contas complexas ou ajustes, usamos o objeto nativo <strong>Math</strong>.</p>
+                <ul>
+                    <li>Arredondar: <strong>Math.round()</strong> (arredonda para o mais próximo)</li>
+                    <li><strong>Math.ceil()</strong> (para cima) ou <strong>Math.floor() </strong>(para baixo).</li>
+                    <li>Gerar número aleatório: <strong>Math.random()</strong>.</li>
+                </ul>
 
-            <code><p><strong>JavaScript</strong> </p>
-            <p>const resultado = 10 / 0;</p>
-            <p>console.log(resultado); // Vai exibir: Infinity</p></code>
+            <code>
+                <p><strong>JavaScript</strong></p>
+                <p>const nota = 7.6;</p>
+                <p>console.log(Math.round(nota)); // 8</p>
+                <p>console.log(Math.floor(nota)); // 7</p>
+            </code>
+        </section>
 
-            <p><strong>NaN (Not a Number / Não é um Número)</strong>: Ele serve para indicar que uma operação matemática falhou ou deu um resultado inválido/impossível. Apesar do nome significar "Não é um Número", o tipo dele para o JavaScript ainda é considerado um number especial! Se você tentar multiplicar um texto por um número. Exemplo:</p>
-
-            <code><p><strong>JavaScript</strong></p>
-            <p>const resultadoInvalido = "Olá" * 5; </p>
-            <p>console.log(resultadoInvalido); // Vai exibir: NaN</p></code>
-
-            <p><strong>string (Texto):</strong> são Dados textuais que precisam estar envolvidos por aspas simples ('), duplas (") ou crases (` `). Como vimos antes, serve para qualquer cadeia de caracteres (letras, palavras, frases, códigos). Exemplo:</p>
-
-            <code><p><strong>JavaScript</strong></p>
-            <p>const nome = 'Ana';</p>
-            <p>const frase = "Estou aprendendo JS";</p></code>
-
-            <p><strong>boolean (Booleano):</strong> É um tipo de dado que só aceita dois valores possíveis: true (verdadeiro) ou false (falso). O tipo de tomada do JavaScript: ou está ligado, ou está desligado. Exemplo:</p>
-
-            <code><p><strong>JavaScript</strong></p>
-            <p>const estaChovendo = false;</p>
-            <p>const maiorDeIdade = true;</p></code>
-
-            <p><strong>null (Nulo):</strong> Usa-se o null quando quer dizer explicitamente para o computador: <strong>"Esta variável existe, mas ela está vazia de propósito neste momento"</strong>. O null representa a ausência intencional de um valor. Exemplo: Um campo de "segundo nome" em um formulário que o usuário não preencheu.</p>
+        <section>
+            <h2>Conversão de Dados (Type Casting / Coercion)</h2>
+            
+            <p>Às vezes, você recebe um dado em um formato (como um texto vindo de um formulário), mas precisa dele em outro formato (como um número para fazer uma conta). No JavaScript, existem duas formas de conversão:</p>
+            
+            <h3>Conversão Explícita (Você força a mudança)</h3>
+            <p>É quando você usa comandos da linguagem para transformar o dado conscientemente.
+            Para Número: Usa-se <strong>Number()</strong>, <strong>parseInt()</strong> (para inteiros) ou <strong>parseFloat()</strong> (para decimais).
+            Para Texto: Usa-se <strong>String()</strong> ou o método <strong>.toString()</strong>.</p>
 
             <code> <p><strong>JavaScript</strong></p>
-            <p>let segundoNome = null; // O desenvolvedor definiu que está vazio</p></code>
+            <p>const textoIdade = "25";</p>
+            <p>const idadeNumero = Number(textoIdade); // Transforma em número real: 25</p>
+            <p>const numero = 100;</p>
+            <p>const numeroTexto = String(numero); // Transforma em texto: "100"</code></p>
 
-            <p> <strong>undefined (Indefinido):</strong> Ao contrário do null (que é intencional), o undefined é o padrão do JavaScript para variáveis que foram declaradas com let, mas não receberam nenhum valor inicial. O undefined significa que algo foi criado, mas nunca recebeu nenhum conteúdo.</p> 
-
+            <h3>Conversão Implícita (O JavaScript tenta adivinhar)</h3>
+            <p>O JavaScript é uma linguagem "compreensiva" até demais. Se você tentar somar um número com um texto, em vez de dar erro, ele converte o número em texto e junta os dois.</p>
             <code><p><strong>JavaScript</strong></p>
-            <p>let minhaVariavel;</p>
-            <p>console.log(minhaVariavel); // Vai exibir: undefined (porque não ganhou valor)</p></code>
+            <p>const resultado = "5" + 2;</p>
+            <p>console.log(resultado); // Vai exibir: "52" (Texto), e não 7!</p></code>
+        </section>
 
-            <p><strong>object (Objeto):</strong> É uma coleção de dados relacionados. É como uma ficha cadastral de alguma coisa do mundo real. Aqui entramos nos tipos estruturais. Um objeto permite agrupar várias informações em um único lugar usando pares de chave: valor.</p>
-
-            <code><p><strong>JavaScript</strong></p>
-            <pre>  const carro = {
-        marca: "Toyota",
-        ano: 2024,
-        ligado: true
-    };</pre></code>
-
-            <p> <strong>Array (Lista):</strong> É uma caixa onde você coloca vários dados em fila, separados por vírgulas e envolvidos por colchetes [ ]. O Array é, na verdade, um tipo especial de Objeto, mas que funciona como uma lista ordenada.  Exemplo:</p>
-
-            <code><p><strong>JavaScript</strong></p>
-            <p>const frutas = ["Maçã", "Banana", "Morango"];</p>
-            <p>const numerosSorteados = [12, 45, 23, 8];</p></code>
-
-            <p><strong>function (Função):</strong> É um "verbo" ou uma "máquina" que processa dados e te devolve uma resposta. Você pode guardá-las dentro de variáveis se quiser. No JavaScript, as funções também são tratadas como um tipo de dado. Elas são blocos de código que realizam uma ação quando são chamadas. </p>
-
-            <code><p><strong>JavaScript</strong></p>
-            <pre>  function saudar() {
-        return "Olá, mundo!";
-    }
+         <section>
+           <h2>Formatação de Dados</h2>
+                <p>Formatar é preparar o texto para que ele seja exibido de forma bonita e legível para o usuário final.</p>
+                <h3>Formatação de String</h3>
+                <ul>
+                    <li><p><strong>O Jeito Antigo:</strong> Concatenação. Juntar textos e variáveis usando o sinal de +. Costuma ficar confuso muito rápido.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nome = "Carlos";</p>
+                    <p>const tecnologia = "React";</p>
+                    <p>console.log("O aluno " + nome + " está estudando " + tecnologia + ".");</p>
+                </code></li>
+                    <li>  <p><strong>O Jeito Moderno:</strong> Template Strings (ES6). Usamos as crases (` `) e colocamos as variáveis dentro de ${}. O código fica muito mais limpo e aceita quebra de linhas.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nome = "Carlos";</p>
+                    <p>const tecnologia = "React"; // Muito mais fácil de ler e manter!</p>
+                    <p>console.log(`O aluno ${nome} está estudando ${tecnologia}.`);</p>
+                </code>
+                    </li>
+                </ul>
+           
+           
+                <h3>Formatação de Números</h3>
+                <p>Mostrar números brutos no sistema pode parecer pouco profissional (ex: 1250.5). Precisamos formatá-los para a realidade do usuário, como moedas ou casas decimais fixas.</p>
+                <ul>
+                    <li><strong>Fixar Casas Decimais (.toFixed()):</strong> Determina quantas casas vão aparecer após o ponto. Atenção: este método transforma o número em uma string.
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const precoBruto = 19.99321;</p>
+                            console.log(precoBruto.toFixed(2)); // "19.99"
+                        </code>
+                    </li>
+                    <li> <strong>Formatação de Moedas e Regiões (Intl.NumberFormat):</strong>
+                A forma mais profissional e poderosa do JavaScript para formatar moedas, porcentagens e padrões de países automaticamente.
+                    <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const salario = 5000.50;</p>
+                    <p>// Formatando para o Real Brasileiro (R$)</p>
+                    <p>
+                        const formatadorReal = new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                        });
+                        <p>
+                            console.log(formatadorReal. <br>format(salario));
+                            // Exibe: R$ 5.000,50
+                        </p>
+                    </p>
+                    </code></li>
+                </ul>
+                <p>Esses quatro pontos dão a você o controle total sobre as informações que entram e saem do seu programa.</p>
+       </section>
     </main>
 
      <nav id="menu">

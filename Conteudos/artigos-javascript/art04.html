@@ -71,6 +71,13 @@ main h3 {
     font-size: 12pt;
 }
 
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
 #destaque {
     background-color: var(--cor-principal);
     margin: 0px 10px;
@@ -112,33 +119,204 @@ nav {
 </style>
 </head>
 <body>
-      <header class="telas-pequenas">
+       <header class="telas-pequenas">
         <h1>JavaScript</h1>
         <p>Desenvolvimento Web</p>
     </header>
 
     <main>
-         <h2>Conversão de Dados (Type Casting / Coercion)</h2>
+        <section>
+            <h2>Operadores</h2>
+                <ul>
+                    <li><strong>Operadores Aritméticos</strong>: São os operadores matemáticos clássicos que usamos para fazer cálculos.
+                        <p>Os Símbolos: <br></p>
+                            <ul>
+                                <li><strong>+</strong> (Adição) / <strong>- </strong>(Subtração)</li>
+                                <li><strong>* </strong>(Multiplicação) / <strong>/ </strong>(Divisão)</li>
+                                <li><strong>% </strong>(Módulo / Resto da divisão): Muito usado para descobrir se um número é par ou ímpar.</li>
+                                <li><strong>** </strong>(Exponenciação): Elevar um número a uma potência.</li>
+                            </ul>
+                        Exemplo: <br>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const resto = 11 % 2; // O resultado é 1 (porque 11 dividido por 2 dá 5 e sobra 1)</p>
+                            <p>const quadrado = 3 ** 2; // 3 elevado a 2 = 9</p>
+                        </code></li>
+                    <li><strong>Operadores Relacionais (Comparação)</strong>: Servem para comparar dois valores e avaliar a relação entre eles. O resultado dessa comparação é sempre um booleano (true ou false).
+                        <p>Os Símbolos:</p>
+                        <ul>
+                            <li> <strong>> </strong>(Maior que) / <strong> < </strong>(Menor que)</li>
+                            <li> <strong>>=</strong> (Maior ou igual) / <strong><=</strong> (Menor ou igual)</li>
+                            <li><strong>==</strong> (Igualdade ampla): Compara apenas o valor, ignorando o tipo de dado. (Evite usar)</li>
+                            <li><strong>=== </strong>(Igualdade estrita): Compara o valor E o tipo de dado. (Sempre use este)</li>
+                            <li><strong>!== </strong>(Diferente estrito): Verifica se os valores ou tipos são diferentes.</li>
+                        </ul>
             
-            <p>Às vezes, você recebe um dado em um formato (como um texto vindo de um formulário), mas precisa dele em outro formato (como um número para fazer uma conta). No JavaScript, existem duas formas de conversão:</p>
+                        <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>console.log(5 == "5");  // true (o JS converte o texto para número antes de comparar)</p>
+                            <p>console.log(5 === "5"); // false (são iguais no valor, mas um é Number e o outro é String)</p>
+                        </code> </li>
+                    <li><strong>Operadores Lógicos</strong>: Servem para combinar várias comparações relacionais e criar regras de negócio mais complexas.
+                        <p>Os Símbolos:</p>
+                        <ul>
+                            <li>&& (E / AND): A frase inteira só é verdade se tudo for verdade.</li>
+                            <li>|| (OU / OR): A frase inteira é verdade se pelo menos um elemento for verdade.</li>
+                            <li>! (NÃO / NOT): Inverte o booleano. Se algo era true, vira false.</li>
+                        </ul>
+                    <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const temIdade = true;</p>
+                            <p>const temPermissaoDosPais = false;
+                            <p>// O jovem pode viajar se tiver idade OU a permissão</p></p>
+                            <p>const podeViajar = temIdade || temPermissaoDosPais; // true</p>
+                        </code></li>
+                    <li><strong>Operador Ternário</strong>: O operador ternário é um atalho elegante para criar uma estrutura de decisão rápida (um if / else de uma linha só). Ele recebe esse nome porque é o único operador do JavaScript que usa três argumentos.
+                        <p>A Estrutura: condição ? valor_se_verdade : valor_se_falso;</p>
+                    <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const idade = 20;</p>
+                            <p>// Se idade for maior ou igual a 18, retorna "Maior de idade", senão retorna "Menor de idade"</p>
+                            <p>const status = idade >= 18 ? "Maior de idade" : "Menor de idade";</p>
+                            <p>console.log(status); // "Maior de idade"</p>
+                        </code>
+                    O operador ternário e os operadores relacionais (===) são os que os iniciantes mais demoram para se acostumar, mas são os mais usados no dia a dia.</li>
+                    <li><strong>Operadores de Atribuição</strong>: Servem para guardar ou atualizar o valor de uma variável. O operador básico você já conhece: o sinal de igual (=). Mas existem atalhos inteligentes:
+                    <p>Os Símbolos:</p>
+                    <ul>
+                        <li> = (Atribuição simples)</li>
+                        <li> += (Soma e atribui): Pega o valor atual e soma mais um tanto.</li>
+                        <li> -= (Subtrai e atribui)</li>
+                        <li> *= (Multiplica e atribui)</li>
+                    </ul>
+                    <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>let pontos = 10;</p>
             
-            <h3>Conversão Explícita (Você força a mudança)</h3>
-            <p>É quando você usa comandos da linguagem para transformar o dado conscientemente.
-            Para Número: Usa-se <strong>Number()</strong>, <strong>parseInt()</strong> (para inteiros) ou <strong>parseFloat()</strong> (para decimais).
-            Para Texto: Usa-se <strong>String()</strong> ou o método <strong>.toString()</strong>.</p>
-
-            <code> <p><strong>JavaScript</strong></p>
-            <p>const textoIdade = "25";</p>
-            <p>const idadeNumero = Number(textoIdade); // Transforma em número real: 25</p>
-            <p>const numero = 100;</p>
-            <p>const numeroTexto = String(numero); // Transforma em texto: "100"</code></p>
-
-            <h3>Conversão Implícita (O JavaScript tenta adivinhar)</h3>
-            <p>O JavaScript é uma linguagem "compreensiva" até demais. Se você tentar somar um número com um texto, em vez de dar erro, ele converte o número em texto e junta os dois.</p>
-            <code><p><strong>JavaScript</strong></p>
-            <p>const resultado = "5" + 2;</p>
-            <p>console.log(resultado); // Vai exibir: "52" (Texto), e não 7!</p></code>
+                            <p>// O jeito longo: pontos = pontos + 5;</p>
+                            <p>// O jeito inteligente (Operador de Atribuição):</p>
+                            <p>pontos += 5; // Agora pontos vale 15</p>
+                        </code></li>
+                    <li><strong>Operadores de Atribuição Composta</strong>: Operadores de Atribuição Composta (ou simplesmente "simplificação de atribuição"). Em programação, passamos muito tempo atualizando o valor de uma variável com base no valor que ela já possuía antes. O JavaScript nos oferece esse "atalho"  para não termos que repetir o nome da variável duas vezes.
+                        <p>Assumindo que começamos com let n = 3:
+                            <ol>
+                                <li>Adição Simplificada (+=)
+                                    <ul>
+                                        <li>Forma longa: n = n + 4 (Pega o valor atual de n, que é 3, soma 4 e guarda o resultado 7 de volta em n).</li>
+                                        <li>Forma simplificada: n += 4</li>
+                                        <li>Resultado: 7</li>
+                                    </ul>
+                                </li>
+                                <li> Subtração Simplificada (-=)
+                                    <ul>
+                                        <li>Forma longa: n = n - 5 (Pega o valor atual de n, subtrai 5 e guarda o resultado).</li>
+                                        <li>Forma simplificada: n -= 5</li>
+                                        <li>Resultado: Se n era 7, 7 - 5 = 2.</li>
+                                    </ul>
+                                </li>
+                                <li>Multiplicação Simplificada (*=)
+                                    <ul>
+                                        <li>Forma longa: n = n * 4 (Multiplica o valor atual por 4).</li>
+                                        <li>Forma simplificada: n *= 4</li>
+                                        <li>Resultado: Se n era 2, 2 * 4 = 8.</li>
+                                    </ul>
+                                </li>
+                                <li>Divisão Simplificada (/=)
+                                    <ul>
+                                        <li>Forma longa: n = n / 2 (Divide o valor atual por 2).</li>
+                                        <li>Forma simplificada: n /= 2</li>
+                                        <li>Resultado: Se n era 8, 8 / 2 = 4.</li>
+                                    </ul>
+                                </li>
+                                <li>Exponenciação Simplificada (=)
+                                    <ul>
+                                        <li>Forma longa: n = n 2 (Eleva o valor de n ao quadrado).</li>
+                                        <li>Forma simplificada: n = 2</li>
+                                        <li>Resultado: Se n era 4, 4 2 (4 elevado a 2) = 16.</li>
+                                    </ul>
+                                </li>
+                                <li>Módulo Simplificado (%=)
+                                    <ul>
+                                        <li>Forma longa: n = n % 5 (Pega o resto da divisão de n por 5).</li>
+                                        <li>Forma simplificada: n %= 5</li>
+                                        <li>Resultado: Se n era 16, ao dividir 16 por 5 dá 3 (que dá 15) e resta 1. Logo, o resultado é 1. </li>
+                                    </ul>
+                                </li>
+                            </ol>
+                    </li>
+                    <aside id="destaque">
+                        💡 Por que os programadores usam isso?
+                        No dia a dia, você verá quase todo mundo usando a versão da direita. Ela deixa o código mais limpo, mais rápido de ler e evita erros de digitação quando as variáveis possuem nomes longos, como:
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>// Ruim / Longo</p>
+                            <p>quantidadeItensNoCarrinho = quantidadeItensNoCarrinho + 1;</p>
+                            <p>// Lindo / Simplificado
+                            quantidadeItensNoCarrinho += 1;</p>
+                        </code>
+                        </aside>
+                </ul>
         </section>
+
+        <section class="ordem-de-precedencia">
+                <h2>Ordem de Precedência dos Operadores.</h2>
+                <p>Ordem de Precedência dos Operadores. Assim como na matemática da escola nós aprendemos que a multiplicação deve ser feita antes da soma, o JavaScript também tem uma lista de prioridades para decidir o que ele vai calcular primeiro quando encontra uma linha de código cheia de operadores misturados.  Vamos entender esse fluxo de prioridades dividido em grupos:</p>
+
+                <p>
+                    <strong>1º Grupo:</strong>
+                    <ul>
+                        <li>() Parênteses: Têm prioridade máxima absoluta sobre qualquer outra coisa. Se você quiser que uma soma seja feita antes de uma multiplicação, coloque-a entre parênteses.</li>
+                        <li>Exponenciação: É resolvida logo em seguida.</li>
+                        <li>/ , * , %: Divisão, multiplicação e resto têm a mesma prioridade entre si (se aparecerem juntos, o JS resolve quem estiver mais à esquerda primeiro).
+                        Nota: O + e o - vêm logo abaixo deles.</li>
+                    </ul>
+                    
+                </p>
+
+                    <p><strong>2º Grupo:</strong></p>
+                    
+                        <p>
+                            Operadores Relacionais (Comparações)
+                            Depois que todas as contas matemáticas da linha foram resolvidas e viraram números limpos, o JavaScript passa para as comparações.
+                        </p>
+                        <p><strong>> , < , >= , <= , === , !==:</strong> Ele avalia se um número é maior, menor ou igual ao outro. O resultado desse grupo sempre se transforma em true ou false.</p>
+
+                <p><strong>3º Grupo:</strong></p>
+                <p>
+                    Operadores Lógicos (Decisões)
+                    Por último, o JavaScript pega os resultados true ou false das comparações e aplica as regras lógicas. Eles possuem uma ordem interna muito rígida entre si:
+                    ! (NÃO / NOT): É o primeiro a agir, invertendo o valor lógico que estiver colado nele.
+                </p>
+                <p><strong>&& (E / AND):</strong> É o próximo a ser resolvido.</p>
+                <p><strong>|| (OU / OR):</strong> É o último da fila. Tem a menor prioridade de todos.</p>
+                <p>
+                    Verificando na Prática (O poder dos parênteses)
+                    Veja como a ordem de precedência muda completamente o resultado final com os mesmos elementos:
+                </p>
+                <p><strong>Cenário A (Sem parênteses)</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const resultado = 5 + 10 * 2 > 20 && true;</p>
+                    <p>Aritmética primeiro: O JS faz 10 * 2 (20) e depois soma 5 $\rightarrow$ 25.</p>
+                    <p>Relacional depois: Ele compara 25 > 20 $\rightarrow$ true.</p>
+                    <p>Lógico por último: Ele avalia true && true $\rightarrow$ true.</p>
+                </code>
+
+                <p><strong>Cenário B (Forçando com parênteses)</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const resultado = (5 + 10) * 2 > 40 || true;</p>
+                    <p>Parênteses no topo: O JS ignora a regra da multiplicação e faz primeiro 5 + 10 (15).</p>
+                    <p>Resto da aritmética: Faz 15 * 2 $\rightarrow$ 30.</p>
+                    <p>Relacional: Compara 30 > 40 $\rightarrow$ false.</p>
+                    <p>Lógico por último: Avalia false || true $\rightarrow$ true.</p>
+                </code>
+        </section>
+    </main>
     </main>
 
      <nav id="menu">

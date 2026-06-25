@@ -119,67 +119,129 @@ nav {
 </style>
 </head>
 <body>
-       <header class="telas-pequenas">
+      <header class="telas-pequenas">
         <h1>JavaScript</h1>
         <p>Desenvolvimento Web</p>
     </header>
 
     <main>
+         <section class="tratamento-de-eventos">
+                <h2>Tratamento de Eventos no DOM: Guia Completo de Engenharia Front-End</h2>
+               
+                <p>No ecossistema da Web, um Evento é um sinal emitido pelo navegador para notificar a sua aplicação de que algo relevante aconteceu. Essas interações podem ser disparadas diretamente pelo usuário (como cliques e digitação) ou pelo próprio ciclo de vida do navegador (como o término do carregamento de uma página ou falhas de rede).</p>
+                <p>O DOM funciona em um modelo assíncrono baseado no padrão de arquitetura Observer (Publish-Subscribe): o navegador publica o evento, e o seu código Javascript se inscreve para "escutar" e reagir a esse disparo através de funções chamadas Event Listeners (ou Event Handlers).</p>
 
-       <section>
-           <h2>Formatação de Dados</h2>
-                <p>Formatar é preparar o texto para que ele seja exibido de forma bonita e legível para o usuário final.</p>
-                <h3>Formatação de String</h3>
+                <h3>Métodos de Vinculação (Como Escutar Eventos)</h3>
+                <p>A evolução do desenvolvimento web gerou três maneiras de conectar um evento ao código Javascript. Compreender a diferença entre elas é crucial para a manutenção de código limpo.</p>
+
                 <ul>
-                    <li><p><strong>O Jeito Antigo:</strong> Concatenação. Juntar textos e variáveis usando o sinal de +. Costuma ficar confuso muito rápido.</p>
-                <code>
-                    <p><strong>JavaScript</strong></p>
-                    <p>const nome = "Carlos";</p>
-                    <p>const tecnologia = "React";</p>
-                    <p>console.log("O aluno " + nome + " está estudando " + tecnologia + ".");</p>
-                </code></li>
-                    <li>  <p><strong>O Jeito Moderno:</strong> Template Strings (ES6). Usamos as crases (` `) e colocamos as variáveis dentro de ${}. O código fica muito mais limpo e aceita quebra de linhas.</p>
-                <code>
-                    <p><strong>JavaScript</strong></p>
-                    <p>const nome = "Carlos";</p>
-                    <p>const tecnologia = "React"; // Muito mais fácil de ler e manter!</p>
-                    <p>console.log(`O aluno ${nome} está estudando ${tecnologia}.`);</p>
-                </code>
-                    </li>
-                </ul>
-           
-           
-                <h3>Formatação de Números</h3>
-                <p>Mostrar números brutos no sistema pode parecer pouco profissional (ex: 1250.5). Precisamos formatá-los para a realidade do usuário, como moedas ou casas decimais fixas.</p>
-                <ul>
-                    <li><strong>Fixar Casas Decimais (.toFixed()):</strong> Determina quantas casas vão aparecer após o ponto. Atenção: este método transforma o número em uma string.
+                    <li><strong>Atributos Inline (Má Prática / Legado):</strong> O código Javascript é injetado diretamente dentro da tag HTML. 
+                    
+                    <p><strong>Desvantagem:</strong> Quebra o princípio de separação de conceitos (HTML para estrutura, JS para comportamento), polui o código e dificulta testes automatizados.</p> 
+                        <p>HTML</p><p>&#x3C;button onclick=&#x22;alert(&#x27;Clicou!&#x27;)&#x22;&#x3E;Enviar&#x3C;/button&#x3E;&#x3C;/p&#x3E;</p></li>
+
+                    <li><strong>Propriedades do Elemento (DOM Level 0):</strong>  O evento é atribuído como uma propriedade do objeto gerado pelo DOM.
+                    <p><strong>Limitação:</strong> Você só pode atribuir uma única função por tipo de evento. Se outra parte do script tentar assinar o mesmo evento, ela irá sobrescrever a função anterior.</p> 
+                    
                         <code>
-                            <p><strong>JavaScript</strong></p>
-                            <p>const precoBruto = 19.99321;</p>
-                            console.log(precoBruto.toFixed(2)); // "19.99"
-                        </code>
-                    </li>
-                    <li> <strong>Formatação de Moedas e Regiões (Intl.NumberFormat):</strong>
-                A forma mais profissional e poderosa do JavaScript para formatar moedas, porcentagens e padrões de países automaticamente.
-                    <code>
-                    <p><strong>JavaScript</strong></p>
-                    <p>const salario = 5000.50;</p>
-                    <p>// Formatando para o Real Brasileiro (R$)</p>
-                    <p>
-                        const formatadorReal = new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                        });
-                        <p>
-                            console.log(formatadorReal. <br>format(salario));
-                            // Exibe: R$ 5.000,50
-                        </p>
-                    </p>
-                    </code></li>
-                </ul>
-                <p>Esses quatro pontos dão a você o controle total sobre as informações que entram e saem do seu programa.</p>
-       </section>
+                            <pre> <strong>JavaScript</strong>
+const botao = document.querySelector('button');
+botao.onclick = function() { console.log("Ação 1"); };
+botao.onclick = function() { console.log("Ação 2"); }; // Sobrescreveu a Ação 1!</pre></code></li>
+                <li><strong>addEventListener (Padrão Moderno - DOM Level 2):</strong>
+                É o método recomendado pela W3C. Ele aceita o tipo do evento, a função de callback e um objeto opcional de configurações. <p><strong>Vantagens:</strong> Permite adicionar múltiplos ouvintes ao mesmo evento, oferece controle fino de propagação e permite a remoção limpa do ouvinte usando <strong>removeEventListener</strong>.</p>
+                <code>
+                    <pre><strong>JavaScript</strong>
+const botao = document.querySelector('button');
+function dispararLog() { console.log("Botão acionado!"); }
+// Adicionando o ouvinte
+botao.addEventListener('click', dispararLog);
+// Removendo quando não for mais necessário (evita vazamento de memória)
+botao.removeEventListener('click', dispararLog);</pre>
+                </code></li>
+                    
+                </ul> 
 
+                <h3>O Fluxo de Propriação: Event Bubbling e Capturing</h3>
+                    <p>É quando um evento acontece em um elemento do DOM, ele não afeta apenas aquele elemento isolado. Ele viaja por toda a árvore de elementos. Esse comportamento segue um fluxo oficial dividido em 3 fases essenciais: </p>
+                    
+                    <ol>
+                        <li><strong>Fase de Captura (Capture Phase): </strong>O evento desce a árvore do DOM, partindo do elemento raiz (window, document, &#x3C;body&#x3E;) até chegar bem perto do elemento real que sofreu a ação.</li>
+                        <li><strong>Fase de Alvo (Target Phase):</strong> O navegador detecta que chegou ao elemento exato onde a ação ocorreu (ex: o &#x3C;a&#x3E; ou &#x3C;button&#x3E; clicado) e dispara o gatilho nele.</li><br>
+
+                        <li><strong>Fase de Borbulhamento (Bubbling Phase):</strong> O evento faz o caminho inverso: ele sobe de volta pela árvore do DOM, do elemento filho até a raiz, disparando os ouvintes de todos os elementos pais no caminho. Este é o comportamento padrão do navegador.</li>
+                    </ol></li>
+
+                <p>Controlando o Fluxo com Código</p>
+                <p>O objeto de evento (event) nos dá ferramentas para gerenciar e interromper essa viagem na árvore:</p>
+
+                <ul>
+                    <li><strong>event.stopPropagation():</strong> Interrompe o borbulhamento imediatamente. Se você clicar em um botão interno, o evento não subirá para a &#x3C;div&#x3E; mãe. Muito útil para janelas modais ou menus drop-down onde o clique de dentro não deve fechar a caixa externa.</li>
+                    <li><strong>event.stopImmediatePropagation():</strong> Além de impedir o evento de subir para os pais, ele impede que outros listeners configurados no mesmo elemento atual executem.</li>
+                </ul>
+
+                <h3>O Objeto do Evento (Event Object)</h3>
+                <p>Sempre que um callback é executado, o navegador injeta automaticamente um argumento contendo uma coleção rica de metadados sobre o ocorrido. Por convenção de código, os desenvolvedores capturam essa variável nomeando-a como e, evt ou event.</p>
+                <p>Propriedades e Métodos Fundamentais:</p>
+                
+                    <ul>
+                        <li><strong>e.target:</strong> Faz referência ao elemento exato que disparou o evento (onde o usuário realmente interagiu, ex: a imagem dentro de um botão).</li>
+                        <li><strong>e.currentTarget: </strong>Faz referência ao elemento que está escutando o evento (onde o .addEventListener foi atrelado). Eles podem ser diferentes devido ao efeito de borbulhamento.</li>
+                        <li><strong>e.type:</strong> Retorna uma string com o nome do evento executado (ex: "click", "keyup").</li>
+                        <li><strong>e.preventDefault():</strong> Cancela o comportamento nativo padrão que o navegador executaria para aquela tag. Exemplos: impede uma tag <a> de redirecionar a URL ou impede um <form> de recarregar a página ao enviar dados.</li>
+                    </ul>
+
+                <h2>Delegação de Eventos (Event Delegation)</h2>
+                <p>Em aplicações robustas e dinâmicas (como listas infinitas ou e-commerces onde itens entram e saem da tela a todo momento), adicionar um <strong>.addEventListener</strong> para cada botão individual prejudica o consumo de memória do dispositivo.</p>
+
+                <p>A técnica de Delegação de Eventos resolve isso aproveitando o mecanismo de <strong>Event Bubbling</strong>. Em vez de ouvir os filhos, nós penduramos um único ouvinte no elemento pai e inspecionamos quem disparou a ação usando <strong>e.target</strong>.  Exemplo Prático de Arquitetura Limpa:</p>
+               
+<code><strong>JavaScript</strong>
+// Capturamos a lista (Pai) e não os itens (Filhos)
+const listaProdutos = document.querySelector('#lista-produtos');
+listaProdutos.addEventListener('click', function(e) {
+// Verifica se o clique aconteceu de fato em um botão de exclusão
+if (e.target && e.target.classList.contains('btn-deletar')) {
+const idProduto = e.target.dataset.id;
+console.log(`Produto ${idProduto} removido com sucesso!`);
+}
+});</code>
+
+ <section class="classificação-dos-eventos">
+                <h2>Classificação dos Principais Eventos do DOM</h2>
+                <p>Para facilitar o mapeamento cognitivo, agrupamos os eventos em categorias com base em sua origem no sistema:</p>
+
+                <p><strong>Eventos de Mouse</strong></p>
+                <ul>
+                    <li><strong>click:</strong> Disparado com um clique rápido (pressionar e soltar).</li><br>
+                    <li><strong>dblclick:</strong> Clique duplo rápido.</li><br>
+                    <li><strong>mouseenter / mouseleave:</strong> Disparados quando o ponteiro entra ou sai da área do elemento. (Não borbulham, ao contrário de mouseover/mouseout).</li><br>
+                    <li><strong>mousemove: </strong>Disparado continuamente a cada pixel que o mouse se move sobre a caixa.</li>
+                </ul>
+
+                <p><strong>Eventos de Teclado</strong></p>
+                <ul>
+                    <li><strong>keydown:</strong> Disparado no momento em que uma tecla é pressionada.</li><br>
+                    <li><strong>keyup:</strong> Disparado quando a tecla é solta.</li>
+                    <p>Nota Técnica: Para capturar qual caractere foi acionado, inspecione as propriedades e.key (retorna o caractere visual, ex: "Enter") ou e.code (retorna o código físico da tecla, ex: "KeyA").</p>
+                </ul>
+
+                <p><strong>Eventos de Formulário</strong></p>
+                <ul>
+                    <li><strong>submit:</strong> Disparado no envio do formulário (essencial capturar para validações antes do envio HTTP).</li><br>
+                    <li><strong>change:</strong> Disparado quando o valor de um campo muda e o usuário perde o foco dele (comum em &#x3C;select&#x3E;).</li><br>
+                    <li><strong>input:</strong> Disparado em tempo real a cada caractere digitado ou apagado em um campo de texto.</li>
+                </ul>
+
+                <p><strong>Eventos do Ciclo de Vida do Documento</strong></p>
+                <ul>
+                    <li><strong>DOMContentLoaded:</strong> Disparado quando o HTML foi totalmente lido e a árvore do DOM foi construída na memória, sem esperar por imagens ou folhas de estilo externas. Excelente ponto para iniciar scripts.</li><br>
+                    <li><strong>load:</strong> Disparado na janela (window) apenas quando tudo na página (incluindo imagens pesadas, scripts e CSS) foi baixado com sucesso.</li><br>
+                    <li><strong>resize:</strong> Disparado quando o tamanho da janela do navegador é alterado.</li><br>
+                    <li><strong>scroll:</strong> Disparado quando o usuário rola a tela vertical ou horizontalmente.</li>
+                </ul>
+            </section>
+            </section>
     </main>
 
      <nav id="menu">

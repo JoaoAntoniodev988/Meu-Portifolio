@@ -119,93 +119,108 @@ nav {
 </style>
 </head>
 <body>
-      <header class="telas-pequenas">
+        <header class="telas-pequenas">
         <h1>JavaScript</h1>
         <p>Desenvolvimento Web</p>
     </header>
 
     <main>
-         <section class="tratamento-de-eventos">
-                <h2>Tratamento de Eventos no DOM: Guia Completo de Engenharia Front-End</h2>
-               
-                <p>No ecossistema da Web, um Evento é um sinal emitido pelo navegador para notificar a sua aplicação de que algo relevante aconteceu. Essas interações podem ser disparadas diretamente pelo usuário (como cliques e digitação) ou pelo próprio ciclo de vida do navegador (como o término do carregamento de uma página ou falhas de rede).</p>
-                <p>O DOM funciona em um modelo assíncrono baseado no padrão de arquitetura Observer (Publish-Subscribe): o navegador publica o evento, e o seu código Javascript se inscreve para "escutar" e reagir a esse disparo através de funções chamadas Event Listeners (ou Event Handlers).</p>
+        <section>
+                <h2>Funções em JavaScript: Modularização e Escopo</h2>
+                <p>As Funções são um dos pilares mais importantes do JavaScript. Elas funcionam como "fábricas de processamento" ou blocos de receitas: você isola um pedaço de código que executa uma tarefa específica, dá um nome a ele e pode reutilizá-lo quantas vezes quiser ao longo do seu programa, evitando repetição de código.</p>
 
-                <h3>Métodos de Vinculação (Como Escutar Eventos)</h3>
-                <p>A evolução do desenvolvimento web gerou três maneiras de conectar um evento ao código Javascript. Compreender a diferença entre elas é crucial para a manutenção de código limpo.</p>
+                <h3>O que é uma Função?</h3>
+                <p>Em termos lógicos, uma função é um subprograma que recebe dados de entrada (chamados de parâmetros), processa esses dados através de um conjunto de instruções e envia uma resposta de saída (o retorno).</p>
+                <p>O ciclo de vida de uma função é dividido em dois momentos cruciais:</p>
+                <ol>
+                    <li><strong>Declaração:</strong> Quando você cria a receita e diz ao JavaScript o que ela faz. (O código não roda aqui).</li><br>
+                    <li><strong>Invocação (ou Chamada):</strong> Quando você ativa a função para executar as instruções na memória.</li>
+                </ol>
 
-                <ul>
-                    <li><strong>Atributos Inline (Má Prática / Legado):</strong> O código Javascript é injetado diretamente dentro da tag HTML. 
-                    
-                    <p><strong>Desvantagem:</strong> Quebra o princípio de separação de conceitos (HTML para estrutura, JS para comportamento), polui o código e dificulta testes automatizados.</p> 
-                        <p>HTML</p><p>&#x3C;button onclick=&#x22;alert(&#x27;Clicou!&#x27;)&#x22;&#x3E;Enviar&#x3C;/button&#x3E;&#x3C;/p&#x3E;</p></li>
-
-                    <li><strong>Propriedades do Elemento (DOM Level 0):</strong>  O evento é atribuído como uma propriedade do objeto gerado pelo DOM.
-                    <p><strong>Limitação:</strong> Você só pode atribuir uma única função por tipo de evento. Se outra parte do script tentar assinar o mesmo evento, ela irá sobrescrever a função anterior.</p> 
-                    
-                        <code>
-                            <pre> <strong>JavaScript</strong>
-const botao = document.querySelector('button');
-botao.onclick = function() { console.log("Ação 1"); };
-botao.onclick = function() { console.log("Ação 2"); }; // Sobrescreveu a Ação 1!</pre></code></li><br>
-                <li><strong>addEventListener (Padrão Moderno - DOM Level 2):</strong>
-                É o método recomendado pela W3C. Ele aceita o tipo do evento, a função de callback e um objeto opcional de configurações. <p><strong>Vantagens:</strong> Permite adicionar múltiplos ouvintes ao mesmo evento, oferece controle fino de propagação e permite a remoção limpa do ouvinte usando <strong>removeEventListener</strong>.</p>
+                <h3>Anatomia de uma Função Tradicional</h3>
+                <p>A forma clássica de declarar uma função no JavaScript utiliza a palavra-chave function.</p>
                 <code>
-                    <pre><strong>JavaScript</strong>
-const botao = document.querySelector('button');
-function dispararLog() { console.log("Botão acionado!"); }
-// Adicionando o ouvinte
-botao.addEventListener('click', dispararLog);
-// Removendo quando não for mais necessário (evita vazamento de memória)
-botao.removeEventListener('click', dispararLog);</pre>
-                </code></li>
-                    
-                </ul> 
-
-                <h3>O Fluxo de Propriação: Event Bubbling e Capturing</h3>
-                    <p>É quando um evento acontece em um elemento do DOM, ele não afeta apenas aquele elemento isolado. Ele viaja por toda a árvore de elementos. Esse comportamento segue um fluxo oficial dividido em 3 fases essenciais: </p>
-                    
-                    <ol>
-                        <li><strong>Fase de Captura (Capture Phase): </strong>O evento desce a árvore do DOM, partindo do elemento raiz (window, document, &#x3C;body&#x3E;) até chegar bem perto do elemento real que sofreu a ação.</li><br>
-                        <li><strong>Fase de Alvo (Target Phase):</strong> O navegador detecta que chegou ao elemento exato onde a ação ocorreu (ex: o &#x3C;a&#x3E; ou &#x3C;button&#x3E; clicado) e dispara o gatilho nele.</li><br>
-
-                        <li><strong>Fase de Borbulhamento (Bubbling Phase):</strong> O evento faz o caminho inverso: ele sobe de volta pela árvore do DOM, do elemento filho até a raiz, disparando os ouvintes de todos os elementos pais no caminho. Este é o comportamento padrão do navegador.</li>
-                    </ol></li>
-
-                <p>Controlando o Fluxo com Código</p>
-                <p>O objeto de evento (event) nos dá ferramentas para gerenciar e interromper essa viagem na árvore:</p>
-
+                    <p><strong>JavaScript</strong></p>
+                    <p>// <strong>1. DECLARAÇÃO:</strong> Criando a função</p>
+                    <p>
+                        function calcularDobro(numero) {
+                            <p>// 'numero' é o parâmetro (a variável de entrada)</p>
+                            <p>const resultado = numero * 2;</p>
+                            <p>return resultado; // Envia o valor processado para fora da função</p>
+                        <p>}</p>
+                    </p>
+                    <p>// <strong>2. INVOCAÇÃO:</strong> Chamando a função para ser usada</p>
+                    <p>const valorFinal = calcularDobro(5); // Passamos o número 5 como 'argumento'</p>
+                    <p>console.log(valorFinal); // Saída: 10</p>
+                    <p><strong>O papel da instrução return:</strong></p>
+                    <p>A palavra-chave return é fundamental. Ela encerra a execução da função imediatamente e "cospe" o resultado para quem a chamou. Se você esquecer de colocar o return, a função executará suas linhas mas retornará o valor undefined.</p>
+                </code>
+                <h3>Tipos de Funções no JavaScript</h3>
+                <p>O JavaScript evoluiu e oferece diferentes maneiras de escrever funções, adaptando-se a necessidades de performance e estilo de escrita de código.</p>
+                <p><strong>A. Funções Anônimas (Expressão de Função)</strong></p>
+                <p>É uma função que não possui um nome explícito após a palavra function. Ela é armazenada diretamente dentro de uma variável comum.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        const saudar = function(nome) {
+                            return `Olá, ${nome}!`;
+                        };
+                    </p>
+                    <p>console.log(saudar("Mariana")); // Saída: Olá, Mariana!</p>
+                </code>
+                <p><strong>B. Arrow Functions (Funções de Seta)</strong></p>
+                <p>Introduzidas no JavaScript moderno (ES6), as Arrow Functions fornecem uma sintaxe extremamente compacta. Elas removem a necessidade da palavra function e usam o símbolo =>.</p>
+                <code>
+                    <strong>JavaScript</strong>
+                    <p>// Sintaxe padrão da Arrow Function</p>
+                    <p>
+                        const somar = (a, b) => {
+                            return a + b;
+                        };
+                    </p>
+                    <p>// Se a função tiver apenas UMA linha de código, podemos encurtar ainda mais:</p>
+                    <p>// O retorno torna-se implícito (não precisa digitar a palavra 'return' nem chaves)</p>
+                    <p>const multiplicar = (a, b) => a * b;</p>
+                    <p>console.log(multiplicar(3, 4)); // Saída: 12</p>
+                </code>
+                <h3>Parâmetros vs. Argumentos</h3>
+                <p>Embora sejam usados como sinônimos, há uma diferença técnica conceitual:</p>
                 <ul>
-                    <li><strong>event.stopPropagation():</strong> Interrompe o borbulhamento imediatamente. Se você clicar em um botão interno, o evento não subirá para a &#x3C;div&#x3E; mãe. Muito útil para janelas modais ou menus drop-down onde o clique de dentro não deve fechar a caixa externa.</li><br>
-                    <li><strong>event.stopImmediatePropagation():</strong> Além de impedir o evento de subir para os pais, ele impede que outros listeners configurados no mesmo elemento atual executem.</li>
+                    <li>Parâmetros: São os nomes das variáveis declarados na definição da função (as "vagas" esperando preenchimento).</li>
+                    <li>Argumentos: São os valores reais passados para a função no momento em que ela é invocada.</li>
                 </ul>
 
-                <h3>O Objeto do Evento (Event Object)</h3>
-                <p>Sempre que um callback é executado, o navegador injeta automaticamente um argumento contendo uma coleção rica de metadados sobre o ocorrido. Por convenção de código, os desenvolvedores capturam essa variável nomeando-a como e, evt ou event.</p>
-                <p>Propriedades e Métodos Fundamentais:</p>
-                
-                    <ul>
-                        <li><strong>e.target:</strong> Faz referência ao elemento exato que disparou o evento (onde o usuário realmente interagiu, ex: a imagem dentro de um botão).</li><br>
-                        <li><strong>e.currentTarget: </strong>Faz referência ao elemento que está escutando o evento (onde o .addEventListener foi atrelado). Eles podem ser diferentes devido ao efeito de borbulhamento.</li><br>
-                        <li><strong>e.type:</strong> Retorna uma string com o nome do evento executado (ex: "click", "keyup").</li><br>
-                        <li><strong>e.preventDefault():</strong> Cancela o comportamento nativo padrão que o navegador executaria para aquela tag. Exemplos: impede uma tag <a> de redirecionar a URL ou impede um <form> de recarregar a página ao enviar dados.</li>
-                    </ul>
-
-                <h2>Delegação de Eventos (Event Delegation)</h2>
-                <p>Em aplicações robustas e dinâmicas (como listas infinitas ou e-commerces onde itens entram e saem da tela a todo momento), adicionar um <strong>.addEventListener</strong> para cada botão individual prejudica o consumo de memória do dispositivo.</p>
-
-                <p>A técnica de Delegação de Eventos resolve isso aproveitando o mecanismo de <strong>Event Bubbling</strong>. Em vez de ouvir os filhos, nós penduramos um único ouvinte no elemento pai e inspecionamos quem disparou a ação usando <strong>e.target</strong>.  Exemplo Prático de Arquitetura Limpa:</p>
-               
-<code><pre><strong>JavaScript</strong>
-// Capturamos a lista (Pai) e não os itens (Filhos)
-const listaProdutos = document.querySelector('#lista-produtos');
-listaProdutos.addEventListener('click', function(e) {
-// Verifica se o clique aconteceu de fato em um botão de exclusão
-if (e.target && e.target.classList.contains('btn-deletar')) {
-const idProduto = e.target.dataset.id;
-console.log(`Produto ${idProduto} removido com sucesso!`);
-}
-});</pre></code>
+                <p> Parâmetros com Valor Padrão (Default Parameters)
+                Você pode definir um valor de segurança para caso quem chame a função esqueça de passar um argumento.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        function configurarDesconto(preco, taxa = 0.1) {
+                            return preco - (preco * taxa);
+                        }
+                    </p>
+                    <p>console.log(configurarDesconto(100));       // Saída: 90 (Usou a taxa padrão de 10%)</p>
+                    <p>console.log(configurarDesconto(100, 0.3));  // Saída: 70 (Ignorou o padrão e usou 30%)</p>
+                </code>
+                <h3>Escopo de Variáveis nas Funções</h3>
+                <p>O conceito de Escopo determina onde uma variável pode ser acessada ou modificada dentro do seu código. As funções criam uma barreira de proteção conhecida como Escopo Local.</p>
+                <ul>
+                    <li><strong>Escopo Global:</strong> Variáveis criadas fora de qualquer função pertencem ao escopo global e podem ser lidas por qualquer parte do arquivo.</li>
+                    <li><strong>Escopo Local (ou de Função):</strong> Variáveis criadas dentro de uma função nasceram ali dentro e morrem ali dentro. O mundo exterior não tem acesso a elas.</li>
+                </ul>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const globalVar = "Eu sou global";</p>
+                    <p>
+                        function testarEscopo() {
+                            <p>const localVar = "Eu sou local";</p>
+                            <p>console.log(globalVar); // Funciona! Consegue ler variáveis de fora.</p> 
+                            <p>console.log(localVar);  // Funciona!</p>
+                        <p>}</p>
+                    </p>
+                    <p>testarEscopo();</p>
+                    <p>console.log(localVar); // ERRO! O sistema quebra porque localVar não existe fora da função.</p>
+                </code>
             </section>
     </main>
 

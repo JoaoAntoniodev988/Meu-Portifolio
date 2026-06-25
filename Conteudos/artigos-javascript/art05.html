@@ -71,12 +71,16 @@ main h3 {
     font-size: 12pt;
 }
 
+
 main ul, li {
     margin: 10px 0px 10px 15px;
     font-size: 11pt;
-
 }
 
+main ol, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+}
 #destaque {
     background-color: var(--cor-principal);
     margin: 0px 10px;
@@ -118,46 +122,141 @@ nav {
 </style>
 </head>
 <body>
-       <header class="telas-pequenas">
+        <header class="telas-pequenas">
         <h1>JavaScript</h1>
         <p>Desenvolvimento Web</p>
     </header>
 
     <main>
-         <section>
-            <h2>Manipulação de Dados</h2>
-            <p>Manipular dados significa alterar o seu estado ou extrair informações úteis deles. Cada tipo de dado tem seus próprios "superpoderes" (métodos).</p>
+        <section>
+                <h2>DOM </h2>
+                <p>O DOM (Document Object Model) é o ponto de virada na jornada de qualquer pessoa que estuda JavaScript. É através dele que o JavaScript deixa de ser apenas lógica no console e passa a dar vida, cor e movimento às páginas web reais. Aqui está a estrutura completa para entender o DOM do zero:</p>
 
-         <h3>Manipulando Strings (Textos)</h3>
-
-            <ul>
-                <li>Descobrir o tamanho <strong>(.length)</strong>: Conta quantos caracteres o texto tem.</li>
-                <li>Mudar a caixa <strong>(.toUpperCase() / .toLowerCase())</strong>: Deixar tudo em maiúsculo ou minúsculo.</li>
-                <li>Cortar pedaços <strong>(.slice())</strong>: Extrair apenas uma parte do texto.</li>
-            </ul>
-
-            <code>
-                <p><strong>JavaScript</strong></p>
-                <p>const frase = "JavaScript é incrível!";</p>
-                <p>console.log(frase.length);        // 22 (contando os espaços)</p>
-                <p>console.log(frase.toUpperCase()); // "JAVASCRIPT É INCRÍVEL!"</p>
-            </code>
-
-            <h3>Manipulando Números (Objeto Math)</h3>
-            <p>Para contas complexas ou ajustes, usamos o objeto nativo <strong>Math</strong>.</p>
+                <h3>O que é o DOM (Document Object Model)?</h3>
+                <p>Quando você abre um site, o navegador lê o arquivo HTML e cria, na memória dele, uma representação viva e organizada daquela página. Essa estrutura é o DOM.</p> 
                 <ul>
-                    <li>Arredondar: <strong>Math.round()</strong> (arredonda para o mais próximo)</li>
-                    <li><strong>Math.ceil()</strong> (para cima) ou <strong>Math.floor() </strong>(para baixo).</li>
-                    <li>Gerar número aleatório: <strong>Math.random()</strong>.</li>
+                    <li><strong>O Conceito:</strong> O DOM transforma o seu código HTML em um "objeto" gigante que o JavaScript consegue ler, alterar, adicionar ou apagar.</li>
+
+                    <li><strong>A Árvore do DOM (DOM Tree):</strong> O DOM organiza a página como se fosse uma árvore genealógica invertida. O topo de tudo é o document. Abaixo dele vêm a "tag pai" <code>html</code> que se ramifica nos "filhos" <code>head e body </code>, que por sua vez têm seus próprios filhos <code> h1, p, a, button,</code>.</li>
+                </ul>
+    
+
+                <h3>Selecionando Elementos (Como o JS encontra as coisas)</h3>
+                <p>Antes de mudar qualquer elemento na página, o JavaScript precisa "encontrar" esse elemento. Antigamente existiam muitos comandos para isso, mas hoje usamos principalmente dois:</p>
+
+                <ul>
+                    <li><strong>document.querySelector():</strong> É o canivete suíço. Ele encontra o primeiro elemento que corresponda ao seletor CSS que você passar (seja o nome da tag, uma classe ou um ID).</li>
+
+                    <li> <strong>document.querySelectorAll():</strong> Encontra todos os elementos que batem com a descrição e os coloca em uma lista (uma espécie de array).</li>
+
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>// Selecionando pelo nome da tag</p>
+                        <p>const titulo = document.querySelector("h1");</p>
+                        <p>// Selecionando por uma classe (usa o ponto .)</p>
+                        <p>const botaoSucesso = document.querySelector(".btn-enviar");</p>
+                        <p>// Selecionando por um ID (usa a hashtag #)</p>
+                        <p>const inputNome = document.querySelector("#campo-nome");</p>
+                    </code>
                 </ul>
 
-            <code>
-                <p><strong>JavaScript</strong></p>
-                <p>const nota = 7.6;</p>
-                <p>console.log(Math.round(nota)); // 8</p>
-                <p>console.log(Math.floor(nota)); // 7</p>
-            </code>
-        </section>
+                <h3>Manipulando Elementos (Como o JS altera a página)</h3>
+                <p>Depois de selecionar o elemento e guardá-lo em uma variável, você pode usar as propriedades do JavaScript para modificar a página em tempo real.</p>
+                    <ul>
+                        <li><p><strong>Alterando Textos e Conteúdos</strong></p>
+                        <ul>
+                            <li><strong>.innerText ou .textContent:</strong> Altera apenas o texto puro dentro do elemento.</li>
+                            <li><strong>.innerHTML: </strong>Permite alterar o texto e ainda injetar novas tags HTML lá dentro.</li>
+                        </ul> </li>
+                            <code>
+                                <p><strong>JavaScript</strong></p>
+                            <p>titulo.innerText = "Bem-vindo ao meu site interativo!";</p>
+                            </code>
+                            <li><strong>Alterando Estilos (CSS)</strong> <p>Você pode mudar qualquer propriedade visual usando o atributo .style.</p>
+                        <code>
+                                <p><strong>JavaScript</strong></p>
+                            <p>// Deixando o fundo do botão vermelho</p>
+                            <p>botaoSucesso.style.backgroundColor = "red";</p>
+                            <p>botaoSucesso.style.color = "white";</p>
+                            </code></li>
+                            <li><strong>Manipulando Classes (A melhor prática)</strong> <p> Em vez de mudar o CSS linha por linha no JavaScript, o ideal é criar uma classe no CSS e apenas "ligar ou desligar" essa classe usando o .classList.</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>titulo.classList.add("destaque");    // Adiciona a classe</p>
+                            <p>titulo.classList.remove("escondido"); // Remove a classe</p>
+                            <p>titulo.classList.toggle("modo-escuro"); // Se tiver a classe remove, se não tiver adiciona!</p>
+                        </code></li>
+                    </ul>
+
+                <h3>Eventos (Como o JS reage ao Usuário)</h3>
+                <p>Os eventos são as ações que acontecem no navegador: um clique, um movimento de mouse, o pressionar de uma tecla ou o envio de um formulário. O JavaScript fica "escutando" esses eventos para disparar um bloco de código (função) quando eles acontecem.</p>
+
+                <p>Usamos o método <strong>addEventListener()</strong>, que precisa de dois argumentos: o nome do evento que ele deve ouvir e o que ele deve fazer quando o evento acontecer.</p>
+
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const botao = document.querySelector("#meu-botao");</p>
+                    <p>// Criando a função de ação</p> 
+                    <p>
+                        function darBoasVindas() {
+                            alert("Você clicou no botão! Parabéns!");
+                        }
+                    </p>
+
+
+                <p>// Dizendo ao botão para escutar o "click" e rodar a função</p>
+                </code>
+
+                <p>botao.addEventListener("click", darBoasVindas);</p>
+
+                <aside id="destaque">
+                    <p>🚀 <strong>Resumo do Fluxo do DOM</strong></p>
+                    Toda e qualquer interatividade que você vê na internet hoje segue este mesmo ciclo de 3 passos:
+                    <ol>
+                        <li> <strong>Selecionar:</strong> O JS encontra o elemento (ex: o botão do carrinho de compras).</li>
+                        <li><strong>Escutar:</strong> O JS espera a ação do usuário (ex: o clique no botão).</li>
+                        <li><strong>Executar:</strong> O JS roda uma função que altera a página (ex: adiciona "+1" no ícone do carrinho).</li>
+                    </ol>  
+                </aside>
+            </section>
+
+            <section>  
+                <h2>Arvore DOM</h2>
+
+                <p>Para entender a Árvore DOM (DOM Tree), imagine que o navegador é um tradutor. Ele pega o arquivo de texto bruto (o seu código HTML) e o transforma em um grande mapa ramificado cheio de conexões.</p>
+
+                <p>Esse mapa tem o formato de uma árvore genealógica invertida, onde tudo nasce de uma única raiz e vai se dividindo em galhos (ramos) e folhas. Cada elemento, texto ou atributo do seu HTML se transforma em um Nó (Node) dentro dessa árvore. Veja como o navegador organiza essa hierarquia:</p>
+
+                <ol>
+                    <li><p><strong>A Raiz (document)</strong></p>
+                É a base de tudo. O objeto document é o ponto de partida para qualquer coisa que você queira fazer no JavaScript. Se você quer tocar em um botão, você tem que pedir licença ao document primeiro.</li>
+
+                    <li><p><strong>O Elemento Raiz (html)</strong></p>
+                É o primeiro galho real da árvore. Ele engloba absolutamente tudo o que existe na sua página.</li>
+
+                    <li><p><strong>Os Elementos Pais (Parents)</strong></p>
+                São as tags que possuem outras tags dentro delas. No nível principal, o (html) se divide em dois filhos grandes:
+
+                        <ul>
+                            <li> (head) (informações de bastidores, como o título da aba).</li>
+                            <li>(body) (tudo o que o usuário realmente vê na tela).</li>
+                        </ul>
+                    </li>
+
+                    <li><p><strong>Os Elementos Filhos (Children) e Irmãos (Siblings)</strong></p>
+                As tags dentro do (body) continuam se ramificando.
+                Se você tem uma tag (div) e dentro dela um (h1) e um (p), a (div) é a mãe/pai, enquanto o (h1) e o (p) são filhos entre si e irmãos um do outro.</li>
+
+                <p>
+                    Como o HTML se transforma em Árvore (Na Prática)
+                    Se você escrever este código HTML simples:
+                </p>
+
+                <div class="imagem" style="width: 90vw;"><img src="../../imagem/screen.jpg" alt="foto" style="max-width: 250px; margin: auto; padding-left: 10px;"></div>
+                </ol>
+
+                <h3>Por que essa estrutura é tão importante?</h3>
+                <p>O JavaScript só consegue navegar pela sua página porque o DOM é uma árvore organizada. Isso permite que você use a lógica de "andar pelos galhos" usando código. Por exemplo, você pode dizer ao JavaScript: "Ache o elemento (body), pegue o primeiro filho dele (que é o (h1)) e mude a cor dele para azul."</p></section>
     </main>
 
      <nav id="menu">

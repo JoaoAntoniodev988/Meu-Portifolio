@@ -119,67 +119,152 @@ nav {
 </style>
 </head>
 <body>
-        <header class="telas-pequenas">
+      <  <header class="telas-pequenas">
         <h1>JavaScript</h1>
         <p>Desenvolvimento Web</p>
     </header>
 
     <main>
-        <section class="ordem-de-precedencia">
-                <h2>Ordem de Precedência dos Operadores.</h2>
-                <p>Ordem de Precedência dos Operadores. Assim como na matemática da escola nós aprendemos que a multiplicação deve ser feita antes da soma, o JavaScript também tem uma lista de prioridades para decidir o que ele vai calcular primeiro quando encontra uma linha de código cheia de operadores misturados.  Vamos entender esse fluxo de prioridades dividido em grupos:</p>
+         <section class="estrutura-de-repetição">
+                <h2>Estruturas de Repetição em JavaScript: Automação e Loops</h2>
                 
-               
-                <p>
-                    <strong>1º Grupo:</strong>
+                <p>No desenvolvimento de software, frequentemente precisamos executar o mesmo bloco de código várias vezes seguidas (por exemplo, ler os 50 produtos de um carrinho, renderizar 10 posts na tela ou rodar um cálculo até atingir um limite).</p>
+
+                <p>Em vez de copiar e colar linhas de código, utilizamos estruturas de repetição (conhecidas como Loops ou Laços). Elas repetem uma instrução com base em uma condição lógica: enquanto a condição for verdadeira (true), o bloco continua rodando; no momento em que se torna falsa (false), o laço é quebrado e o programa segue em frente.</p>
+
+                <aside id="destaque">Aviso de Performance (Loop Infinito): Se a condição do seu laço de repetição nunca se tornar falsa, o código rodará infinitamente. Isso consome 100% do processamento disponível e trava a aba do navegador do usuário.</aside>
+
+                <h3>Estrutura Controlada por Contador: for</h3>
+                <p>O laço for é a estrutura ideal quando você sabe exatamente quantas vezes precisa repetir aquela ação. Ele centraliza em uma única linha as três etapas essenciais de um loop: a inicialização, a condição de parada e o incremento.</p>
+
+                <p><strong>Sintaxe:</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        for (inicialização; condição; incremento) {
+                            // Código que será repetido
+                        }
+                    </p>
+                </code>
+                <p><strong>Exemplo Prático:</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        // Contando de 1 até 5
+                        for (let i = 1; i <= 5; i++) {
+                            console.log(`Contagem: ${i}`);
+                        }
+                    </p>
                     <ul>
-                        <li>() Parênteses: Têm prioridade máxima absoluta sobre qualquer outra coisa. Se você quiser que uma soma seja feita antes de uma multiplicação, coloque-a entre parênteses.</li>
-                        <li>Exponenciação: É resolvida logo em seguida.</li>
-                        <li>/ , * , %: Divisão, multiplicação e resto têm a mesma prioridade entre si (se aparecerem juntos, o JS resolve quem estiver mais à esquerda primeiro).
-                        Nota: O + e o - vêm logo abaixo deles.</li>
+                        <li>let i = 1: Cria uma variável de controle (ponteiro) que começa no número 1.</li>
+                        <li>i <= 5: A condição de teste. O loop vai rodar enquanto i for menor ou igual a 5.</li>
+                        <li>i++: O incremento. Soma +1 na variável i ao final de cada repetição.</li>
                     </ul>
-                    
-                </p>
+                </code>
+               <h3>Estruturas Controladas por Condição: while e do...while</h3>
+                <p>Essas estruturas são perfeitas para cenários onde você não sabe previamente quantas repetições serão necessárias, pois dependem de uma condição que muda dinamicamente durante o processo (como esperar o usuário acertar uma senha).</p>
 
-                    <p><strong>2º Grupo:</strong></p>
-                    
+                <ul>
+                    <li><strong>O Laço while (Enquanto):</strong> Ele avalia a condição antes de executar o bloco de código. Se a condição começar como falsa, o bloco dentro dele nunca será executado.
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>let energia = 3;</p>
+                     <p>
+                         while (energia > 0) {
+                            console.log(`Correndo... Energia restante: ${energia}`);
+                            energia--; <p>// Modifica a variável para evitar o loop infinito</p>
+                         }
+                     </p>
+                </code></li>
+
+                    <li><strong>O Laço do...while (Faça... Enquanto):</strong> Diferente do anterior, ele executa o bloco de código pelo menos uma vez antes de testar a condição. A validação lógica acontece apenas no final.
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>let tentativaConexao = 0;</p>
                         <p>
-                            Operadores Relacionais (Comparações)
-                            Depois que todas as contas matemáticas da linha foram resolvidas e viraram números limpos, o JavaScript passa para as comparações.
+                            do {
+                                tentativaConexao++;
+                                console.log(`Tentando conectar ao servidor... Tentativa ${tentativaConexao}`);
+                            
+                                <p>// Supondo que a conexão falhou, o loop para se atingir 3 tentativas</p>
+                            } while (tentativaConexao < 3);
                         </p>
-                        <p><strong>> , < , >= , <= , === , !==:</strong> Ele avalia se um número é maior, menor ou igual ao outro. O resultado desse grupo sempre se transforma em true ou false.</p>
+                    </code></li>
+                </ul>
 
-                <p><strong>3º Grupo:</strong></p>
-                <p>
-                    Operadores Lógicos (Decisões)
-                    Por último, o JavaScript pega os resultados true ou false das comparações e aplica as regras lógicas. Eles possuem uma ordem interna muito rígida entre si:
-                    ! (NÃO / NOT): É o primeiro a agir, invertendo o valor lógico que estiver colado nele.
-                </p>
-                <p><strong>&& (E / AND):</strong> É o próximo a ser resolvido.</p>
-                <p><strong>|| (OU / OR):</strong> É o último da fila. Tem a menor prioridade de todos.</p>
-                <p>
-                    Verificando na Prática (O poder dos parênteses)
-                    Veja como a ordem de precedência muda completamente o resultado final com os mesmos elementos:
-                </p>
-                <p><strong>Cenário A (Sem parênteses)</strong></p>
+                <h3>Loops Especializados para Coleções: for...of e for...in</h3>
+                
+                <p>O JavaScript moderno oferece atalhos nativos elegantes para percorrer estruturas de dados compostas (como listas/arrays e objetos) sem a necessidade de gerenciar contadores manuais.</p>
+                <p><strong>A. O Laço for...of (Iterando sobre Arrays):</strong> Lê e entrega o valor de cada elemento de uma lista, um por um, do início ao fim.</p>
+                
+                
                 <code>
                     <p><strong>JavaScript</strong></p>
-                    <p>const resultado = 5 + 10 * 2 > 20 && true;</p>
-                    <p>Aritmética primeiro: O JS faz 10 * 2 (20) e depois soma 5 $\rightarrow$ 25.</p>
-                    <p>Relacional depois: Ele compara 25 > 20 $\rightarrow$ true.</p>
-                    <p>Lógico por último: Ele avalia true && true $\rightarrow$ true.</p>
+                    <p>const tecnologias = ["HTML", "CSS", "JavaScript", "React"];</p>
+                    <p>
+                        for (const tech of tecnologias) {
+                            console.log(`Estudando a tecnologia: ${tech}`);
+                        }
+                    </p>
+                    <p>// Saída: Entrega os nomes das tecnologias diretamente.</p>
                 </code>
-
-                <p><strong>Cenário B (Forçando com parênteses)</strong></p>
+                <p><strong>B. O Laço for...in (Iterando sobre Objetos):</strong> Diferente do anterior, ele é projetado para percorrer as propriedades (chaves) de um objeto literal.</p>
+                
                 <code>
                     <p><strong>JavaScript</strong></p>
-                    <p>const resultado = (5 + 10) * 2 > 40 || true;</p>
-                    <p>Parênteses no topo: O JS ignora a regra da multiplicação e faz primeiro 5 + 10 (15).</p>
-                    <p>Resto da aritmética: Faz 15 * 2 $\rightarrow$ 30.</p>
-                    <p>Relacional: Compara 30 > 40 $\rightarrow$ false.</p>
-                    <p>Lógico por último: Avalia false || true $\rightarrow$ true.</p>
+                    <p>
+                        const usuario = {
+                            nome: "Alice",
+                            idade: 25,
+                            profissao: "Engenheira de Software"
+                        };
+                    </p>
+                    <p>
+                        for (const chave in usuario) {
+                            console.log(`${chave}: ${usuario[chave]}`);
+                        }
+                    </p>
+                    <p>
+                        /* Saída:
+                        nome: Alice
+                        idade: 25
+                        profissao: Engenheira de Software
+                        */
+                    </p>
                 </code>
-        </section>
+                <h3>Comandos de Interrupção de Fluxo: break e continue</h3>
+                <p>Às vezes, precisamos interferir no comportamento padrão do loop antes que a condição principal seja atingida. Para isso, o JavaScript disponibiliza duas palavras-chave:</p>
+                <p><strong>A. O Comando break:</strong> Interrompe e encerra o loop imediatamente, jogando o fluxo do programa para a linha logo após a estrutura de repetição.</p>
+
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const listaNumeros = [10, 20, 35, 40, 50];</p>
+                    <p>
+                        for (const num of listaNumeros) {
+                            if (num === 35) {
+                                <p>
+                                    console.log("Número 35 encontrado! Parando a busca.");
+                                    break; // O loop é cancelado e ignora os números 40 e 50.
+                                </p>
+                            <p>}</p>
+                            <p>console.log(`Analisando: ${num}`);</p>
+                        <p>}</p>
+                    </p>
+                </code>
+                <p><strong>B. O Comando continue:</strong> Não encerra o loop. Em vez disso, ele pula apenas a repetição atual e vai direto para o próximo passo do laço.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// Imprimindo apenas números ímpares (pulando os pares)</p>
+                    <p>
+                        for (let i = 1; i <= 5; i++) {
+                            if (i % 2 === 0) {
+                                <p>continue; // Se for par, ignora o console.log abaixo e vai para o próximo número</p>
+                            <p>}</p>
+                            <p>console.log(`Número Ímpar: ${i}`);</p>
+                        <p>}</p>
+                    </p>
+                </code>
+            </section>
     </main>
 
      <nav id="menu">
