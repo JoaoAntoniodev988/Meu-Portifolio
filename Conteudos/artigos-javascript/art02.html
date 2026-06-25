@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+      <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Intermédiario</p>
+    </header>
+
+    <main>
+        <section classs="variaveis">
+
+            <h2>Variáveis</h2>
+
+            <p>Uma variável é como uma caixa etiquetada onde você guarda uma informação para usar mais tarde. No JavaScript moderno, usamos duas palavras-chave principais para criar essas caixas:</p>
+            
+            <p><strong>const (Constante)</strong>: Cria uma gaveta que, uma vez fechada com um valor dentro, nunca mais pode ser alterada. Use sempre esta por padrão.</p>
+
+            <p><strong>let</strong>: Cria uma gaveta que pode ter o valor substituído ao longo do tempo. Use quando souber que o dado vai mudar (como a pontuação de um jogo).</p>
+        
+            <aside id="destaque">(Nota: Você talvez veja o <strong>var</strong> em códigos antigos. Ele caiu em desuso porque causava alguns comportamentos confusos no código. Evite usar).</aside>
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome = "Lucas"; // Este nome não muda</p>
+            <p>let pontos = 10;     // O jogo começou, o jogador tem 10 pontos e pode mudar no decorrer do jogo.</p></code>
+
+
+            <h3>Regras de identificadores das variáveis</h3>
+
+            <p>Aborda as regras gramaticais para dar nome às coisas no JavaScript.Em programação, um Identificador é simplesmente o nome que você escolhe para suas variáveis, constantes, funções ou classes. O JavaScript possui regras rígidas sobre o que é permitido e o que vai quebrar o seu código. Exemplos práticos:</p>
+
+            <p><strong>Podem começar com letra, $ ou _:</strong><br>
+            O primeiro caractere do nome da sua variável é o mais restrito. Ele só pode ser uma letra (maíuscula ou minúscula), o símbolo do cifrão ($) ou o underline (_).</p>
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome = "Lucas";    // ✅ Válido (começa com letra)</p>
+            <p>const $preco = 10.90;    // ✅ Válido (muito usado em bibliotecas como jQuery ou RxJS)</p>
+            <p>const _id = "usr_123";   // ✅ Válido (comum para indicar variáveis privadas/internas)</p>
+            </code>
+            
+            <p><strong>Não podem começar com números:</strong><br>
+            Embora você possa usar números no nome da variável, eles nunca podem vir na primeira posição.</p>
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>const 1ano = 2026;  // ❌ Erro de Sintaxe! O JavaScript se confunde achando que é um número puro.</p>
+            <p>const ano1 = 2026;  // ✅ Válido! O número no final ou meio é totalmente permitido.</p>
+            </code>
+
+            <p><strong>É possível usar letras ou números:</strong><br>
+            Depois do primeiro caractere, você está livre para misturar letras (de A a Z) e números (de 0 a 9).</p>
+            <code>
+            <p><strong>JavaScript</strong></p>
+            <p>const apartamento202 = true; // ✅ Perfeito</p>
+            </code>
+
+            <p><strong>É possível usar acentos e símbolos:</strong><br>
+            O JavaScript moderno aceita caracteres Unicode, o que significa que tecnicamente você pode usar acentos. Porém, há uma pegadinha de boa prática aqui!</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const preço = 50;   // ✅ Funciona no JavaScript, mas...</p>
+            <p>const calça = "Jeans"; // ✅ Também funciona… </p></code>
+            <aside id="destaque">⚠️ Alerta de Boa Prática: Embora o JavaScript permita acentos, a comunidade global de programação evita ao máximo. Usar acentos ou o ç pode gerar problemas de codificação quando seu código for rodar em servidores internacionais ou quando você trabalhar com programadores estrangeiros. Prefira preco e calca.</aside><br>
+
+            <p><strong>Não podem conter espaços</strong><br>
+            Uma variável precisa ser uma palavra única e contínua. O computador não entende que duas palavras separadas por espaço pertencem ao mesmo nome.</p>
+
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nome usuario = "Mariana"; // ❌ Erro de Sintaxe! O espaço quebra o código.</p></code>
+
+            <p>Para resolver isso, a comunidade JavaScript usa um padrão chamado camelCase (onde a primeira palavra é minúscula e as seguintes começam com letra maiúscula, parecendo as corcovas de um camelo):</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const nomeUsuario = "Mariana"; // ✅ Perfeito! Padrão camelCase.</p></code>
+
+            
+            <p><strong>Não podem ser palavras reservadas</strong><br>
+            O JavaScript tem uma lista de palavras que pertencem à própria linguagem (como comandos e instruções). Você não pode usar essas palavras como nome das suas variáveis, senão o motor do navegador entra em curto-circuito.</p>
+            <code><p><strong>JavaScript</strong></p>
+            <p>const let = 10;      // ❌ Erro! "let" é uma palavra reservada para criar variáveis.</p>
+            <p>const function = 5;  // ❌ Erro! "function" é reservada para criar funções.</p>
+            <p>const const = "Oi";  // ❌ Erro! "const" é reservada.</p></code>
+            </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

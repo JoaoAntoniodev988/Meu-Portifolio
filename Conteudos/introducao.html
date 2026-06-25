@@ -43,7 +43,7 @@ header {
 }
 
 main {
-   margin: 20px;
+   margin: 20px 20px 60px 20px;
 }
 
 main h2 {
@@ -58,16 +58,19 @@ main p {
     margin: 5px 0px;
 }
 
- main ul {
-    margin: 0px 8px;
+ main ul, ol {
+    margin: 0px 20px;
 }
+
 article  {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
     align-content: normal;
-    column-gap: 40px;
+    row-gap: 0px;
+    column-gap: 0px;
     min-height: 100px;
     background-color: white;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.185);
@@ -76,7 +79,7 @@ article  {
 }
 
 .cima {
-    flex: 1 0 auto;
+    flex: 0 1 auto;
     font-size: 10pt;
     margin: 10px;
     
@@ -87,6 +90,7 @@ article  {
 }
 
 .footer-div {
+    flex: 1 1 auto;
     background-color: #f7df1e;
     border-radius: 10px;
     padding: 10px 15px;
@@ -168,7 +172,7 @@ nav {
     </header>
     <main>
         <h2>Temas</h2>
-        <a href="javaScript.html">
+        <a href="artigos-javascript/art01.html">
             <article class="indice">
                     <div class="cima"><h2>Javascript e EcmaScript</h2></div>
                     <footer class="footer-div">
@@ -177,7 +181,7 @@ nav {
             </article>
         </a><br>
 
-        <a href="javaScript.html">
+        <a href="artigos-javascript/art02.html">
             <article class="indice">
                     <div class="cima"><h2>Variáveis</h2></div>
                     <footer class="footer-div">
@@ -238,37 +242,86 @@ nav {
 
      <a href="javaScript.html">
             <article class="indice">
-                    <div class="cima"><h2>Tipos de Dados: O que vai dentro das variaveis</h2></div>
+                    <div class="cima"><h2>Ordem de Precedência dos Operadores</h2></div>
                     <footer class="footer-div">
-                        <p><strong>number (Número):</strong> é Qualquer valor    numérico seja positivo, negativo, inteiro ou decimal.
-                        Diferente de outras linguagens que separam...</p>
+                        <p>Ordem de Precedência dos Operadores. Assim como na matemática da escola nós aprendemos que a multiplicação deve ser feita antes da soma...</p>
                     </footer>
             </article>
-        </a>
+        </a><br>
+
      <a href="javaScript.html">
             <article class="indice">
-                    <div class="cima"><h2>Tipos de Dados: O que vai dentro das variaveis</h2></div>
+                    <div class="cima"><h2>DOM</h2></div>
                     <footer class="footer-div">
-                        <p><strong>number (Número):</strong> é Qualquer valor    numérico seja positivo, negativo, inteiro ou decimal.
-                        Diferente de outras linguagens que separam...</p>
+                        <p>O DOM (Document Object Model) é o ponto de virada na jornada de qualquer pessoa que estuda JavaScript. É através dele...</p>
                     </footer>
             </article>
-        </a>
+        </a><br>
+
      <a href="javaScript.html">
             <article class="indice">
-                    <div class="cima"><h2>Tipos de Dados: O que vai dentro das variaveis</h2></div>
+                    <div class="cima"><h2>Tratamento de Eventos no DOM</h2></div>
                     <footer class="footer-div">
-                        <p><strong>number (Número):</strong> é Qualquer valor    numérico seja positivo, negativo, inteiro ou decimal.
-                        Diferente de outras linguagens que separam...</p>
+                        <p>No ecossistema da Web, um Evento é um sinal emitido pelo navegador para notificar a sua aplicação de que algo relevante...</p>
                     </footer>
             </article>
-        </a>
+        </a><br>
+
      <a href="javaScript.html">
             <article class="indice">
-                    <div class="cima"><h2>Tipos de Dados: O que vai dentro das variaveis</h2></div>
+                    <div class="cima"><h2>Classificação dos Principais Eventos do DOM</h2></div>
                     <footer class="footer-div">
-                        <p><strong>number (Número):</strong> é Qualquer valor    numérico seja positivo, negativo, inteiro ou decimal.
-                        Diferente de outras linguagens que separam...</p>
+                        <p>Para facilitar o mapeamento cognitivo, agrupamos os eventos em categorias com base em sua origem no sistema:...</p>
+                    </footer>
+            </article>
+        </a><br>
+
+          <a href="javaScript.html">
+            <article class="indice">
+                    <div class="cima"><h2>Estruturas Condicionais em JavaScript</h2></div>
+                    <footer class="footer-div">
+                        <p>Por padrão, os interpretadores de JavaScript executam o código de forma linear: de cima para baixo, linha por linha....</p>
+                    </footer>
+            </article>
+        </a><br>
+
+          <a href="javaScript.html">
+            <article class="indice">
+                    <div class="cima"><h2>Estruturas de Repetição em JavaScript</h2></div>
+                    <footer class="footer-div">
+                        <p>No desenvolvimento de software, frequentemente precisamos executar o mesmo bloco de código várias vezes seguidas (por exemplo, ler os 50 produtos de um carrinho...</p>
+                    </footer>
+            </article>
+        </a><br>
+
+          <a href="javaScript.html">
+            <article class="indice">
+                    <div class="cima"><h2>Variáveis Compostas (Arrays) em JavaScript</h2></div>
+                    <footer class="footer-div">
+                        <p>No desenvolvimento de software, variáveis simples (como as que armazenam strings ou números) funcionam como caixas que guardam um único valor...</p>
+                    </footer>
+            </article>
+        </a><br>
+
+         <a href="javaScript.html">
+            <article class="indice">
+                    <div class="cima"><h2>Funções em JavaScript</h2></div>
+                    <footer class="footer-div">
+                        <p>No desenvolvimento de software, variáveis simples (como as que armazenam strings ou números) funcionam como caixas que guardam um único valor...</p>
+                    </footer>
+            </article>
+        </a><br>
+
+         <a href="javaScript.html">
+            <article class="indice">
+                    <div class="cima"><h2>Os Proximos passos em Js</h2></div>
+                    <footer class="footer-div">
+                        <ol>
+                    <li> Função </li>
+                    <li>objetos</li>
+                    <li>modularização</li>
+                    <li> RegEx ...</li>
+                </ol>
                     </footer>
             </article>
         </a>
