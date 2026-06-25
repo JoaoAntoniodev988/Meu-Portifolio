@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+        <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+        <section class="Estruturas-condicionais">
+
+                <h2>Estruturas Condicionais em JavaScript: Guia de Controle de Fluxo</h2>
+                <p>Por padrão, os interpretadores de JavaScript executam o código de forma linear: de cima para baixo, linha por linha. As estruturas condicionais quebram essa linearidade. Elas atuam como bifurcações no código, permitindo que a aplicação tome decisões em tempo de execução com base em testes lógicos (expressões booleanas).</p>
+                <p>Se a condição estipulada for avaliada como verdadeira (true), um bloco específico de código é executado; se for falsa (false), o interpretador ignora esse bloco e segue outro caminho.</p>
+
+                <h3>A Estrutura Base: if, else if e else</h3>
+                <p>É a ferramenta mais comum para tomada de decisão no JavaScript. Ela avalia expressões lógicas e direciona o fluxo do script.</p>
+
+                <ul>
+                    <li><strong>O Bloco if (Se)</strong></li>
+                    <p>Executa um bloco de código apenas se a condição entre parênteses for verdadeira.</p>
+
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>const velocidade = 85;</p>
+                        
+                                        <p>
+                        if (velocidade > 80) {
+                            console.log("Usuário multado por excesso de velocidade!");
+                        }
+                                        </p>
+                    </code>
+
+                <li><strong>O Bloco else (Senão)</strong></li>
+                
+                <p>Funciona como um plano de contingência. Ele executa um código alternativo caso a condição do if seja falsa.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const idade = 16;</p>
+                    <p>
+                        if (idade >= 18) {
+                            console.log("Acesso autorizado.");
+                        } else {
+                            console.log("Acesso negado. Usuário menor de idade.");
+                        }
+                    </p>
+                </code>
+                <li><strong>O Encadeamento com else if (Senão Se)</strong></li>
+                <p>Utilizado quando há mais de dois caminhos possíveis para resolver o problema. O JavaScript avalia as condições em ordem e executa o primeiro bloco que for verdadeiro.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nota = 7.5;</p>
+                    <p>
+                        if (nota >= 9.0) {
+                            console.log("Excelente! Quadro de honra.");
+                        }
+                    </p><p>
+                        else if (nota >= 7.0) {
+                            console.log("Aprovado regular.");
+                        } else if (nota >= 5.0) {
+                            console.log("Em recuperação.");
+                        }</p> <p>
+                        else {
+                            console.log("Reprovado.");
+                        }
+                    </p>
+                </code>
+
+                </ul>  
+
+                <h3>Condição Múltipla: switch</h3>
+                <p>Quando você precisa testar uma única variável contra múltiplos valores exatos fixos, o encadeamento de muitos else if pode tornar o código poluído e difícil de ler. O bloco switch organiza essa estrutura de forma limpa através de "casos".</p>
+                <p><strong>Anatomia do switch:</strong></p>
+                <ul>
+                    <li><strong>case:</strong> Define o valor a ser comparado com a variável.</li><br>
+                    <li><strong>break:</strong> Interrompe a execução do switch. Se você esquecer o break, o interpretador continuará executando todos os próximos casos abaixo de forma cascata, mesmo que eles não correspondam ao valor (comportamento conhecido como fall-through).</li><br>
+                    <li><strong>default:</strong> Funciona como o else. É o código executado se nenhum dos casos anteriores for correspondido.
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const diaSemana = 3;</p>
+                            <p>let nomeDia = "";</p>
+
+                            <p>switch (diaSemana) {</p>
+                                    <p>
+                                        case 1: <br>
+                                            nomeDia = "Segunda-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        case 2: <br>
+                                            nomeDia = "Terça-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        case 3: <br>
+                                            nomeDia = "Quarta-feira";
+                                            break;
+                                    </p>
+                                    <p>
+                                        default: <br>
+                                            nomeDia = "Dia inválido ou final de semana";
+                                                            }
+                                    </p>
+                            console.log(nomeDia); // Saída: Quarta-feira
+                        </code></li>
+                </ul>
+ 
+                <h3>O Operador Ternário (Condicional Curto)</h3>
+                <p>O operador ternário é uma forma compacta de escrever um if / else que serve puramente para atribuir um valor ou retornar um dado. Ele recebe esse nome porque é o único operador do JavaScript que exige três operandos.</p>
+                <p><strong>Sintaxe:</strong></p>
+                <p>
+                    $$\text{condição } ? \text{ valor\_se\_verdadeiro} : \text{ valor\_se\_falso}$$
+                    Exemplo Prático:
+                </p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const saldo = 150;</p>
+                    <p>
+                        // Utilizando IF / ELSE tradicional
+                        let statusConta;
+                    </p>
+                    <p>
+                        if (saldo >= 0) {
+                            statusConta = "Positivo";
+                        } else {
+                            statusConta = "Negativo";
+                        }
+                    </p>
+                    <p>// O mesmo comportamento refatorado com Operador Ternário:</p>
+                    <p>const statusTernario = saldo >= 0 ? "Positivo" : "Negativo";</p>
+                </code>
+
+                
+                <aside id="destaque">Nota de UI/UX e Código Limpo: Não encadeie múltiplos operadores ternários uns dentro dos outros (ex: condicao ? var1 : condicao2 ? var2 : var3). Isso destrói a legibilidade do código. Se houver mais de duas opções, prefira o if / else ou switch.</aside>
+
+                <h3>Conceito Avançado: Truthy e Falsy</h3>
+                <p>No JavaScript, uma condição dentro do if não precisa ser necessariamente uma expressão matemática ou lógica pura (como x > 5). Você pode passar qualquer tipo de dado (strings, números, objetos) diretamente na condição.</p>
+                <p>O JavaScript converte esse dado implicitamente para um booleano (true ou false). É aqui que entram os conceitos de Truthy e Falsy:</p>
+                <p><strong>Valores Falsy (Valores avaliados como false)</strong></p>
+                <p>Existem exatamente 6 valores que o JavaScript sempre considerará falsos em uma condicional:</p>
+                <ol>
+                    <li>false (O booleano nativo)</li>
+                    <li>0 (O número zero, incluindo -0)</li>
+                    <li>"" ou '' (Strings vazias)</li>
+                    <li>null (Ausência intencional de valor)</li>
+                    <li>undefined (Variável declarada, mas não inicializada)</li>
+                    <li> NaN (Not a Number - erro matemático)</li>
+                </ol>
+
+                <p><strong>Valores Truthy (Valores avaliados como true)</strong></p>
+                <p>Todo o restante do JavaScript é avaliado como verdadeiro. Isso inclui arrays vazios [], objetos vazios {} e strings com pelo menos um caractere de espaço " ".</p>
+                <p>Exemplo de uso prático em APIs:</p>
+                <code>
+                    <strong><p>JavaScript</p></strong>
+                    <p>const usuarioLogado = "Gabriel"; // String preenchida (Truthy)</p>
+                    <p>
+                        if (usuarioLogado) {
+                            console.log(`Bem-vindo, ${usuarioLogado}!`); // Executa porque a string não está vazia
+                        }
+                    </p> <p>
+                        else {
+                            console.log("Por favor, faça o login.");
+                        }
+                    </p>
+                </code>
+
+                <h3>Curto-Circuito Lógico (Short-Circuit Evaluation)</h3>
+                
+                <p>Os operadores lógicos && (AND) e || (OR) podem ser usados fora dos blocos if para criar condicionais rápidas e elegantes. Eles interrompem a leitura assim que encontram o resultado definitivo da expressão.</p>
+                <p><strong>Operador && (Executa se for verdadeiro)</strong></p>
+                <p>Ele avalia o código da esquerda. Se for verdadeiro, ele avança e executa/retorna o código da direita. É muito utilizado em frameworks modernos (como o React) para renderizar elementos na tela.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const exibirMenu = true;</p>
+                    <p>// Se exibirMenu for true, executa a função da direita. Se for false, o código para ali mesmo.</p>
+                    <p>exibirMenu && renderizarMenuNavegacao();</p>
+                </code>
+                <p><strong>Operador || (Garante um valor padrão se for falso)</strong></p>
+                <p>Ele avalia o código da esquerda. Se for verdadeiro, ele para ali mesmo e o retorna. Se for falso (ou seja, se a variável vier nula ou vazia), ele avança e assume o valor de segurança à direita.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nomeDigitado = ""; // Usuário não preencheu o campo (Falsy)</p>
+                    <p>// Garante que o sistema tenha um nome válido para exibir</p>
+                    <p>const nomeFinal = nomeDigitado || "Usuário Anônimo";</p>
+                    <p>console.log(nomeFinal); // Saída: Usuário Anônimo</p>
+                </code>
+
+            </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

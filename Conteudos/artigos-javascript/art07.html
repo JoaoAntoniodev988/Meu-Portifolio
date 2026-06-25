@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+       <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Operadores</h2>
+                <ul>
+                    <li><strong>Operadores Aritméticos</strong>: São os operadores matemáticos clássicos que usamos para fazer cálculos.
+                        <p>Os Símbolos: <br></p>
+                            <ul>
+                                <li><strong>+</strong> (Adição) / <strong>- </strong>(Subtração)</li>
+                                <li><strong>* </strong>(Multiplicação) / <strong>/ </strong>(Divisão)</li>
+                                <li><strong>% </strong>(Módulo / Resto da divisão): Muito usado para descobrir se um número é par ou ímpar.</li>
+                                <li><strong>** </strong>(Exponenciação): Elevar um número a uma potência.</li>
+                            </ul>
+                        Exemplo: <br>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const resto = 11 % 2; // O resultado é 1 (porque 11 dividido por 2 dá 5 e sobra 1)</p>
+                            <p>const quadrado = 3 ** 2; // 3 elevado a 2 = 9</p>
+                        </code></li>
+                    <li><strong>Operadores Relacionais (Comparação)</strong>: Servem para comparar dois valores e avaliar a relação entre eles. O resultado dessa comparação é sempre um booleano (true ou false).
+                        <p>Os Símbolos:</p>
+                        <ul>
+                            <li> <strong>> </strong>(Maior que) / <strong> < </strong>(Menor que)</li>
+                            <li> <strong>>=</strong> (Maior ou igual) / <strong><=</strong> (Menor ou igual)</li>
+                            <li><strong>==</strong> (Igualdade ampla): Compara apenas o valor, ignorando o tipo de dado. (Evite usar)</li>
+                            <li><strong>=== </strong>(Igualdade estrita): Compara o valor E o tipo de dado. (Sempre use este)</li>
+                            <li><strong>!== </strong>(Diferente estrito): Verifica se os valores ou tipos são diferentes.</li>
+                        </ul>
+            
+                        <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>console.log(5 == "5");  // true (o JS converte o texto para número antes de comparar)</p>
+                            <p>console.log(5 === "5"); // false (são iguais no valor, mas um é Number e o outro é String)</p>
+                        </code> </li>
+                    <li><strong>Operadores Lógicos</strong>: Servem para combinar várias comparações relacionais e criar regras de negócio mais complexas.
+                        <p>Os Símbolos:</p>
+                        <ul>
+                            <li>&& (E / AND): A frase inteira só é verdade se tudo for verdade.</li>
+                            <li>|| (OU / OR): A frase inteira é verdade se pelo menos um elemento for verdade.</li>
+                            <li>! (NÃO / NOT): Inverte o booleano. Se algo era true, vira false.</li>
+                        </ul>
+                    <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const temIdade = true;</p>
+                            <p>const temPermissaoDosPais = false;
+                            <p>// O jovem pode viajar se tiver idade OU a permissão</p></p>
+                            <p>const podeViajar = temIdade || temPermissaoDosPais; // true</p>
+                        </code></li>
+                    <li><strong>Operador Ternário</strong>: O operador ternário é um atalho elegante para criar uma estrutura de decisão rápida (um if / else de uma linha só). Ele recebe esse nome porque é o único operador do JavaScript que usa três argumentos.
+                        <p>A Estrutura: condição ? valor_se_verdade : valor_se_falso;</p>
+                    <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>const idade = 20;</p>
+                            <p>// Se idade for maior ou igual a 18, retorna "Maior de idade", senão retorna "Menor de idade"</p>
+                            <p>const status = idade >= 18 ? "Maior de idade" : "Menor de idade";</p>
+                            <p>console.log(status); // "Maior de idade"</p>
+                        </code>
+                    O operador ternário e os operadores relacionais (===) são os que os iniciantes mais demoram para se acostumar, mas são os mais usados no dia a dia.</li>
+                    <li><strong>Operadores de Atribuição</strong>: Servem para guardar ou atualizar o valor de uma variável. O operador básico você já conhece: o sinal de igual (=). Mas existem atalhos inteligentes:
+                    <p>Os Símbolos:</p>
+                    <ul>
+                        <li> = (Atribuição simples)</li>
+                        <li> += (Soma e atribui): Pega o valor atual e soma mais um tanto.</li>
+                        <li> -= (Subtrai e atribui)</li>
+                        <li> *= (Multiplica e atribui)</li>
+                    </ul>
+                    <p>Exemplo:</p>
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>let pontos = 10;</p>
+            
+                            <p>// O jeito longo: pontos = pontos + 5;</p>
+                            <p>// O jeito inteligente (Operador de Atribuição):</p>
+                            <p>pontos += 5; // Agora pontos vale 15</p>
+                        </code></li>
+                    <li><strong>Operadores de Atribuição Composta</strong>: Operadores de Atribuição Composta (ou simplesmente "simplificação de atribuição"). Em programação, passamos muito tempo atualizando o valor de uma variável com base no valor que ela já possuía antes. O JavaScript nos oferece esse "atalho"  para não termos que repetir o nome da variável duas vezes.
+                        <p>Assumindo que começamos com let n = 3:
+                            <ol>
+                                <li>Adição Simplificada (+=)
+                                    <ul>
+                                        <li>Forma longa: n = n + 4 (Pega o valor atual de n, que é 3, soma 4 e guarda o resultado 7 de volta em n).</li>
+                                        <li>Forma simplificada: n += 4</li>
+                                        <li>Resultado: 7</li>
+                                    </ul>
+                                </li>
+                                <li> Subtração Simplificada (-=)
+                                    <ul>
+                                        <li>Forma longa: n = n - 5 (Pega o valor atual de n, subtrai 5 e guarda o resultado).</li>
+                                        <li>Forma simplificada: n -= 5</li>
+                                        <li>Resultado: Se n era 7, 7 - 5 = 2.</li>
+                                    </ul>
+                                </li>
+                                <li>Multiplicação Simplificada (*=)
+                                    <ul>
+                                        <li>Forma longa: n = n * 4 (Multiplica o valor atual por 4).</li>
+                                        <li>Forma simplificada: n *= 4</li>
+                                        <li>Resultado: Se n era 2, 2 * 4 = 8.</li>
+                                    </ul>
+                                </li>
+                                <li>Divisão Simplificada (/=)
+                                    <ul>
+                                        <li>Forma longa: n = n / 2 (Divide o valor atual por 2).</li>
+                                        <li>Forma simplificada: n /= 2</li>
+                                        <li>Resultado: Se n era 8, 8 / 2 = 4.</li>
+                                    </ul>
+                                </li>
+                                <li>Exponenciação Simplificada (=)
+                                    <ul>
+                                        <li>Forma longa: n = n 2 (Eleva o valor de n ao quadrado).</li>
+                                        <li>Forma simplificada: n = 2</li>
+                                        <li>Resultado: Se n era 4, 4 2 (4 elevado a 2) = 16.</li>
+                                    </ul>
+                                </li>
+                                <li>Módulo Simplificado (%=)
+                                    <ul>
+                                        <li>Forma longa: n = n % 5 (Pega o resto da divisão de n por 5).</li>
+                                        <li>Forma simplificada: n %= 5</li>
+                                        <li>Resultado: Se n era 16, ao dividir 16 por 5 dá 3 (que dá 15) e resta 1. Logo, o resultado é 1. </li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        <aside id="destaque">
+                        💡 Por que os programadores usam isso?
+                        No dia a dia, você verá quase todo mundo usando a versão da direita. Ela deixa o código mais limpo, mais rápido de ler e evita erros de digitação quando as variáveis possuem nomes longos, como:
+                        <code>
+                            <p><strong>JavaScript</strong></p>
+                            <p>// Ruim / Longo</p>
+                            <p>quantidadeItensNoCarrinho = quantidadeItensNoCarrinho + 1;</p>
+                            <p>// Lindo / Simplificado
+                            quantidadeItensNoCarrinho += 1;</p>
+                        </code>
+                        </aside>
+                    </li>
+                </ul>
+        </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

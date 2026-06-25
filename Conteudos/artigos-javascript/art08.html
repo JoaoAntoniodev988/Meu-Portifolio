@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+        <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+        <section class="ordem-de-precedencia">
+                <h2>Ordem de Precedência dos Operadores.</h2>
+                <p>Ordem de Precedência dos Operadores. Assim como na matemática da escola nós aprendemos que a multiplicação deve ser feita antes da soma, o JavaScript também tem uma lista de prioridades para decidir o que ele vai calcular primeiro quando encontra uma linha de código cheia de operadores misturados.  Vamos entender esse fluxo de prioridades dividido em grupos:</p>
+                
+               
+                <p>
+                    <strong>1º Grupo:</strong>
+                    <ul>
+                        <li>() Parênteses: Têm prioridade máxima absoluta sobre qualquer outra coisa. Se você quiser que uma soma seja feita antes de uma multiplicação, coloque-a entre parênteses.</li>
+                        <li>Exponenciação: É resolvida logo em seguida.</li>
+                        <li>/ , * , %: Divisão, multiplicação e resto têm a mesma prioridade entre si (se aparecerem juntos, o JS resolve quem estiver mais à esquerda primeiro).
+                        Nota: O + e o - vêm logo abaixo deles.</li>
+                    </ul>
+                    
+                </p>
+
+                    <p><strong>2º Grupo:</strong></p>
+                    
+                        <p>
+                            Operadores Relacionais (Comparações)
+                            Depois que todas as contas matemáticas da linha foram resolvidas e viraram números limpos, o JavaScript passa para as comparações.
+                        </p>
+                        <p><strong>> , < , >= , <= , === , !==:</strong> Ele avalia se um número é maior, menor ou igual ao outro. O resultado desse grupo sempre se transforma em true ou false.</p>
+
+                <p><strong>3º Grupo:</strong></p>
+                <p>
+                    Operadores Lógicos (Decisões)
+                    Por último, o JavaScript pega os resultados true ou false das comparações e aplica as regras lógicas. Eles possuem uma ordem interna muito rígida entre si:
+                    ! (NÃO / NOT): É o primeiro a agir, invertendo o valor lógico que estiver colado nele.
+                </p>
+                <p><strong>&& (E / AND):</strong> É o próximo a ser resolvido.</p>
+                <p><strong>|| (OU / OR):</strong> É o último da fila. Tem a menor prioridade de todos.</p>
+                <p>
+                    Verificando na Prática (O poder dos parênteses)
+                    Veja como a ordem de precedência muda completamente o resultado final com os mesmos elementos:
+                </p>
+                <p><strong>Cenário A (Sem parênteses)</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const resultado = 5 + 10 * 2 > 20 && true;</p>
+                    <p>Aritmética primeiro: O JS faz 10 * 2 (20) e depois soma 5 $\rightarrow$ 25.</p>
+                    <p>Relacional depois: Ele compara 25 > 20 $\rightarrow$ true.</p>
+                    <p>Lógico por último: Ele avalia true && true $\rightarrow$ true.</p>
+                </code>
+
+                <p><strong>Cenário B (Forçando com parênteses)</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const resultado = (5 + 10) * 2 > 40 || true;</p>
+                    <p>Parênteses no topo: O JS ignora a regra da multiplicação e faz primeiro 5 + 10 (15).</p>
+                    <p>Resto da aritmética: Faz 15 * 2 $\rightarrow$ 30.</p>
+                    <p>Relacional: Compara 30 > 40 $\rightarrow$ false.</p>
+                    <p>Lógico por último: Avalia false || true $\rightarrow$ true.</p>
+                </code>
+        </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

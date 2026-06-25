@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+      <  <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+         <section class="estrutura-de-repetição">
+                <h2>Estruturas de Repetição em JavaScript: Automação e Loops</h2>
+                
+                <p>No desenvolvimento de software, frequentemente precisamos executar o mesmo bloco de código várias vezes seguidas (por exemplo, ler os 50 produtos de um carrinho, renderizar 10 posts na tela ou rodar um cálculo até atingir um limite).</p>
+
+                <p>Em vez de copiar e colar linhas de código, utilizamos estruturas de repetição (conhecidas como Loops ou Laços). Elas repetem uma instrução com base em uma condição lógica: enquanto a condição for verdadeira (true), o bloco continua rodando; no momento em que se torna falsa (false), o laço é quebrado e o programa segue em frente.</p>
+
+                <aside id="destaque">Aviso de Performance (Loop Infinito): Se a condição do seu laço de repetição nunca se tornar falsa, o código rodará infinitamente. Isso consome 100% do processamento disponível e trava a aba do navegador do usuário.</aside>
+
+                <h3>Estrutura Controlada por Contador: for</h3>
+                <p>O laço for é a estrutura ideal quando você sabe exatamente quantas vezes precisa repetir aquela ação. Ele centraliza em uma única linha as três etapas essenciais de um loop: a inicialização, a condição de parada e o incremento.</p>
+
+                <p><strong>Sintaxe:</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        for (inicialização; condição; incremento) {
+                            // Código que será repetido
+                        }
+                    </p>
+                </code>
+                <p><strong>Exemplo Prático:</strong></p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        // Contando de 1 até 5
+                        for (let i = 1; i <= 5; i++) {
+                            console.log(`Contagem: ${i}`);
+                        }
+                    </p>
+                    <ul>
+                        <li>let i = 1: Cria uma variável de controle (ponteiro) que começa no número 1.</li>
+                        <li>i <= 5: A condição de teste. O loop vai rodar enquanto i for menor ou igual a 5.</li>
+                        <li>i++: O incremento. Soma +1 na variável i ao final de cada repetição.</li>
+                    </ul>
+                </code>
+               <h3>Estruturas Controladas por Condição: while e do...while</h3>
+                <p>Essas estruturas são perfeitas para cenários onde você não sabe previamente quantas repetições serão necessárias, pois dependem de uma condição que muda dinamicamente durante o processo (como esperar o usuário acertar uma senha).</p>
+
+                <ul>
+                    <li><strong>O Laço while (Enquanto):</strong> Ele avalia a condição antes de executar o bloco de código. Se a condição começar como falsa, o bloco dentro dele nunca será executado.
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>let energia = 3;</p>
+                     <p>
+                         while (energia > 0) {
+                            console.log(`Correndo... Energia restante: ${energia}`);
+                            energia--; <p>// Modifica a variável para evitar o loop infinito</p>
+                         }
+                     </p>
+                </code></li>
+
+                    <li><strong>O Laço do...while (Faça... Enquanto):</strong> Diferente do anterior, ele executa o bloco de código pelo menos uma vez antes de testar a condição. A validação lógica acontece apenas no final.
+                    <code>
+                        <p><strong>JavaScript</strong></p>
+                        <p>let tentativaConexao = 0;</p>
+                        <p>
+                            do {
+                                tentativaConexao++;
+                                console.log(`Tentando conectar ao servidor... Tentativa ${tentativaConexao}`);
+                            
+                                <p>// Supondo que a conexão falhou, o loop para se atingir 3 tentativas</p>
+                            } while (tentativaConexao < 3);
+                        </p>
+                    </code></li>
+                </ul>
+
+                <h3>Loops Especializados para Coleções: for...of e for...in</h3>
+                
+                <p>O JavaScript moderno oferece atalhos nativos elegantes para percorrer estruturas de dados compostas (como listas/arrays e objetos) sem a necessidade de gerenciar contadores manuais.</p>
+                <p><strong>A. O Laço for...of (Iterando sobre Arrays):</strong> Lê e entrega o valor de cada elemento de uma lista, um por um, do início ao fim.</p>
+                
+                
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const tecnologias = ["HTML", "CSS", "JavaScript", "React"];</p>
+                    <p>
+                        for (const tech of tecnologias) {
+                            console.log(`Estudando a tecnologia: ${tech}`);
+                        }
+                    </p>
+                    <p>// Saída: Entrega os nomes das tecnologias diretamente.</p>
+                </code>
+                <p><strong>B. O Laço for...in (Iterando sobre Objetos):</strong> Diferente do anterior, ele é projetado para percorrer as propriedades (chaves) de um objeto literal.</p>
+                
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        const usuario = {
+                            nome: "Alice",
+                            idade: 25,
+                            profissao: "Engenheira de Software"
+                        };
+                    </p>
+                    <p>
+                        for (const chave in usuario) {
+                            console.log(`${chave}: ${usuario[chave]}`);
+                        }
+                    </p>
+                    <p>
+                        /* Saída:
+                        nome: Alice
+                        idade: 25
+                        profissao: Engenheira de Software
+                        */
+                    </p>
+                </code>
+                <h3>Comandos de Interrupção de Fluxo: break e continue</h3>
+                <p>Às vezes, precisamos interferir no comportamento padrão do loop antes que a condição principal seja atingida. Para isso, o JavaScript disponibiliza duas palavras-chave:</p>
+                <p><strong>A. O Comando break:</strong> Interrompe e encerra o loop imediatamente, jogando o fluxo do programa para a linha logo após a estrutura de repetição.</p>
+
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const listaNumeros = [10, 20, 35, 40, 50];</p>
+                    <p>
+                        for (const num of listaNumeros) {
+                            if (num === 35) {
+                                <p>
+                                    console.log("Número 35 encontrado! Parando a busca.");
+                                    break; // O loop é cancelado e ignora os números 40 e 50.
+                                </p>
+                            <p>}</p>
+                            <p>console.log(`Analisando: ${num}`);</p>
+                        <p>}</p>
+                    </p>
+                </code>
+                <p><strong>B. O Comando continue:</strong> Não encerra o loop. Em vez disso, ele pula apenas a repetição atual e vai direto para o próximo passo do laço.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// Imprimindo apenas números ímpares (pulando os pares)</p>
+                    <p>
+                        for (let i = 1; i <= 5; i++) {
+                            if (i % 2 === 0) {
+                                <p>continue; // Se for par, ignora o console.log abaixo e vai para o próximo número</p>
+                            <p>}</p>
+                            <p>console.log(`Número Ímpar: ${i}`);</p>
+                        <p>}</p>
+                    </p>
+                </code>
+            </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+        <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+        <section>
+                <h2>Funções em JavaScript: Modularização e Escopo</h2>
+                <p>As Funções são um dos pilares mais importantes do JavaScript. Elas funcionam como "fábricas de processamento" ou blocos de receitas: você isola um pedaço de código que executa uma tarefa específica, dá um nome a ele e pode reutilizá-lo quantas vezes quiser ao longo do seu programa, evitando repetição de código.</p>
+
+                <h3>O que é uma Função?</h3>
+                <p>Em termos lógicos, uma função é um subprograma que recebe dados de entrada (chamados de parâmetros), processa esses dados através de um conjunto de instruções e envia uma resposta de saída (o retorno).</p>
+                <p>O ciclo de vida de uma função é dividido em dois momentos cruciais:</p>
+                <ol>
+                    <li><strong>Declaração:</strong> Quando você cria a receita e diz ao JavaScript o que ela faz. (O código não roda aqui).</li><br>
+                    <li><strong>Invocação (ou Chamada):</strong> Quando você ativa a função para executar as instruções na memória.</li>
+                </ol>
+
+                <h3>Anatomia de uma Função Tradicional</h3>
+                <p>A forma clássica de declarar uma função no JavaScript utiliza a palavra-chave function.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// <strong>1. DECLARAÇÃO:</strong> Criando a função</p>
+                    <p>
+                        function calcularDobro(numero) {
+                            <p>// 'numero' é o parâmetro (a variável de entrada)</p>
+                            <p>const resultado = numero * 2;</p>
+                            <p>return resultado; // Envia o valor processado para fora da função</p>
+                        <p>}</p>
+                    </p>
+                    <p>// <strong>2. INVOCAÇÃO:</strong> Chamando a função para ser usada</p>
+                    <p>const valorFinal = calcularDobro(5); // Passamos o número 5 como 'argumento'</p>
+                    <p>console.log(valorFinal); // Saída: 10</p>
+                    <p><strong>O papel da instrução return:</strong></p>
+                    <p>A palavra-chave return é fundamental. Ela encerra a execução da função imediatamente e "cospe" o resultado para quem a chamou. Se você esquecer de colocar o return, a função executará suas linhas mas retornará o valor undefined.</p>
+                </code>
+                <h3>Tipos de Funções no JavaScript</h3>
+                <p>O JavaScript evoluiu e oferece diferentes maneiras de escrever funções, adaptando-se a necessidades de performance e estilo de escrita de código.</p>
+                <p><strong>A. Funções Anônimas (Expressão de Função)</strong></p>
+                <p>É uma função que não possui um nome explícito após a palavra function. Ela é armazenada diretamente dentro de uma variável comum.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        const saudar = function(nome) {
+                            return `Olá, ${nome}!`;
+                        };
+                    </p>
+                    <p>console.log(saudar("Mariana")); // Saída: Olá, Mariana!</p>
+                </code>
+                <p><strong>B. Arrow Functions (Funções de Seta)</strong></p>
+                <p>Introduzidas no JavaScript moderno (ES6), as Arrow Functions fornecem uma sintaxe extremamente compacta. Elas removem a necessidade da palavra function e usam o símbolo =>.</p>
+                <code>
+                    <strong>JavaScript</strong>
+                    <p>// Sintaxe padrão da Arrow Function</p>
+                    <p>
+                        const somar = (a, b) => {
+                            return a + b;
+                        };
+                    </p>
+                    <p>// Se a função tiver apenas UMA linha de código, podemos encurtar ainda mais:</p>
+                    <p>// O retorno torna-se implícito (não precisa digitar a palavra 'return' nem chaves)</p>
+                    <p>const multiplicar = (a, b) => a * b;</p>
+                    <p>console.log(multiplicar(3, 4)); // Saída: 12</p>
+                </code>
+                <h3>Parâmetros vs. Argumentos</h3>
+                <p>Embora sejam usados como sinônimos, há uma diferença técnica conceitual:</p>
+                <ul>
+                    <li>Parâmetros: São os nomes das variáveis declarados na definição da função (as "vagas" esperando preenchimento).</li>
+                    <li>Argumentos: São os valores reais passados para a função no momento em que ela é invocada.</li>
+                </ul>
+
+                <p> Parâmetros com Valor Padrão (Default Parameters)
+                Você pode definir um valor de segurança para caso quem chame a função esqueça de passar um argumento.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        function configurarDesconto(preco, taxa = 0.1) {
+                            return preco - (preco * taxa);
+                        }
+                    </p>
+                    <p>console.log(configurarDesconto(100));       // Saída: 90 (Usou a taxa padrão de 10%)</p>
+                    <p>console.log(configurarDesconto(100, 0.3));  // Saída: 70 (Ignorou o padrão e usou 30%)</p>
+                </code>
+                <h3>Escopo de Variáveis nas Funções</h3>
+                <p>O conceito de Escopo determina onde uma variável pode ser acessada ou modificada dentro do seu código. As funções criam uma barreira de proteção conhecida como Escopo Local.</p>
+                <ul>
+                    <li><strong>Escopo Global:</strong> Variáveis criadas fora de qualquer função pertencem ao escopo global e podem ser lidas por qualquer parte do arquivo.</li>
+                    <li><strong>Escopo Local (ou de Função):</strong> Variáveis criadas dentro de uma função nasceram ali dentro e morrem ali dentro. O mundo exterior não tem acesso a elas.</li>
+                </ul>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const globalVar = "Eu sou global";</p>
+                    <p>
+                        function testarEscopo() {
+                            <p>const localVar = "Eu sou local";</p>
+                            <p>console.log(globalVar); // Funciona! Consegue ler variáveis de fora.</p> 
+                            <p>console.log(localVar);  // Funciona!</p>
+                        <p>}</p>
+                    </p>
+                    <p>testarEscopo();</p>
+                    <p>console.log(localVar); // ERRO! O sistema quebra porque localVar não existe fora da função.</p>
+                </code>
+            </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

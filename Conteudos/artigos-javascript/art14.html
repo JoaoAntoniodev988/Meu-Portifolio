@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+        <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+        <section class="variaveis-compostas">
+                <h2>Variáveis Compostas (Arrays) em JavaScript: Estruturas de Dados</h2>
+                <p>No desenvolvimento de software, variáveis simples (como as que armazenam strings ou números) funcionam como caixas que guardam um único valor por vez. As Variáveis Compostas, popularmente conhecidas como Arrays (ou Vetores/Listas), mudam esse cenário: elas funcionam como armários organizados, capazes de armazenar múltiplos valores sob o nome de uma única variável.</p>
+
+                <h3>O que é um Array?</h3>
+                <p>Um Array é uma estrutura de dados linear e indexada. Ele permite agrupar diversos elementos em uma única coleção sequencial. No JavaScript, os arrays são dinâmicos (seu tamanho pode crescer ou diminuir em tempo de execução) e heterogêneos (um único array pode misturar números, strings, booleanos e até outros arrays).</p>
+                <p><strong>O Conceito de Índice (Index)</strong></p>
+                <p>O segredo para gerenciar um array é entender que toda posição possui um número de índice, e a contagem sempre começa no zero (0).</p>
+                <h3>Criação e Acesso a Elementos</h3>
+                <p><strong>A. Criando um Array</strong></p>
+                <p>A forma mais recomendada e limpa de declarar um array é utilizando colchetes [].</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>
+                        // Criando um array de strings
+                        const frutas = ["Abacaxi", "Banana", "Morango", "Uva"];
+                    </p>
+                </code>
+                <p><strong>B. Acessando Valores pelo Índice</strong></p>
+                <p>Para ler ou modificar um valor específico de dentro do array, referenciamos o nome da variável seguido pelo índice desejado entre colchetes.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>console.log(frutas[0]); // Saída: "Abacaxi" (Primeiro elemento)</p>
+                    <p>
+                        console.log(frutas[2]); // Saída: "Morango"
+                        // Modificando um valor existente
+                    </p>
+                    <p>frutas[1] = "Melancia"; // Substitui "Banana" por "Melancia"</p>
+                    <p>console.log(frutas);    // Saída: ["Abacaxi", "Melancia", "Morango", "Uva"]</p>
+                </code>
+                <p><strong>C. Descobrindo o Tamanho do Array</strong></p>
+                <p>A propriedade nativa .length retorna a quantidade total de elementos contidos no array.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>console.log(frutas.length); // Saída: 4</p>
+                    <aside id="destaque">Nota de Engenharia: Como os índices começam no 0, o último elemento de qualquer array sempre estará localizado na posição array.length - 1.</aside>
+                </code>
+               <h3>Métodos Fundamentais de Manipulação (Inserção e Remoção)</h3>
+                <p>O JavaScript fornece uma API rica em métodos prontos para modificar os elementos de um array sem a necessidade de reescrevê-lo manualmente:</p>
+                <p><strong>No Final do Array:</strong></p>
+                <ul>
+                    <li><strong>push(elemento):</strong> Adiciona um ou mais elementos ao final do array.</li><br>
+                    <li><strong>pop():</strong> Remove e retorna o último elemento do array. <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const numeros = [10, 20];</p>
+                    <p>numeros.push(30); // [10, 20, 30]</p>
+                    <p>numeros.pop();    // [10, 20] (o número 30 foi removido)</p>
+                </code></li>
+                </ul>
+                
+                <p><strong>No Início do Array:</strong></p>
+                <ul>
+                    <li><strong>unshift(elemento):</strong> Insere um elemento na primeira posição (índice 0) e empurra todos os outros para a frente.</li><br>
+                    <li><strong>shift():</strong> Remove o primeiro elemento do array, reindexando todos os demais.<code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const clientes = ["Carlos", "Ana"];</p>
+                    <p>clientes.unshift("Bruno"); // ["Bruno", "Carlos", "Ana"]</p>
+                    <p>clientes.shift();            // ["Carlos", "Ana"] (Bruno foi removido)</p>
+                </code></li>
+                </ul>
+
+              
+                <p><strong>Em Qualquer Posição:</strong></p>
+                <ul>
+                    <li>splice(indice, quantidade, novos_elementos): Um método versátil. Ele pode remover itens de qualquer lugar do array e, opcionalmente, injetar novos valores no lugar. <p><strong>JavaScript</strong></p>
+                    <p>const cores = ["Vermelho", "Verde", "Azul", "Amarelo"];</p>
+                    <p>// Remove 2 elementos a partir do índice 1 (remove "Verde" e "Azul")</p>
+                    <p>cores.splice(1, 2); </p>
+                    <p>console.log(cores); // Saída: ["Vermelho", "Amarelo"]</p></li>
+                </ul>
+
+                <h3>Combinando Repetições com Arrays (Iteração)</h3>
+                <p>Arrays e Loops nasceram para trabalhar juntos. Percorrer uma variável composta para ler ou processar seus dados é uma das tarefas mais comuns do desenvolvimento.</p>
+                <p><strong>A. Iteração com for Tradicional (Contador)</strong></p>
+                <p>Útil quando você precisa saber o número do índice durante a execução.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const precos = [100, 250, 400];</p>
+                    <p>
+                        for (let i = 0; i < precos.length; i++) {
+                            console.log(`O produto no índice ${i} custa R$ ${precos[i]}`);
+                        }
+                    </p>
+                </code>
+                <p><strong>B. Iteração Avançada com for...of</strong></p>
+                <p>A forma mais limpa e elegante caso você precise apenas dos valores e não se importe com os números dos índices.</p>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>const nomes = ["Julia", "Pedro", "Lucas"];</p>
+                    <p>
+                        for (const nome of nomes) {
+                            console.log(`Olá, ${nome}!`);
+                        }
+                    </p>
+                </code>
+                <h3>Arrays Multidimensionais (Matrizes)</h3>
+                <p>Como o JavaScript permite armazenar qualquer tipo de dados dentro de um array, você pode colocar arrays dentro de outros arrays. Isso cria estruturas bidimensionais (como tabelas com linhas e colunas), conhecidas matematicamente como Matrizes.</p>
+                <p><strong>Exemplo Prático:</strong>
+                <code>
+                    <p><strong>JavaScript</strong></p>
+                    <p>// Uma matriz de jogo da velha (3x3)</p>
+                    <p>
+                        const tabuleiro = [
+                            <p>["X", "O", "X"], // Linha 0</p>
+                            <p>["O", "X", " "], // Linha 1</p>
+                            <p>["X", " ", "O"]  // Linha 2</p>
+                        <p>];</p>
+                    </p>
+                    <p>// Para acessar um elemento, passamos dois colchetes: [linha][coluna]</p>
+                    <p>console.log(tabuleiro[0][1]); // Saída: "O" (Linha 0, Coluna 1)</p>
+                    <p>console.log(tabuleiro[2][0]); // Saída: "X" (Linha 2, Coluna 0)</p>
+                </code>
+            </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>

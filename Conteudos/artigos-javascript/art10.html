@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos da Linguagem</title>
+    <link rel="stylesheet" href="styleferramentas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c99245ec2d.js" crossorigin="anonymous"></script>
+    
+<style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #f5f5f5;
+    --texto: #000000;
+    --cor-principal: #f7df1e;
+    --fundo-card: #ffffff;
+    --cor-destaque: #fff1a2;
+}
+
+/* Definições gerais para o corpo do app */
+body {
+    font-family: 'Montsserat';
+    line-height: 1.2;
+    background-color: var(--fundo);
+}
+
+header {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--cor-principal);
+    font-family: 'Inter', sans-serif;
+    font-size: small;
+    border-bottom: 4px solid;
+}
+
+header p {
+    margin: 0;
+}
+
+main {
+    background-color: var(--fundo-card);
+    margin: 10px 10px 60px 10px;
+    padding:10px;
+}
+
+main h1, h2, h3, p {
+    margin: 10px;
+}
+
+main p {
+    font-size: 11pt;
+}
+
+main h2 {
+    font-size: 15pt;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f7df1e;
+}
+
+main h3 {
+    font-size: 12pt;
+}
+
+
+main ul, li {
+    margin: 10px 0px 10px 15px;
+    font-size: 11pt;
+
+}
+
+#destaque {
+    background-color: var(--cor-principal);
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 11pt
+}  
+
+/*Navegação de baixo*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;/* Garante que fica sempre por cima do conteúdo */
+    padding-top: 10px;
+    background-color: #f7df1e;
+    box-shadow: 2px 2px 8px 5px #22222221;
+    border-top: 2px solid ; 
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Distribui os 5 itens igualmente pela largura */
+    align-items: center;
+    height: 100%;/* Alinha verticalmente no centro da barra */
+}
+
+#menu a {
+    display: flex;
+    flex-direction: column;/* Alinha os elementos em linha vertical (coluna) */
+    align-items: center;/* Centraliza o ícone e o texto horizontalmente entre si */
+    text-decoration: none;/* Remove o sublinhado dos links */
+    gap: 8px;
+    font-size: small;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+      <header class="telas-pequenas">
+        <h1>JavaScript</h1>
+        <p>Desenvolvimento Web</p>
+    </header>
+
+    <main>
+         <section class="tratamento-de-eventos">
+                <h2>Tratamento de Eventos no DOM: Guia Completo de Engenharia Front-End</h2>
+               
+                <p>No ecossistema da Web, um Evento é um sinal emitido pelo navegador para notificar a sua aplicação de que algo relevante aconteceu. Essas interações podem ser disparadas diretamente pelo usuário (como cliques e digitação) ou pelo próprio ciclo de vida do navegador (como o término do carregamento de uma página ou falhas de rede).</p>
+                <p>O DOM funciona em um modelo assíncrono baseado no padrão de arquitetura Observer (Publish-Subscribe): o navegador publica o evento, e o seu código Javascript se inscreve para "escutar" e reagir a esse disparo através de funções chamadas Event Listeners (ou Event Handlers).</p>
+
+                <h3>Métodos de Vinculação (Como Escutar Eventos)</h3>
+                <p>A evolução do desenvolvimento web gerou três maneiras de conectar um evento ao código Javascript. Compreender a diferença entre elas é crucial para a manutenção de código limpo.</p>
+
+                <ul>
+                    <li><strong>Atributos Inline (Má Prática / Legado):</strong> O código Javascript é injetado diretamente dentro da tag HTML. 
+                    
+                    <p><strong>Desvantagem:</strong> Quebra o princípio de separação de conceitos (HTML para estrutura, JS para comportamento), polui o código e dificulta testes automatizados.</p> 
+                        <p>HTML</p><p>&#x3C;button onclick=&#x22;alert(&#x27;Clicou!&#x27;)&#x22;&#x3E;Enviar&#x3C;/button&#x3E;&#x3C;/p&#x3E;</p></li>
+
+                    <li><strong>Propriedades do Elemento (DOM Level 0):</strong>  O evento é atribuído como uma propriedade do objeto gerado pelo DOM.
+                    <p><strong>Limitação:</strong> Você só pode atribuir uma única função por tipo de evento. Se outra parte do script tentar assinar o mesmo evento, ela irá sobrescrever a função anterior.</p> 
+                    
+                        <code>
+                            <pre> <strong>JavaScript</strong>
+const botao = document.querySelector('button');
+botao.onclick = function() { console.log("Ação 1"); };
+botao.onclick = function() { console.log("Ação 2"); }; // Sobrescreveu a Ação 1!</pre></code></li><br>
+                <li><strong>addEventListener (Padrão Moderno - DOM Level 2):</strong>
+                É o método recomendado pela W3C. Ele aceita o tipo do evento, a função de callback e um objeto opcional de configurações. <p><strong>Vantagens:</strong> Permite adicionar múltiplos ouvintes ao mesmo evento, oferece controle fino de propagação e permite a remoção limpa do ouvinte usando <strong>removeEventListener</strong>.</p>
+                <code>
+                    <pre><strong>JavaScript</strong>
+const botao = document.querySelector('button');
+function dispararLog() { console.log("Botão acionado!"); }
+// Adicionando o ouvinte
+botao.addEventListener('click', dispararLog);
+// Removendo quando não for mais necessário (evita vazamento de memória)
+botao.removeEventListener('click', dispararLog);</pre>
+                </code></li>
+                    
+                </ul> 
+
+                <h3>O Fluxo de Propriação: Event Bubbling e Capturing</h3>
+                    <p>É quando um evento acontece em um elemento do DOM, ele não afeta apenas aquele elemento isolado. Ele viaja por toda a árvore de elementos. Esse comportamento segue um fluxo oficial dividido em 3 fases essenciais: </p>
+                    
+                    <ol>
+                        <li><strong>Fase de Captura (Capture Phase): </strong>O evento desce a árvore do DOM, partindo do elemento raiz (window, document, &#x3C;body&#x3E;) até chegar bem perto do elemento real que sofreu a ação.</li><br>
+                        <li><strong>Fase de Alvo (Target Phase):</strong> O navegador detecta que chegou ao elemento exato onde a ação ocorreu (ex: o &#x3C;a&#x3E; ou &#x3C;button&#x3E; clicado) e dispara o gatilho nele.</li><br>
+
+                        <li><strong>Fase de Borbulhamento (Bubbling Phase):</strong> O evento faz o caminho inverso: ele sobe de volta pela árvore do DOM, do elemento filho até a raiz, disparando os ouvintes de todos os elementos pais no caminho. Este é o comportamento padrão do navegador.</li>
+                    </ol></li>
+
+                <p>Controlando o Fluxo com Código</p>
+                <p>O objeto de evento (event) nos dá ferramentas para gerenciar e interromper essa viagem na árvore:</p>
+
+                <ul>
+                    <li><strong>event.stopPropagation():</strong> Interrompe o borbulhamento imediatamente. Se você clicar em um botão interno, o evento não subirá para a &#x3C;div&#x3E; mãe. Muito útil para janelas modais ou menus drop-down onde o clique de dentro não deve fechar a caixa externa.</li><br>
+                    <li><strong>event.stopImmediatePropagation():</strong> Além de impedir o evento de subir para os pais, ele impede que outros listeners configurados no mesmo elemento atual executem.</li>
+                </ul>
+
+                <h3>O Objeto do Evento (Event Object)</h3>
+                <p>Sempre que um callback é executado, o navegador injeta automaticamente um argumento contendo uma coleção rica de metadados sobre o ocorrido. Por convenção de código, os desenvolvedores capturam essa variável nomeando-a como e, evt ou event.</p>
+                <p>Propriedades e Métodos Fundamentais:</p>
+                
+                    <ul>
+                        <li><strong>e.target:</strong> Faz referência ao elemento exato que disparou o evento (onde o usuário realmente interagiu, ex: a imagem dentro de um botão).</li><br>
+                        <li><strong>e.currentTarget: </strong>Faz referência ao elemento que está escutando o evento (onde o .addEventListener foi atrelado). Eles podem ser diferentes devido ao efeito de borbulhamento.</li><br>
+                        <li><strong>e.type:</strong> Retorna uma string com o nome do evento executado (ex: "click", "keyup").</li><br>
+                        <li><strong>e.preventDefault():</strong> Cancela o comportamento nativo padrão que o navegador executaria para aquela tag. Exemplos: impede uma tag <a> de redirecionar a URL ou impede um <form> de recarregar a página ao enviar dados.</li>
+                    </ul>
+
+                <h2>Delegação de Eventos (Event Delegation)</h2>
+                <p>Em aplicações robustas e dinâmicas (como listas infinitas ou e-commerces onde itens entram e saem da tela a todo momento), adicionar um <strong>.addEventListener</strong> para cada botão individual prejudica o consumo de memória do dispositivo.</p>
+
+                <p>A técnica de Delegação de Eventos resolve isso aproveitando o mecanismo de <strong>Event Bubbling</strong>. Em vez de ouvir os filhos, nós penduramos um único ouvinte no elemento pai e inspecionamos quem disparou a ação usando <strong>e.target</strong>.  Exemplo Prático de Arquitetura Limpa:</p>
+               
+<code><pre><strong>JavaScript</strong>
+// Capturamos a lista (Pai) e não os itens (Filhos)
+const listaProdutos = document.querySelector('#lista-produtos');
+listaProdutos.addEventListener('click', function(e) {
+// Verifica se o clique aconteceu de fato em um botão de exclusão
+if (e.target && e.target.classList.contains('btn-deletar')) {
+const idProduto = e.target.dataset.id;
+console.log(`Produto ${idProduto} removido com sucesso!`);
+}
+});</pre></code>
+            </section>
+    </main>
+
+     <nav id="menu">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fa-regular fa-house"></i><span class="menu-texto">Início</span>
+            </a></li>
+
+            <li>
+                <a href="ferramentas.html"><i class="fa-solid fa-brain"></i><span class="menu-texto">Ferramentas</span></a></li>
+
+            <li>
+                <a href="projectos.html"><i class="fa-solid fa-diagram-project"></i><span class="menu-texto">Projectos</span></a></li>
+
+        </ul>
+    </nav>
+</body>
