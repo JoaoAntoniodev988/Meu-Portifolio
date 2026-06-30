@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio | Estilo LinkedIn</title>
+    <link rel="stylesheet" href="pagina-principal.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">Js-Dev988 Júnior</div> 
+                <input type="text" placeholder="Pesquisar" class="search-bar">
+            </div>
+            
+            <nav class="header-nav">
+                <a href="#" class="nav-link active">Início</a>
+                <a href="#" class="nav-link">Ferramenta</a>
+                <a href="#" class="nav-link">Projeto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <aside class="left-sidebar">
+            <div class="profile-card">
+                <div class="cover-photo"></div>
+                <img src="sua-foto.jpg" alt="Sua Foto de Perfil" class="profile-pic">
+                <h2>João De Sousa António</h2>
+                <p>Desenvolvedor Frontend | HTML | CSS | JavaScript</p>
+                <span class="location">Luanda, Angola</span>
+            </div>
+        </aside>
+
+        <section class="feed-column">
+            
+            <div class="filter-box">
+                <button class="filter-btn active" data-filter="tudo">Tudo</button>
+                <button class="filter-btn" data-filter="vagas">Vagas</button>
+                <button class="filter-btn" data-filter="publicacoes">Minhas publicações</button>
+                <button class="filter-btn" data-filter="mencoes">Menções</button>
+            </div>
+
+            <div id="posts-container">
+
+                <article class="post-card" data-category="publicacoes">
+                   
+        
+                    <div class="post-actions">
+                        <button class="like-btn">Gostei</button>
+                        <button>Comentar</button>
+                        <button>Partilhar</button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <aside class="right-sidebar">
+            <div class="footer-links-card">
+                <a href="#">Sobre</a>
+                <a href="#">Acessibilidade</a>
+                <a href="#">Central de Ajuda</a>
+                <a href="#">Termos e Privacidade</a>
+                <p>LinkedIn Corporation © 2026</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

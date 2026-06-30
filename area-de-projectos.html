@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,10 +34,34 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    font-size: small;
     padding: 10px 25px;
     background-color: var(--destaque);
-    color: #ffffff; /* Texto do cabeçalho sempre branco */
+    color: #000000; /* Texto do cabeçalho sempre branco */
+    margin-top: 2px;
+}
+
+#cabeçalhoP h1 {
+    font-size: small;
+    font-size: 12pt;
+}
+
+section h2 {
+    text-align: center;
+}
+main {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+/* RESUMO DE SALDOS (CARD DO TOPO) */
+#areaDeProjectos {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+#areaDeProjectos h2 {
+    font-size: 14pt;
 }
 
 
@@ -50,6 +74,12 @@ body {
     </header>
 
     <main>
+
+
+        <section>
+            <h1></h1>
+        </section>
+
         <section id="areaDeProjectos">
             <h2>Área de exploração dos Projetos</h2>
             <div class="projetoUm">
@@ -58,7 +88,7 @@ body {
                 </header>
 
                 <footer>
-                    <p>Projetos criado em 2026. É um projeto que agrupa uma grade quantidade de manuscritos antigos com o objectivo de perservar a literatura antiga. Saiba mais...</p>
+                    <p>Projetos App criado em 2026. É um projeto que agrupa uma grade quantidade de manuscritos antigos com o objectivo de preservar a literatura antiga. Saiba mais...</p>
                 </footer>
             </div>
 
@@ -68,17 +98,13 @@ body {
                 </header>
 
                 <footer>
-                    <p>Projetos criado em 2026. É um projeto que agrupa uma grade quantidade de manuscritos antigos com o objectivo de perservar a literatura antiga. Saiba mais...</p>
+                    <p>Projeto App criado em 2026. É um projeto simples que ajuda os usuário a gerencia as sua finança. Saiba mais...</p>
                 </footer>
             </div>
-
 
         </section>
     </main>
 
-    <footer>
-        <p>&copy; Js-Dev988-Todos Direitos Reservados</p>
-    </footer>
     
 </body>
 </html>
