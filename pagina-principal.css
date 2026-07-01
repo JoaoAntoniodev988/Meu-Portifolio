@@ -154,7 +154,7 @@ a {
 
 /* Coluna Central: Filtros e Posts */
 .filter-box {
-    padding: 12px 25px;
+    padding: 12px 15px;
     justify-content: space-between;
     display: flex;
     gap: 8px;
@@ -164,7 +164,7 @@ a {
     background: none;
     border: 1px solid #00000099;
     color: #00000099;
-    padding: 6px 16px;
+    padding: 6px 10px;
     border-radius: 15px;
     font-weight: 600;
     font-size: 14px;
