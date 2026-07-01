@@ -1,0 +1,277 @@
+/* ==========================================================================
+   1. RESET E CORES DA MARCA AMBULANTE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --cor-amarela: #FFD000;      /* Amarelo vibrante da logo Ambulante */
+    --cor-preta: #111111;        /* Preto sólido da tipografia da logo */
+    --cor-fundo: #f8fafc;        /* Fundo claro para contrastar com o amarelo */
+    --cor-card: #ffffff;         /* Branco para os blocos de conteúdo */
+    --cor-cinza-texto: #475569;  /* Cinza para textos secundários */
+    --border-radius-padrao: 8px; /* Cantos levemente arredondados, mas firmes */
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-preta);
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. BARRA DE NAVEGAÇÃO (NAVBAR)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--cor-preta); /* Fundo preto para destacar a marca */
+    color: #ffffff;
+    padding: 15px 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* O círculo amarelo da sua logo reconstruído com CSS */
+.brand-circle {
+    width: 24px;
+    height: 24px;
+    background-color: var(--cor-amarela);
+    border-radius: 50%;
+}
+
+.nav-logo h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nav-logo h2 span {
+    color: var(--cor-amarela); /* Destaque em amarelo na navbar */
+    font-weight: 400;
+}
+
+.badge-online {
+    background-color: #10b981; /* Verde de conectado */
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   3. LAYOUT DO DASHBOARD (FLEXBOX / GRID COMPACTO)
+   ========================================================================== */
+.dashboard-container {
+    max-width: 65vw;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px; /* Espaçamento vertical limpo entre os blocos */
+}
+
+/* Estilo Base para os Cards (Mesclando linhas retas e sombras modernas) */
+.wallet-card, .campaign-card {
+    border-radius: var(--border-radius-padrao);
+    padding: 30px;
+}
+
+/* Coluna Direita: Rodapé */
+.redesSocial {
+    text-align: center;
+    font-size: 12px;
+}
+
+.redesSocial a {
+    color: black;
+    margin-bottom: 10px;
+}
+
+.redesSocial a:hover {
+    color: #0a66c2;
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   4. SEÇÃO: CARTEIRA DIGITAL
+   ========================================================================== */
+.balance-container {
+    background-color: #f1f5f9;
+    padding: 20px;
+    border-radius: var(--border-radius-padrao);
+    margin-bottom: 20px;
+    border-left: 5px solid var(--cor-amarela); /* Detalhe amarelo na lateral */
+}
+
+.balance-label {
+    font-size: 14px;
+    color: var(--cor-cinza-texto);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.balance-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.wallet-actions {
+    display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  row-gap: 10px;
+  min-height: 320px;
+}
+
+.wallet-actions input {
+    padding: 12px;
+    border: 2px solid #cbd5e1;
+    border-radius: var(--border-radius-padrao);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.wallet-actions input:focus {
+    border-color: var(--cor-preta);
+}
+
+.wallet-actions button {
+    background-color: var(--cor-amarela);
+    color: var(--cor-preta);
+    border-radius: var(--border-radius-padrao);
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.253);
+}
+
+.wallet-actions button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--cor-preta);
+}
+
+.wallet-actions button:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0px var(--cor-preta);
+}
+
+/* ==========================================================================
+   5. SEÇÃO: AGENTE DE MARKETING (FORMULÁRIO)
+   ========================================================================== */
+.subtitle {
+    color: var(--cor-cinza-texto);
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.form-group input[type="text"], .form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #cbd5e1;
+    border-radius: var(--border-radius-padrao);
+    font-size: 16px;
+    outline: none;
+}
+
+.form-group input[type="text"]:focus, .form-group select:focus {
+    border-color: var(--cor-preta);
+}
+
+/* Área de Upload de Foto Amigável */
+.file-drop-area {
+    border: 2px dashed #cbd5e1;
+    padding: 30px;
+    text-align: center;
+    border-radius: var(--border-radius-padrao);
+    background-color: #f8fafc;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.file-drop-area:hover {
+    background-color: #f1f5f9;
+    border-color: var(--cor-preta);
+}
+
+.file-drop-area input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Botão de Submissão em Destaque Absoluto */
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--cor-amarela);
+    color: var(--cor-preta);
+    border: 2px solid var(--cor-preta);
+    border-radius: var(--border-radius-padrao);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--cor-preta);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-submit:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--cor-preta);
+}
+
+.btn-submit:active {
+    transform: translate(0, 0);
+    box-shadow: 4px 4px 0px var(--cor-preta);
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDADE MOBILE
+   ========================================================================== */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    .wallet-actions {
+        flex-direction: column;
+    }
+    .wallet-actions button {
+        width: 100%;
+    }
+}
