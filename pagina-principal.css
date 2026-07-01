@@ -342,6 +342,10 @@ a {
     transition: width 0.5s ease-in-out;
 }
 
+.redes {
+    text-align: center;
+}
+
 /* ==========================================================================
    5. AJUSTES FINOS DE RESPONSIVIDADE (MOBILE-FIRST / ADAPTÁVEL)
    ========================================================================== */
