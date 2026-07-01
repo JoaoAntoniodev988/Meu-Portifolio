@@ -173,9 +173,9 @@ a {
 }
 
 .filter-btn.active, .filter-btn:hover {
-    background-color: #01754f; /* Verde escuro igual ao botão 'Tudo' da imagem */
+    background-color: #0160b9; /* Verde escuro igual ao botão 'Tudo' da imagem */
     color: white;
-    border-color: #01754f;
+    border-color: #636363;
 }
 
 /* Card do Post (Feed) */
