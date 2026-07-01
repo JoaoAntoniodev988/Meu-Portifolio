@@ -237,6 +237,7 @@ a {
     color: #00000066;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
 }
 
@@ -340,10 +341,6 @@ a {
     background-color: #014f9c; /* Verde para combinar com o destaque científico */
     height: 100%;
     transition: width 0.5s ease-in-out;
-}
-
-.redes {
-    text-align: center;
 }
 
 /* ==========================================================================
