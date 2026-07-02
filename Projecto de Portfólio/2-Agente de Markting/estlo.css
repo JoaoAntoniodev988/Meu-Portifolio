@@ -137,6 +137,7 @@ body {
     gap: 12px;
     box-shadow: 4px 4px 6px  rgba(0, 0, 0, 0.274); /* Sombra neobrutalista */
     transition: transform 0.1s, box-shadow 0.1s;
+    border: none;
 }
 
 .btn-fb:hover {
@@ -146,7 +147,7 @@ body {
 
 .btn-fb:active {
     transform: translate(0, 0);
-    box-shadow: 4px 4px 0px var(--cor-preta);
+    box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.144);
 }
 
 /* Alteramos a cor do ícone do Facebook para preto para combinar com a tipografia */
@@ -171,13 +172,11 @@ body {
     .login-container {
         flex-direction: column;
         margin: 16px;
-        box-shadow: 6px 6px 0px var(--cor-preta);
+        box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.144);
     }
 
     .brand-section {
         padding: 40px 30px;
-        border-right: none;
-        border-bottom: 3px solid var(--cor-preta);
     }
 
     .action-section {
